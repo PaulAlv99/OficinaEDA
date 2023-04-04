@@ -2,7 +2,8 @@
 #include <iostream>
 #include "Oficina.h"
 
-void menu(Oficina METAL);
+void MenuInfo(int numero_ets, EstacaoTrabalho* ET, Oficina METAL);
+void Menu(int numero_ets, EstacaoTrabalho* ET,Oficina METAL);
 
 void gestao();
 void reparacao_manual();
