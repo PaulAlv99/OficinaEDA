@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Carro.cpp" />
+    <ClCompile Include="Ciclos.cpp" />
     <ClCompile Include="ET.cpp" />
     <ClCompile Include="Ficheiros.cpp" />
     <ClCompile Include="Ficheiros.h" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Carro.h" />
+    <ClInclude Include="Ciclos.h" />
     <ClInclude Include="ET.h" />
     <ClInclude Include="Gestao.h" />
     <ClInclude Include="Mecanico.h" />

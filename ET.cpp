@@ -8,6 +8,9 @@ EstacaoTrabalho CriarET(int ID) {
 	nova.numero_carros = 0;
 	nova.faturacao = 0;
 	nova.ID = ID;
+	nova.Listadeespera;
+	nova.Carrosreparados;
 
 	return nova;
 }
+
