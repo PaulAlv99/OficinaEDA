@@ -35,13 +35,14 @@ int main()
         METAL.fila_espera_tamanho++;
 
     }
-    for (int i = METAL.fila_espera_tamanho; i < METAL.fila_espera_tamanho+10; i++) {
+    /*for (int i = METAL.fila_espera_tamanho; i < METAL.fila_espera_tamanho + 10; i++) {
         carrinhos[METAL.fila_espera_tamanho+i] = CriarCarroRandom(marcas.linhas[rand() % marcas.tamanho], modelos.linhas[rand() % modelos.tamanho]);
         carrinhos[METAL.fila_espera_tamanho+i].ID = METAL.fila_espera_tamanho+i;
         METAL.fila_espera = carrinhos;
         METAL.fila_espera_tamanho++;
 
     }
+    */
     /*limpar os couts*/
     system("CLS");
     /* Fazer um for para aparecer as informacoes na consola(ainda falta algumas informações) */
