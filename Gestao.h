@@ -1,5 +1,9 @@
 #pragma once
 #include <iostream>
+#include "Oficina.h"
+
+void menu(Oficina METAL);
+
 void gestao();
 void reparacao_manual();
 void atualizar_tempo_reparacao();

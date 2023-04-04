@@ -1,6 +1,27 @@
 #include <iostream>
 #include "gestao.h"
+
 using namespace std;
+void menu(Oficina METAL) {
+	char escolha;
+	cout << "Dia (s)eguinte *********** (g)estao" << endl;
+	cout << "Seleccione a sua opcao : " << endl;
+	cin >> escolha;
+	switch (escolha) {
+	case 's':
+		METAL.ciclos++;
+		menu(METAL);
+		break;
+	case 'g':
+		gestao();
+		break;
+	case (not 'g') and (not 's'):
+			menu(METAL);
+			break;
+
+	}
+
+}
 void gestao() {
 	int opcao;
 	cout << " ***** Bem Vindo Gestor *****" << endl;

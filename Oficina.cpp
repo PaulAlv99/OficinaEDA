@@ -8,7 +8,7 @@ int numero_de_et() {
 
 Oficina criarOficina() {
     Oficina nova = Oficina();
-    nova.ciclos = 0;
+    nova.ciclos = 0; //dias de trabalho
     nova.numero_ets = numero_de_et();
     nova.ets = new EstacaoTrabalho[nova.numero_ets];
     nova.fila_espera = new Carro[0];

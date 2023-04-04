@@ -13,7 +13,7 @@ LinhasFicheiro CarregarFicheirosLista(string Nome_Ficheiro) {
     {
         while (getline(file, line))
         {
-            linhas[indice] = line;// pegar em cada linha e atribuir ao array das marcas
+            linhas[indice] = line;
             indice++;
         }
         file.close();
