@@ -2,7 +2,7 @@
 
 
 int numero_de_et() {
-    int et_numero = (rand() % 8 + 3); // numero de ET por oficina random
+    int et_numero = 3 + (rand() % 5); // numero de ET por oficina random
     return et_numero;
 }
 

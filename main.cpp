@@ -31,8 +31,18 @@ int main()
         METAL.ets[i] = ET[i];
     }
     /*Criar 10 carros random*/
+ 
     for (int i = 0; i < 10; i++) {
         carrinhos[i] = CriarCarroRandom(marcas.linhas[rand() % marcas.tamanho], modelos.linhas[rand() % modelos.tamanho]);
+        carrinhos[i].ID = i;
+        METAL.fila_espera = carrinhos;
+        METAL.fila_espera_tamanho++;
+    }
+
+    /*Criar 10 carros das marcas que tem na oficina*/
+
+    for (int i = 10; i < 20; i++) {
+        carrinhos[i] = CriarCarro(Mecanicos, modelos.linhas[rand() % modelos.tamanho], numero_ets);
         carrinhos[i].ID = i;
         METAL.fila_espera = carrinhos;
         METAL.fila_espera_tamanho++;
@@ -47,7 +57,10 @@ int main()
     /*limpar os couts*/
     system("CLS");
     MenuInfo(numero_ets, ET, METAL);
+
     Menu(numero_ets,ET,METAL);
+
+
 
     return 0;
 

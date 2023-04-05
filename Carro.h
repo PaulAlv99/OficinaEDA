@@ -13,4 +13,4 @@ struct Carro {
 };
 
 Carro CriarCarroRandom(string marca, string modelo);
-Carro CriarCarro(string marca, string modelo);
+Carro CriarCarro(Mecanico* mecanico, string modelo, int numero_ets);
