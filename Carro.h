@@ -10,6 +10,7 @@ struct Carro {
 	int tempo_reparacao_max;
 	int ID;
 	bool prioritario;
+
 };
 
 Carro CriarCarroRandom(string marca, string modelo);
