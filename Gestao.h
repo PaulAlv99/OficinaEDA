@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
 #include "Oficina.h"
+#include "Ciclos.h"
 
-void MenuInfo(int numero_ets, EstacaoTrabalho* ET, Oficina METAL);
-void Menu(int numero_ets, EstacaoTrabalho* ET,Oficina METAL);
+void MenuInfo(Oficina& METAL);
+void Menu(Oficina& METAL);
 
 void gestao();
 void reparacao_manual();

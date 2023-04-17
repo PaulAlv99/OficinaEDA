@@ -1,6 +1,6 @@
 #include "Mecanico.h"
 
-Mecanico CriarMecanico(LinhasFicheiro marcas)
+Mecanico CriarMecanico(LinhasFicheiro& marcas)
 {
 	Mecanico novo = Mecanico();
 

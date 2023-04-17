@@ -8,6 +8,7 @@
 
 int main()
 {
+    system("color 0E");
     
     srand(time(0));
     /* Inicilizar as structs */
@@ -15,29 +16,9 @@ int main()
     
     LinhasFicheiro modelos = CarregarFicheirosLista("modelo.txt");
 
-    Oficina METAL = criarOficina();
-
-    int numero_ets = METAL.numero_ets;
-
-    Mecanico* Mecanicos = new Mecanico[numero_ets];
-
-    EstacaoTrabalho* ET = new EstacaoTrabalho[numero_ets];
-
-    Carro* carrinhos = new Carro[20];
+    Oficina METAL = criarOficina(marcas,modelos);
 
     
-
-    /* Criar os mecanicos conforme o numero de ets gerado*/
-    for (int i = 0; i < numero_ets; i++) {
-        Mecanicos[i] = CriarMecanico(marcas);
-        ET[i] = CriarET(i);
-        ET[i].mecanico = Mecanicos[i];
-        METAL.ets[i] = ET[i];
-    }
-    /*Criar 10 carros random*/
-
-    criacao10carros(METAL, marcas, modelos);
- 
     /*for (int i = 0; i < 10; i++) {
         carrinhos[i] = CriarCarroRandom(marcas.linhas[rand() % marcas.tamanho], modelos.linhas[rand() % modelos.tamanho]);
         carrinhos[i].ID = i;
@@ -62,9 +43,9 @@ int main()
     }*/
     /*limpar os couts*/
     system("CLS");
-    MenuInfo(numero_ets, ET, METAL);
+    MenuInfo(METAL);
 
-    Menu(numero_ets,ET,METAL);
+    Menu(METAL);
 
 
 

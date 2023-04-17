@@ -24,3 +24,35 @@ Carro CriarCarro(Mecanico *mecanico,string modelo, int numero_ets) {
 	novo_carro.prioritario = false;
 	return novo_carro;
 }
+
+void Adiciona(Carro*& v, int& tamanho, Carro& carro)
+{
+	int tamanho_novo = tamanho + 1;
+	Carro* novo = new Carro[tamanho_novo];
+	for (int i = 0; i < tamanho; i++) {
+		novo[i] = v[i];
+	}
+	novo[tamanho] = carro;
+
+	delete[] v;
+
+	v = novo;
+
+}
+
+void Remove(Carro*& v, int& tamanho, int& ind)
+{
+	int tamanho_novo = tamanho - 1;
+	Carro* novo = new Carro[tamanho_novo];
+	for (int i = 0; i < ind; i++) {
+		novo[i] = v[i];
+	}
+	for (int i = ind; i < tamanho_novo; i++) {
+		novo[i] = v[i + 1];
+	}
+
+	delete[] v;
+	novo = v;
+	
+
+}

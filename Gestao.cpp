@@ -3,39 +3,40 @@
 
 using namespace std;
 
-void MenuInfo(int numero_ets, EstacaoTrabalho* ET, Oficina METAL){
+void MenuInfo(Oficina& METAL){
 /* Fazer um for para aparecer as informacoes na consola(ainda falta algumas informações) */
-for (int i = 0; i < numero_ets; i++) {
-	cout << "ET: " << ET[i].ID << " | " << "Mecanico: " << METAL.ets[i].mecanico.nome
-		<< " | " << "Capacidade: " << METAL.ets[i].capacidade << " | " << "Carros: " << METAL.ets[i].numero_carros << " | " <<
-		"Marca: " << METAL.ets[i].mecanico.marca << " | " << "Total Faturacao: "
-		<< METAL.ets[i].faturacao << " | " << "Dia: " << METAL.ciclos << endl;
-}
-cout << "--------------------------------------------------------------------------------------" << endl;
-cout << "Lista de Espera: " << endl;
-for (int i = 0; i < 10; i++) {
-	cout << "ID: " << METAL.fila_espera[i].ID << " | " << "Modelo: " << METAL.fila_espera[i].modelo << " | " << "Marca: " << METAL.fila_espera[i].marca << " | "
-		<< "Prioritario: " << METAL.fila_espera[i].prioritario << endl;
-}
+	cout << "Dia: " << METAL.ciclos << endl;
+	for (int i = 0; i < METAL.numero_ets; i++) {
+		cout << "ET: " << METAL.ets[i].ID << " | " << "Mecanico: " << METAL.ets[i].mecanico.nome
+			<< " | " << "Capacidade: " << METAL.ets[i].capacidade << " | " << "Carros: " << METAL.ets[i].numero_carros << " | " <<
+			"Marca: " << METAL.ets[i].mecanico.marca << " | " << "Total Faturacao: "
+			<< METAL.ets[i].faturacao << endl;
+	}
+	cout << "--------------------------------------------------------------------------------------" << endl;
+	cout << "Lista de Espera: " << endl;
+	for (int i = 0; i < METAL.fila_espera_tamanho; i++) {
+		cout << "ID: " << METAL.fila_espera[i].ID << " | " << "Modelo: " << METAL.fila_espera[i].modelo << " | " << "Marca: " << METAL.fila_espera[i].marca << " | "
+			<< "Prioritario: " << METAL.fila_espera[i].prioritario << endl;
+	}
 }
 
-void Menu(int numero_ets, EstacaoTrabalho* ET, Oficina METAL) {
+void Menu(Oficina& METAL) {
 	char escolha;
 	cout << "Dia (s)eguinte *********** (g)estao" << endl;
 	cout << "Seleccione a sua opcao : " << endl;
 	cin >> escolha;
 	switch (escolha) {
 	case 's':
-		METAL.ciclos++;
 		
-		MenuInfo(numero_ets, ET, METAL);
-		Menu(numero_ets, ET, METAL);
+		seguinte(METAL);
+		MenuInfo(METAL);
+		Menu(METAL);
 		break;
 	case 'g':
 		gestao();
 		break;
 	case (not 'g') and (not 's'):
-		Menu(numero_ets, ET, METAL);
+		Menu(METAL);
 			break;
 
 	}

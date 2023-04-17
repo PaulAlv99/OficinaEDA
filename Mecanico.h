@@ -6,4 +6,4 @@ struct Mecanico {
 	float preco_reparacao_por_dia;
 };
 
-Mecanico CriarMecanico(LinhasFicheiro marcas);
+Mecanico CriarMecanico(LinhasFicheiro& marcas);

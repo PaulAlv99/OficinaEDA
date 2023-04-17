@@ -15,3 +15,6 @@ struct Carro {
 
 Carro CriarCarroRandom(string marca, string modelo);
 Carro CriarCarro(Mecanico* mecanico, string modelo, int numero_ets);
+
+void Adiciona(Carro*& v, int& tamanho, Carro& carro);
+void Remove(Carro*& v, int& tamanho, int& ind);
