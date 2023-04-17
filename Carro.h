@@ -1,5 +1,6 @@
 #pragma once
-#include "ET.h"
+#include "Ficheiros.h"
+#include <string>
 
 using namespace std;
 
@@ -13,8 +14,10 @@ struct Carro {
 
 };
 
-Carro CriarCarroRandom(string marca, string modelo);
-Carro CriarCarro(Mecanico* mecanico, string modelo, int numero_ets);
+Carro CriarCarroRandom(LinhasFicheiro marca, LinhasFicheiro modelo);
+Carro CriarCarro(LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 
 void Adiciona(Carro*& v, int& tamanho, Carro& carro);
 void Remove(Carro*& v, int& tamanho, int& ind);
+void Transfere(Carro*& v_origem, int& tamanho_origem, int& indice, Carro*& v_dest, int& tamanho_dest);
+

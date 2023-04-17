@@ -1,6 +1,5 @@
 #pragma once
 #include "ET.h"
-#include "Ciclos.h"
 
 struct Oficina {
 	EstacaoTrabalho* ets;

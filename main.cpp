@@ -42,7 +42,8 @@ int main()
         METAL.fila_espera_tamanho++;
     }*/
     /*limpar os couts*/
-    system("CLS");
+    CriarCarrosNaFila(METAL, marcas, modelos,10);
+    /*system("CLS");*/
     MenuInfo(METAL);
 
     Menu(METAL);

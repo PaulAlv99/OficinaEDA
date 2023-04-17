@@ -1,9 +1,9 @@
 #include "Carro.h"
 #include <string>
-Carro CriarCarroRandom(string marca, string modelo) {
+Carro CriarCarroRandom(LinhasFicheiro marca, LinhasFicheiro modelo) {
 	Carro novo_carro = Carro();
-	novo_carro.marca = marca;
-	novo_carro.modelo = modelo;
+	novo_carro.marca = marca.linhas[rand() % marca.tamanho];
+	novo_carro.modelo = modelo.linhas[rand() % modelo.tamanho];
 	novo_carro.ID = 0;
 	novo_carro.tempo_reparacao_max = 2 + (rand() % 3);
 	novo_carro.dias_em_reparacao = 0;
@@ -12,12 +12,10 @@ Carro CriarCarroRandom(string marca, string modelo) {
 	return novo_carro;
 }
 
-Carro CriarCarro(Mecanico *mecanico,string modelo, int numero_ets) {
+Carro CriarCarro(LinhasFicheiro &marcas, LinhasFicheiro &modelos) {
 	Carro novo_carro = Carro();
-	LinhasFicheiro ficheiros = LinhasFicheiro();
-	Mecanico Mecanicos = Mecanico();
-	novo_carro.marca = mecanico[rand() % numero_ets].marca;
-	novo_carro.modelo = modelo;
+	novo_carro.marca = marcas.linhas[rand() % marcas.tamanho];
+	novo_carro.modelo = modelos.linhas[rand() % modelos.tamanho];
 	novo_carro.ID = 0;
 	novo_carro.tempo_reparacao_max = 2 + (rand() % 3);
 	novo_carro.dias_em_reparacao = 0;
@@ -37,7 +35,7 @@ void Adiciona(Carro*& v, int& tamanho, Carro& carro)
 	delete[] v;
 
 	v = novo;
-
+	tamanho = tamanho_novo;
 }
 
 void Remove(Carro*& v, int& tamanho, int& ind)
@@ -53,6 +51,13 @@ void Remove(Carro*& v, int& tamanho, int& ind)
 
 	delete[] v;
 	novo = v;
-	
+	tamanho = tamanho_novo;
 
+}
+
+void Transfere(Carro*& v_origem, int& tamanho_origem, int& indice, Carro*& v_dest, int& tamanho_dest)
+{
+	Carro carro = v_origem[indice];
+	Adiciona(v_dest, tamanho_dest, carro);
+	Remove(v_origem, tamanho_origem, indice);
 }

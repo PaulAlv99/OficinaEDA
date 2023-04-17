@@ -58,11 +58,26 @@ void reparacao(EstacaoTrabalho ID1, Oficina METAL, Carro ID2) {
 
 }
 
+bool MarcaPresente(Oficina &Of, string marca) {
+	bool temp = false;
+	for (int i = 0; i < Of.numero_ets; i++) {
+		temp = (marca == Of.ets[i].mecanico.marca);
+		if (temp) {
+			break;
+		}
+	}
+
+	return temp;
+}
 
 
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num) {
-	for (int i = 0; i < num; i++) {
-		Carro novo = CriarCarroRandom(marcas.linhas[rand() % marcas.tamanho], modelos.linhas[rand() % modelos.tamanho]);
-		Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo);
+	while (num) {
+		Carro novo = CriarCarro(marcas, modelos);
+		cout << novo.marca << endl;
+		if (MarcaPresente(Of, novo.marca)) {
+			Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo);
+			num--;
+		}
 	}
 }
