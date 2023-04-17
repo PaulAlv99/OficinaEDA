@@ -13,7 +13,7 @@ for (int i = 0; i < numero_ets; i++) {
 }
 cout << "--------------------------------------------------------------------------------------" << endl;
 cout << "Lista de Espera: " << endl;
-for (int i = 0; i < 20; i++) {
+for (int i = 0; i < 10; i++) {
 	cout << "ID: " << METAL.fila_espera[i].ID << " | " << "Modelo: " << METAL.fila_espera[i].modelo << " | " << "Marca: " << METAL.fila_espera[i].marca << " | "
 		<< "Prioritario: " << METAL.fila_espera[i].prioritario << endl;
 }
