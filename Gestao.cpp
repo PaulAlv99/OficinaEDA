@@ -20,7 +20,7 @@ void MenuInfo(Oficina& METAL){
 	}
 }
 
-void Menu(Oficina& METAL) {
+void Menu(Oficina& METAL, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	char escolha;
 	cout << "Dia (s)eguinte *********** (g)estao" << endl;
 	cout << "Seleccione a sua opcao : " << endl;
@@ -28,15 +28,15 @@ void Menu(Oficina& METAL) {
 	switch (escolha) {
 	case 's':
 		
-		seguinte(METAL);
+		seguinte(METAL,marcas,modelos);
 		MenuInfo(METAL);
-		Menu(METAL);
+		Menu(METAL,marcas,modelos);
 		break;
 	case 'g':
 		gestao();
 		break;
 	case (not 'g') and (not 's'):
-		Menu(METAL);
+		Menu(METAL,marcas,modelos);
 			break;
 
 	}

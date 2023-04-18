@@ -12,7 +12,7 @@ struct Oficina {
 
 Oficina criarOficina(LinhasFicheiro &marcas, LinhasFicheiro &modelos);
 
-void seguinte(Oficina& Of);
+void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 
 void reparacao(EstacaoTrabalho ID1, Oficina METAL, Carro ID2);
 

@@ -8,13 +8,16 @@
 
 int main()
 {
-    system("color 0E");
-    
+
     srand(time(0));
     /* Inicilizar as structs */
+    /* Com as marcas e modelos a utilizar */
+
     LinhasFicheiro marcas = CarregarFicheirosLista("marcas.txt");
     
     LinhasFicheiro modelos = CarregarFicheirosLista("modelo.txt");
+
+    /* Inicilizar a Oficina */
 
     Oficina METAL = criarOficina(marcas,modelos);
 
@@ -41,12 +44,17 @@ int main()
         METAL.fila_espera = carrinhos;
         METAL.fila_espera_tamanho++;
     }*/
-    /*limpar os couts*/
+
+    
     CriarCarrosNaFila(METAL, marcas, modelos,10);
-    /*system("CLS");*/
+
+    /*limpar os couts*/
+
+    system("CLS");
+
     MenuInfo(METAL);
 
-    Menu(METAL);
+    Menu(METAL,marcas,modelos);
 
 
 

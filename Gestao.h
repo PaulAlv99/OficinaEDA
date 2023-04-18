@@ -4,7 +4,7 @@
 #include "Ciclos.h"
 
 void MenuInfo(Oficina& METAL);
-void Menu(Oficina& METAL);
+void Menu(Oficina& METAL, LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 
 void gestao();
 void reparacao_manual();

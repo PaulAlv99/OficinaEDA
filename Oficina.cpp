@@ -16,10 +16,9 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
 
 
-
     /* Criar os mecanicos conforme o numero de ets gerado*/
     for (int i = 0; i < nova.numero_ets; i++) {
-        nova.ets[i] = CriarET(i);
+        nova.ets[i] = CriarET(i+1);
         nova.ets[i].mecanico = CriarMecanico(marcas);
     }
     /*Criar 10 carros random*/
@@ -30,9 +29,10 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
     return nova;
 }
 
-void seguinte(Oficina& Of)
+void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
 {
 	Of.ciclos++;
+	CriarCarrosNaFila(Of,marcas,modelos,10);
 
 	// Proceder às restantes operações de um ciclo
 }
@@ -74,7 +74,9 @@ bool MarcaPresente(Oficina &Of, string marca) {
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num) {
 	while (num) {
 		Carro novo = CriarCarro(marcas, modelos);
-		cout << novo.marca << endl;
+		for (int i = 1; i <= num; i++) {
+			novo.ID = i;
+		}
 		if (MarcaPresente(Of, novo.marca)) {
 			Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo);
 			num--;

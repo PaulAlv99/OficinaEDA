@@ -1,6 +1,7 @@
 #include "Carro.h"
 #include <string>
-Carro CriarCarroRandom(LinhasFicheiro marca, LinhasFicheiro modelo) {
+
+Carro CriarCarroRandom(LinhasFicheiro& marca, LinhasFicheiro& modelo) {
 	Carro novo_carro = Carro();
 	novo_carro.marca = marca.linhas[rand() % marca.tamanho];
 	novo_carro.modelo = modelo.linhas[rand() % modelo.tamanho];
@@ -11,6 +12,14 @@ Carro CriarCarroRandom(LinhasFicheiro marca, LinhasFicheiro modelo) {
 
 	return novo_carro;
 }
+/*Fazer probalidades--rand() vai retornar um valor entre 0 e rand_max*/
+/*https://stackoverflow.com/questions/20309009/get-true-or-false-with-a-given-probability*/
+
+bool  GerarProbalidades(double probalidade) {
+	bool probalidade_final =  rand() < (probalidade * (RAND_MAX + 1.0));
+	return probalidade_final;
+}
+
 
 Carro CriarCarro(LinhasFicheiro &marcas, LinhasFicheiro &modelos) {
 	Carro novo_carro = Carro();
@@ -19,7 +28,11 @@ Carro CriarCarro(LinhasFicheiro &marcas, LinhasFicheiro &modelos) {
 	novo_carro.ID = 0;
 	novo_carro.tempo_reparacao_max = 2 + (rand() % 3);
 	novo_carro.dias_em_reparacao = 0;
-	novo_carro.prioritario = false;
+
+	/*Por alguma razao prioritario apenas retorna 0 e 1 sendo falso e verdadeiro,respetivamente*/
+
+	novo_carro.prioritario = GerarProbalidades(0.05);
+
 	return novo_carro;
 }
 
