@@ -17,3 +17,4 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 void reparacao(EstacaoTrabalho ID1, Oficina METAL, Carro ID2);
 
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num);
+bool  GerarProbalidades(double probalidade);
