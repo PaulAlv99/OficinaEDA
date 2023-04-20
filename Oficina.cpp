@@ -33,32 +33,37 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
 {
 	Of.ciclos++;
 	CriarCarrosNaFila(Of, marcas, modelos, 10);
+	for (int i = 0; i < Of.numero_ets; i++) {
+		reparacao(Of.ets[i]);
+
+	}
 
 	// Proceder às restantes operações de um ciclo
 }
 
 //sugiro usar a funcao bool  GerarProbalidades(double probalidade);
-void reparacao(EstacaoTrabalho ID1, Oficina METAL, Carro ID2) {
+void reparacao(EstacaoTrabalho ID1) {
 	int chance;
-	int i = 0;
-	if (ID1.Carrosreparados->size() > 0)
-		int i = (ID1.Carrosreparados->size()) - 1;
-	if (ID2.dias_em_reparacao < ID2.tempo_reparacao_max) {
-		chance = rand() % 100 + 1;
-		if (chance >= 1 and chance <= 15) {
-			//remover carro da lista de espera
-			//sugiro a usar as funcoes definidas em Carro.cpp. Adiciona;Remove e Transfere
-			//para usar aqui na oficina acho que basta esta declarado no header a funcao e os parametros
-			//e passar sempre como argumentos o endereço (&)
-			ID1.Carrosreparados[i] = ID2.ID;
-			ID1.faturacao = ID1.faturacao + (ID2.dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
+	for (int i = 0; i < ID1.numero_carros; i++) {
+		if (ID1.carros_a_ser_reparados[i].dias_em_reparacao < ID1.carros_a_ser_reparados[i].tempo_reparacao_max) {
+			chance = rand() % 100 + 1;
+			if (chance >= 1 and chance <= 15) {
+				//remover carro da lista de espera
+				//sugiro a usar as funcoes definidas em Carro.cpp. Adiciona;Remove e Transfere
+				//para usar aqui na oficina acho que basta esta declarado no header a funcao e os parametros
+				//e passar sempre como argumentos o endereço (&)
+				ID1.Carrosreparados[i] = ID1.carros_a_ser_reparados[i].ID;
+				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
+			}
+			else
+				ID1.carros_a_ser_reparados[i].dias_em_reparacao++;
 		}
-		else
-			ID2.dias_em_reparacao++;
+
+		else if (ID1.carros_a_ser_reparados[i].dias_em_reparacao >= ID1.carros_a_ser_reparados[i].tempo_reparacao_max) {
+				ID1.Carrosreparados[i] = ID1.carros_a_ser_reparados[i].ID;
+				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
+			}
 	}
-	if (ID2.dias_em_reparacao >= ID2.tempo_reparacao_max)
-		ID1.Carrosreparados[i] = ID2.ID;
-	ID1.faturacao = ID1.faturacao + (ID2.dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
 
 }
 
@@ -78,10 +83,11 @@ bool MarcaPresente(Oficina &Of, string marca) {
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num) {
 	while (num) {
 		Carro novo = CriarCarro(marcas, modelos);
-		for (int i = 1; i <= num; i++) {
-			novo.ID = i;///mudar
+		
+			novo.ID = Of.fila_espera_tamanho + 1;///mudar
 			
-		}
+			
+		
 		if (MarcaPresente(Of, novo.marca)) {
 			Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo);
 			num--;
