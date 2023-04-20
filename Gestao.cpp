@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void MenuInfo(Oficina& METAL){
+void MenuInfo(Oficina& METAL,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 /* Fazer um for para aparecer as informacoes na consola(ainda falta algumas informações) */
 	cout << "Dia: " << METAL.ciclos << endl;
 	for (int i = 0; i < METAL.numero_ets; i++) {
@@ -29,7 +29,7 @@ void Menu(Oficina& METAL, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	case 's':
 		
 		seguinte(METAL,marcas,modelos);
-		MenuInfo(METAL);
+		MenuInfo(METAL,marcas,modelos);
 		Menu(METAL,marcas,modelos);
 		break;
 	case 'g':

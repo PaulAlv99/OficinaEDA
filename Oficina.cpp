@@ -32,7 +32,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
 {
 	Of.ciclos++;
-	CriarCarrosNaFila(Of,marcas,modelos,10);
+	CriarCarrosNaFila(Of, marcas, modelos, 10);
 
 	// Proceder às restantes operações de um ciclo
 }
@@ -79,7 +79,8 @@ void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& mode
 	while (num) {
 		Carro novo = CriarCarro(marcas, modelos);
 		for (int i = 1; i <= num; i++) {
-			novo.ID = i;
+			novo.ID = i;///mudar
+			
 		}
 		if (MarcaPresente(Of, novo.marca)) {
 			Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo);

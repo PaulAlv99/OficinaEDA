@@ -46,13 +46,12 @@ int main()
     }*/
 
     
-    CriarCarrosNaFila(METAL, marcas, modelos,10);
 
     /*limpar os couts*/
 
     system("CLS");
-
-    MenuInfo(METAL);
+    CriarCarrosNaFila(METAL, marcas, modelos, 10);
+    MenuInfo(METAL,marcas,modelos);
 
     Menu(METAL,marcas,modelos);
 
