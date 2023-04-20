@@ -84,7 +84,7 @@ void reparacao_manual(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& model
 	for (int i = 0; i <= Of.numero_ets;i++) {
 		for (int j = 0; j <= Of.ets[i].numero_carros;j++){
 			if (Of.ets[i].carros_a_ser_reparados[j].marca == marca && Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) {
-				// ir buscar funcao colocarCarrosEt no oficina.cpp
+				// ir buscar funcao colocarCarrosEt no oficina.cpp    ColocarCarrosET
 			}
 		}
 		
