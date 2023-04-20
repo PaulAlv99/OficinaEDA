@@ -94,3 +94,19 @@ void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& mode
 		}
 	}
 }
+
+void ColocarCarrosET(Oficina& Of) {
+	for (int i = 0; i < Of.numero_ets; i++) {
+		for (int t = 0; t < Of.fila_espera_tamanho; t++) {
+			if (Of.ets[i].mecanico.marca == Of.fila_espera[t].marca) {
+				Transfere(Of.fila_espera,Of.fila_espera_tamanho,t,Of.ets[i].carros_a_ser_reparados,Of.ets[i].capacidade);
+			}
+
+		}
+	}
+}
+
+
+//EstacaoTrabalho RemoverCarrosET(Oficina& Of) {
+//
+//}
