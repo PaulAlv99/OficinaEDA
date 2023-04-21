@@ -74,10 +74,34 @@ void gestao() {
 	}*/
 }
 
-void reparacao_manual() {
+void reparacao_manual(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
+	/*int CarroReparoManual(Oficina & Of, LinhasFicheiro & marcas, LinhasFicheiro & modelos);*/
+	cout << "indique a marca e o modelo que pretende reparar manualmente: ";
+	string marca;
+	string modelo;
+	cin >> marca;
+	cin >> modelo;
+	for (int i = 0; i <= Of.numero_ets;i++) {
+		for (int j = 0; j <= Of.ets[i].numero_carros;j++){
+			if (Of.ets[i].carros_a_ser_reparados[j].marca == marca && Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) {
+				// ir buscar funcao colocarCarrosEt no oficina.cpp    ColocarCarrosET
+			}
+		}
+		
+	}
+
 }
 
-void atualizar_tempo_reparacao() {
+void atualizar_tempo_reparacao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
+	cout << "indique a marca e o modelo que pretende reparar manualmente: ";
+	string marca;
+	string modelo;
+	cin >> marca;
+	cin >> modelo;
+	for (int i = 0; i <= Of.fila_espera_tamanho;i++) {
+		if (Of.fila_espera);
+			
+	}
 
 }
 void adicionar_prioridade() {

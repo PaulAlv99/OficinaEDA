@@ -74,4 +74,3 @@ void Transfere(Carro*& v_origem, int& tamanho_origem, int& indice, Carro*& v_des
 	Adiciona(v_dest, tamanho_dest, carro);
 	Remove(v_origem, tamanho_origem, indice);
 }
-
