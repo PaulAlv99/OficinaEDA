@@ -51,6 +51,7 @@ int main()
 
     system("CLS");
     CriarCarrosNaFila(METAL, marcas, modelos, 10);
+    colocarprioritario(METAL);
     MenuInfo(METAL,marcas,modelos);
     
     Menu(METAL,marcas,modelos);
