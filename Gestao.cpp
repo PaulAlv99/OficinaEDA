@@ -3,24 +3,36 @@
 
 using namespace std;
 
-void MenuInfo(Oficina& METAL,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
+void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 /* Fazer um for para aparecer as informacoes na consola(ainda falta algumas informações) */
-	cout << "Dia: " << METAL.ciclos << endl;
-	for (int i = 0; i < METAL.numero_ets; i++) {
-		cout << "ET: " << METAL.ets[i].ID << " | " << "Mecanico: " << METAL.ets[i].mecanico.nome
-			<< " | " << "Capacidade: " << METAL.ets[i].capacidade << " | " << "Carros: " << METAL.ets[i].numero_carros << " | " <<
-			"Marca: " << METAL.ets[i].mecanico.marca << " | " << "Total Faturacao: "
-			<< METAL.ets[i].faturacao << endl;
+	cout << "Dia: " << Of.ciclos << endl;
+	for (int i = 0; i < Of.numero_ets; i++) {
+			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
+				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].numero_carros << " | " <<
+				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
+			if (Of.ciclos >= 1) {
+				cout << "Carros a ser reparados: " << endl;
+			}
+			int r = Of.ets[i].capacidade;
+			for (int t = 0; t < r; t++) {
+				if (Of.ciclos >= 1) {
+					cout << "ID: " << Of.ets[i].carros_a_ser_reparados[t].ID << " | " << Of.ets[i].carros_a_ser_reparados[t].marca << "-"
+						<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].carros_a_ser_reparados[t].prioritario;
+					cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo";
+					cout << Of.ets[i].carros_a_ser_reparados[t].tempo_reparacao_max << endl;
+				}
+			
+		}
 	}
 	cout << "--------------------------------------------------------------------------------------" << endl;
 	cout << "Lista de Espera: " << endl;
-	for (int i = 0; i < METAL.fila_espera_tamanho; i++) {
-		cout << "ID: " << METAL.fila_espera[i].ID << " | " << "Modelo: " << METAL.fila_espera[i].modelo << " | " << "Marca: " << METAL.fila_espera[i].marca << " | "
-			<< "Prioritario: " << METAL.fila_espera[i].prioritario << endl;
+	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
+		cout << "ID: " << Of.fila_espera[i].ID << " | " << "Modelo: " << Of.fila_espera[i].modelo << " | " << "Marca: " << Of.fila_espera[i].marca << " | "
+			<< "Prioritario: " << Of.fila_espera[i].prioritario << endl;
 	}
 }
 
-void Menu(Oficina& METAL, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
+void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	char escolha;
 	cout << "Dia (s)eguinte *********** (g)estao" << endl;
 	cout << "Seleccione a sua opcao : " << endl;
@@ -28,15 +40,15 @@ void Menu(Oficina& METAL, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	switch (escolha) {
 	case 's':
 		
-		seguinte(METAL,marcas,modelos);
-		MenuInfo(METAL,marcas,modelos);
-		Menu(METAL,marcas,modelos);
+		seguinte(Of,marcas,modelos);
+		MenuInfo(Of,marcas,modelos);
+		Menu(Of,marcas,modelos);
 		break;
 	case 'g':
 		gestao();
 		break;
 	case (not 'g') and (not 's'):
-		Menu(METAL,marcas,modelos);
+		Menu(Of,marcas,modelos);
 			break;
 
 	}

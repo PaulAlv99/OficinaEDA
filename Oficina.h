@@ -21,3 +21,5 @@ bool  GerarProbalidades(double probalidade);
 void ColocarCarrosET(Oficina& Of, int num);
 void Transportar(Oficina& Of, int ind);
 
+void colocarprioritario(Oficina& Of);
+void ColocarCarrosET(Oficina& Of, int num);

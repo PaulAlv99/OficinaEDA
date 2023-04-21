@@ -15,7 +15,6 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
     nova.fila_espera_tamanho = 0;
 
 
-
     /* Criar os mecanicos conforme o numero de ets gerado*/
     for (int i = 0; i < nova.numero_ets; i++) {
         nova.ets[i] = CriarET(i+1);
@@ -93,6 +92,7 @@ void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& mode
 			num--;
 		}
 	}
+	system("CLS");
 }
 
 void ColocarCarrosET(Oficina& Of, int num) {
@@ -125,12 +125,10 @@ void Transportar(Oficina& Of, int ind) {
 	}
 }
 
-void RemocaoCarros(Oficina& Of,int num) {
-	for (int i = 0; i < num; i++) {
-		if (((Of.fila_espera[i].marca == Of.ets[i].mecanico.marca) && (Of.ets[i].capacidade > sizeof(Of.ets[i].carros_a_ser_reparados) / sizeof(Of.ets[i].carros_a_ser_reparados[0])) {
-			
-		}	
-	}
-	/*Of.fila_espera;
-	Of.ets->carros_a_ser_reparados;*/
-}
+//void RemocaoCarros(Oficina& Of, int num) {
+//	for (int i = 0; i < num; i++) {
+//		if ((Of.fila_espera[i].marca == Of.ets[i].mecanico.marca) && (Of.ets[i].capacidade > (sizeof(Of.ets[i].carros_a_ser_reparados)) / (sizeof(Of.ets[i].carros_a_ser_reparados[0]))) {
+//
+//		}
+//	}
+//}
