@@ -121,6 +121,16 @@ void Transportar(Oficina& Of, int ind) {
 	Remove(Of.fila_espera, Of.fila_espera_tamanho, ind);
 	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
 		novo[i + 1] = Of.fila_espera[i];
-
+		
 	}
+}
+
+void RemocaoCarros(Oficina& Of,int num) {
+	for (int i = 0; i < num; i++) {
+		if (((Of.fila_espera[i].marca == Of.ets[i].mecanico.marca) && (Of.ets[i].capacidade > sizeof(Of.ets[i].carros_a_ser_reparados) / sizeof(Of.ets[i].carros_a_ser_reparados[0])) {
+			
+		}	
+	}
+	/*Of.fila_espera;
+	Of.ets->carros_a_ser_reparados;*/
 }
