@@ -32,6 +32,7 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
 {
 	Of.ciclos++;
 	CriarCarrosNaFila(Of, marcas, modelos, 10);
+	ColocarCarrosET(Of, 8);
 	for (int i = 0; i < Of.numero_ets; i++) {
 		reparacao(Of.ets[i]);
 
@@ -80,26 +81,24 @@ bool MarcaPresente(Oficina &Of, string marca) {
 
 
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num) {
-	while (num) {
+	while (num) {//começa no 10
 		Carro novo = CriarCarro(marcas, modelos);
-		
-			novo.ID = Of.fila_espera_tamanho + 1;///mudar
-			
-			
-		
+			novo.ID = Of.fila_espera_tamanho + 1;//primeiro carro criado ID=10
 		if (MarcaPresente(Of, novo.marca)) {
-			Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo);
+			Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo); 
 			num--;
 		}
 	}
+	ColocarCarrosET(Of, 8);
 	system("CLS");
 }
 
 void ColocarCarrosET(Oficina& Of, int num) {
 	for (int i = 0; i < Of.numero_ets; i++) {
 		for (int t = 0; t < num; t++) {
-			if (Of.ets[i].mecanico.marca == Of.fila_espera[t].marca) {
+			if ((Of.ets[i].mecanico.marca == Of.fila_espera[t].marca) && (Of.ets[i].capacidade<Of.ets[i].num_carros_a_ser_reparados)) {
 				Transfere(Of.fila_espera,Of.fila_espera_tamanho,t,Of.ets[i].carros_a_ser_reparados,Of.ets[i].capacidade);
+				Of.ets[i].num_carros_a_ser_reparados++;
 			}
 
 		}

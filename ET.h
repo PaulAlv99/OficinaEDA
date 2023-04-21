@@ -10,6 +10,7 @@ struct EstacaoTrabalho {
 	int numero_carros;
 	float faturacao;
 	Carro* carros_a_ser_reparados; //arrays de carros
+	int num_carros_a_ser_reparados;
 	string* Carrosreparados;
 
 };

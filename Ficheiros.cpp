@@ -1,7 +1,7 @@
 #include "Ficheiros.h"
 
-int TamanhoFicheiro(string Nome_Ficheiro) {
 
+int TamanhoFicheiro(string Nome_Ficheiro) {
     int numero_linhas = 0;
     string line;
     ifstream file(Nome_Ficheiro);
