@@ -81,15 +81,14 @@ bool MarcaPresente(Oficina &Of, string marca) {
 
 
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num) {
-	while (num) {//começa no 10
+	for (int i = 0; i < num; i) {
 		Carro novo = CriarCarro(marcas, modelos);
-			novo.ID = Of.fila_espera_tamanho + 1;//primeiro carro criado ID=10
+		novo.ID = Of.fila_espera_tamanho + 1;
 		if (MarcaPresente(Of, novo.marca)) {
-			Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo); 
-			num--;
+				Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo);
+				i++;
 		}
 	}
-	ColocarCarrosET(Of, 8);
 	system("CLS");
 }
 
