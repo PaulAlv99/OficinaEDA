@@ -110,7 +110,7 @@ void colocarprioritario(Oficina& Of) {
 	int indice = 0;
 	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
 		if (Of.fila_espera[i].prioritario) {
-			Transportar(Of, Of.fila_espera_tamanho, i);
+			Transfere(Of.fila_espera, Of.fila_espera_tamanho, i);
 		}
 	}
 }
