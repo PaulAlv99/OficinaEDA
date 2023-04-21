@@ -95,8 +95,13 @@ void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& mode
 void ColocarCarrosET(Oficina& Of, int num) {
 	for (int i = 0; i < Of.numero_ets; i++) {
 		for (int t = 0; t < num; t++) {
-			if ((Of.ets[i].mecanico.marca == Of.fila_espera[t].marca) && (Of.ets[i].capacidade<Of.ets[i].num_carros_a_ser_reparados)) {
-				Transfere(Of.fila_espera,Of.fila_espera_tamanho,t,Of.ets[i].carros_a_ser_reparados,Of.ets[i].capacidade);
+			if ((Of.ets[i].mecanico.marca == Of.fila_espera[t].marca) && (Of.ets[i].capacidade>Of.ets[i].num_carros_a_ser_reparados)) {
+				for (int z = 0; z < Of.ets[i].capacidade; z++) {
+					if (Of.ets[i].carros_a_ser_reparados[z].ID == 0) {
+						Of.ets[i].carros_a_ser_reparados[z] = Of.fila_espera[t];
+					}
+				}
+
 				Of.ets[i].num_carros_a_ser_reparados++;
 			}
 
