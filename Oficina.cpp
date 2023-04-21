@@ -106,7 +106,13 @@ void ColocarCarrosET(Oficina& Of) {
 	}
 }
 
+void Transportar(Oficina& Of, int ind) {
 
-//EstacaoTrabalho RemoverCarrosET(Oficina& Of) {
-//
-//}
+	Carro* novo = new Carro[Of.fila_espera_tamanho];
+	novo[0] = Of.fila_espera[ind];
+	Remove(Of.fila_espera, Of.fila_espera_tamanho, ind);
+	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
+		novo[i + 1] = Of.fila_espera[i];
+
+	}
+}
