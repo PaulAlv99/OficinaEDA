@@ -31,8 +31,7 @@ Carro CriarCarro(LinhasFicheiro &marcas, LinhasFicheiro &modelos) {
 
 	/*Por alguma razao prioritario apenas retorna 0 e 1 sendo falso e verdadeiro,respetivamente*/
 	// "Alguma razao" chama-se que alguem andou a faltar as aulas...
-	novo_carro.prioritario = GerarProbalidades(0.5);
-	//novo_carro.prioritario = GerarProbalidades(0.05);
+	novo_carro.prioritario = GerarProbalidades(0.05);
 
 	return novo_carro;
 }
