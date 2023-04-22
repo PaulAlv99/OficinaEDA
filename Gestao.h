@@ -6,7 +6,7 @@
 void MenuInfo(Oficina& METAL,LinhasFicheiro& marcas,LinhasFicheiro& modelos);
 void Menu(Oficina& METAL, LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 
-void gestao(Oficina& Of);
+void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 void reparacao_manual(Oficina& Of);
 void atualizar_tempo_reparacao();
 void adicionar_prioridade();

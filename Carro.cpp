@@ -55,19 +55,19 @@ void Remove(Carro*& v, int& tamanho, int& ind)
 {
 	int tamanho_novo = tamanho - 1;
 	Carro* novo = new Carro[tamanho_novo];
-	for (int i = 0; i < ind; i++) {
-		novo[i] = v[i];
-	}
-	for (int i = ind; i < tamanho_novo; i++) {
-		novo[i] = v[i + 1];
+	if (tamanho_novo > 0) {
+		for (int i = 0; i < ind; i++) {
+			novo[i] = v[i];
+		}
+		for (int i = ind; i < tamanho_novo; i++) {
+			novo[i] = v[i + 1];
+		}
 	}
 	v = novo;
-	//delete[] novo;
-	//delete[] v;
-	//novo = v;
 	tamanho = tamanho_novo;
 
 }
+
 
 void Transfere(Carro*& v_origem, int& tamanho_origem, int& indice, Carro*& v_dest, int& tamanho_dest)
 {

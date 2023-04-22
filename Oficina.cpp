@@ -42,19 +42,14 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
 	// Proceder às restantes operações de um ciclo
 }
 
-//sugiro usar a funcao bool  GerarProbalidades(double probalidade);
+
 void reparacao(EstacaoTrabalho & ID1) {
 	int chance;
 	
 	for (int i = 0; i < ID1.capacidade; i++) {
 		if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao < ID1.carros_a_ser_reparados[i].tempo_reparacao_max)&&(ID1.carros_a_ser_reparados[i].ID != 0)) {
 			chance = rand() % 100 + 1;
-			if (chance >= 1 and chance <= 15) {
-				//remover carro da lista de espera
-				//sugiro a usar as funcoes definidas em Carro.cpp. Adiciona;Remove e Transfere
-				//para usar aqui na oficina acho que basta esta declarado no header a funcao e os parametros
-				//e passar sempre como argumentos o endereço (&)
-				
+			if (chance >= 1 and chance <= 15) {				
 				ID1.Carrosreparados[ID1.num_carros_reparados] = ID1.carros_a_ser_reparados[i];
 				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
 				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
@@ -66,7 +61,6 @@ void reparacao(EstacaoTrabalho & ID1) {
 		}
 
 		else if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao >= ID1.carros_a_ser_reparados[i].tempo_reparacao_max) && (ID1.carros_a_ser_reparados[i].ID != 0)) {
-				//Adiciona(ID1.Carrosreparados, ID1.num_carros_reparados, ID1.carros_a_ser_reparados[i]);
 				ID1.Carrosreparados[ID1.num_carros_reparados] = ID1.carros_a_ser_reparados[i];
 				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
 				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;

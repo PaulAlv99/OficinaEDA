@@ -14,14 +14,15 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 				cout << "Carros a ser reparados: " << endl;
 			}
 			int r = Of.ets[i].capacidade;
-			for (int t = 0; t < r; t++) {
-				if ((Of.ciclos >= 1) && (Of.ets[i].carros_a_ser_reparados[t].ID != 0)) {
-					cout << "ID: " << Of.ets[i].carros_a_ser_reparados[t].ID << " | " << "Carro: " << Of.ets[i].carros_a_ser_reparados[t].marca << "-"
-						<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].carros_a_ser_reparados[t].prioritario;
-					cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
-					cout << Of.ets[i].carros_a_ser_reparados[t].tempo_reparacao_max << endl;
+			if(Of.ets[i].num_carros_a_ser_reparados>0){
+				for (int t = 0; t < r; t++) {
+					if ((Of.ciclos >= 1) && (Of.ets[i].carros_a_ser_reparados[t].ID > 0)) {
+						cout << "ID: " << Of.ets[i].carros_a_ser_reparados[t].ID << " | " << "Carro: " << Of.ets[i].carros_a_ser_reparados[t].marca << "-"
+							<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].carros_a_ser_reparados[t].prioritario;
+						cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
+						cout << Of.ets[i].carros_a_ser_reparados[t].tempo_reparacao_max << endl;
+					}
 				}
-				
 		}
 			cout << endl;
 
@@ -65,7 +66,7 @@ void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		Menu(Of,marcas,modelos);
 		break;
 	case 'g':
-		gestao(Of);
+		gestao(Of, marcas, modelos);
 		break;
 	case (not 'g') and (not 's'):
 		Menu(Of,marcas,modelos);
@@ -74,7 +75,7 @@ void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	}
 
 }
-void gestao(Oficina& Of) {
+void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	int opcao;
 	cout << " ***** Bem Vindo Gestor *****" << endl;
 	cout << "(1).Reparacao Manual" << endl;
@@ -90,6 +91,8 @@ void gestao(Oficina& Of) {
 	switch (opcao) {
 	case 1:
 		reparacao_manual(Of);
+		MenuInfo(Of, marcas, modelos);
+		Menu(Of, marcas, modelos);
 		break;
 		/*case 2:
 
@@ -109,20 +112,30 @@ void gestao(Oficina& Of) {
 }
 
 void reparacao_manual(Oficina& Of) {
-	/*int CarroReparoManual(Oficina & Of, LinhasFicheiro & marcas, LinhasFicheiro & modelos);*/
+	
 	string marca;
 	string modelo;
 	cout << "indique a marca a reparar: " << endl;
-	cin >> marca;
+	
+	//ws tira os espaços em branco
+	cin >> ws;
+	getline(cin, marca);
 	cout << "indique o modelo a reparar: " << endl;
-	cin >> modelo;
+	cin >> ws;
+	getline(cin, modelo);
+	
 	for (int i = 0; i < Of.numero_ets;i++) {
-		cout << "ets " << Of.numero_ets << endl;
-		for (int j = 0; j <= Of.ets[i].numero_carros;j++){
-			cout <<"carros " << Of.ets[i].numero_carros << endl;
-			cout << "capcidade " << Of.ets[i].capacidade;
-			if (Of.ets[i].carros_a_ser_reparados[j].marca == marca && Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) {
-				// ir buscar funcao colocarCarrosEt no oficina.cpp    ColocarCarrosET
+		for (int j = Of.ets[i].num_carros_a_ser_reparados-1; j >= 0;j--){
+			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo)) {
+				
+				//coloca carro em lista de carros reparados
+				Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados] = Of.ets[i].carros_a_ser_reparados[j];
+				Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
+				Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
+
+				//remove carro da lista de carros em reparacao
+				Remove(Of.ets[i].carros_a_ser_reparados, Of.ets[i].num_carros_a_ser_reparados, j);
+
 			}
 		}
 		
