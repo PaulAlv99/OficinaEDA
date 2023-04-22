@@ -142,19 +142,24 @@ void atualizar_tempo_reparacao(Oficina& Of, LinhasFicheiro& marcas, LinhasFichei
 	}
 
 }
-void adicionar_prioridade() {
+void adicionar_prioridade(Oficina& Of) {
 
 }
 
-void remover_mecanico() {
+void remover_mecanico(Oficina& Of) {
 
 }
-void gravar_oficina() {
+void gravar_oficina(Oficina& Of) {
 
 }
-void carregar_oficina() {
+void carregar_oficina(LinhasFicheiro& Nome_Ficheiro) {
 
 }
-void imprimir_oficina() {
+//Este carregamento deverá também ser possível ao passar o caminho do(s)ficheiro(s) por argumento na
+//execução do programa.
+void carregar_oficina2(int argc, char* argv[]) {
+
+}
+void imprimir_oficina(Oficina& Of) {
 
 }
