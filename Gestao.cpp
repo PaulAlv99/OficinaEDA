@@ -50,7 +50,7 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 	cout << "Lista de Espera: " << endl;
 	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
 		cout << "ID: " << Of.fila_espera[i].ID << " | " << "Modelo: " << Of.fila_espera[i].modelo << " | " << "Marca: " << Of.fila_espera[i].marca << " | "
-			<< "Prioritario: " << Of.fila_espera[i].prioritario << endl;
+			<< "Prioritario: " << Of.fila_espera[i].prioritario << " | " << "Tempo de reparacao maximo: " << Of.fila_espera[i].tempo_reparacao_max << endl;
 	}
 }
 
@@ -94,9 +94,14 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		MenuInfo(Of, marcas, modelos);
 		Menu(Of, marcas, modelos);
 		break;
-		/*case 2:
-
-	case 3:
+	
+	case 2:
+		atualizar_tempo_reparacao(Of);
+		MenuInfo(Of, marcas, modelos);
+		Menu(Of, marcas, modelos);
+		break;
+			
+	/*case 3:
 
 	case 4:
 
@@ -143,17 +148,20 @@ void reparacao_manual(Oficina& Of) {
 
 }
 
-void atualizar_tempo_reparacao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
-	cout << "indique a marca e o modelo que pretende reparar manualmente: ";
+void atualizar_tempo_reparacao(Oficina& Of) {
 	string marca;
 	string modelo;
-	cin >> marca;
-	cin >> modelo;
-	for (int i = 0; i <= Of.fila_espera_tamanho;i++) {
-		if (Of.fila_espera);
-			
+	cout << "indique a marca a reparar: " << endl;
+	cin >> ws;
+	getline(cin, marca);
+	cout << "indique o modelo a reparar: " << endl;
+	cin >> ws;
+	getline(cin, modelo);
+	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
+		if ((Of.fila_espera[i].marca == marca) && (Of.fila_espera[i].modelo == modelo)) {
+			Of.fila_espera[i].tempo_reparacao_max = 10; // foi colcado a dez de tempo max
+		}
 	}
-
 }
 void adicionar_prioridade(Oficina& Of) {
 
