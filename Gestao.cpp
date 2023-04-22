@@ -1,5 +1,6 @@
 #include <iostream>
 #include "gestao.h"
+#include "Mecanico.h"
 
 using namespace std;
 
@@ -107,9 +108,13 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		Menu(Of, marcas, modelos);
 		break;
 
-	/*case 4:
+	case 4:
+		remover_mecanico(Of, marcas);
+		MenuInfo(Of, marcas, modelos);
+		Menu(Of, marcas, modelos);
+		break;
 
-	case 5:
+	/*case 5:
 
 	case 6:
 
@@ -180,8 +185,50 @@ void adicionar_prioridade(Oficina& Of) {
 	
 }
 
-void remover_mecanico(Oficina& Of) {
+void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
+	string mecanicoRem;
+	string mecanicoAdi;
+	cout << "Indique o nome do mecanico que deseja remover: " << endl;
+	cin >> mecanicoRem;
+	for (int i = 0; i < Of.numero_ets;i++) {
+		if (Of.ets[i].mecanico.nome == mecanicoRem) {
+			
 
+			//repara todos os carros da et
+			for (int j = Of.ets[i].num_carros_a_ser_reparados - 1; j >= 0;j--) {
+
+
+				//coloca carro em lista de carros reparados
+				Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados] = Of.ets[i].carros_a_ser_reparados[j];
+				Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
+				Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
+
+				//remove carro da lista de carros em reparacao
+				Remove(Of.ets[i].carros_a_ser_reparados, Of.ets[i].num_carros_a_ser_reparados, j);
+			
+			}
+			Of.ets[i].mecanico = Mecanico();
+
+			//adicionar novo mecanico
+			cout << "O mecanico com o nome " << mecanicoRem << ", foi removido da et" << endl;
+			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
+				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].num_carros_a_ser_reparados << " | " <<
+				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
+			cout << endl;
+			cout << "Indique o nome para o novo mecanico desta et: " << endl;
+			cin >> mecanicoAdi;
+			Mecanico novo = Mecanico();
+
+			novo.marca = marcas.linhas[rand() % marcas.tamanho];
+			novo.preco_reparacao_por_dia = float(rand() % 300 + 90);
+			novo.nome = mecanicoAdi;
+			Of.ets[i].mecanico = novo;
+			cout << "O mecanico com o nome " << Of.ets[i].mecanico.nome << ", foi adicionado na et" << endl;
+			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
+				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].num_carros_a_ser_reparados << " | " <<
+				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
+		}
+	}
 }
 void gravar_oficina(Oficina& Of) {
 
