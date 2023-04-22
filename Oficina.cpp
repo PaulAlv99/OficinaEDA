@@ -12,6 +12,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
     nova.numero_ets = numero_de_et();
     nova.ets = new EstacaoTrabalho[nova.numero_ets];
     nova.fila_espera = new Carro[0];
+	nova.carrostotais = 0;
     nova.fila_espera_tamanho = 0;
 
 
@@ -21,7 +22,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
         nova.ets[i].mecanico = CriarMecanico(marcas);
     }
     /*Criar 10 carros random*/
-    CriarCarrosNaFila(nova,marcas,modelos,nova.fila_espera_tamanho);
+    CriarCarrosNaFila(nova,marcas,modelos,10);
 
 
     //Criar ET; criar os mecanicos; encher a fila ; criar os carros (lista das marcas e dos modelos);
@@ -52,9 +53,11 @@ void reparacao(EstacaoTrabalho & ID1) {
 				//sugiro a usar as funcoes definidas em Carro.cpp. Adiciona;Remove e Transfere
 				//para usar aqui na oficina acho que basta esta declarado no header a funcao e os parametros
 				//e passar sempre como argumentos o endereço (&)
-				Adiciona(ID1.Carrosreparados, ID1.num_carros_reparados, ID1.carros_a_ser_reparados[i]);
+				
+				//Adiciona(ID1.Carrosreparados, ID1.num_carros_reparados, ID1.carros_a_ser_reparados[i]);
 				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
-				Remove(ID1.carros_a_ser_reparados, ID1.capacidade, i);
+				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
+				ID1.carros_a_ser_reparados[i].ID = 0;
 				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
 			}
 			else
@@ -62,9 +65,10 @@ void reparacao(EstacaoTrabalho & ID1) {
 		}
 
 		else if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao >= ID1.carros_a_ser_reparados[i].tempo_reparacao_max) && (ID1.carros_a_ser_reparados[i].ID != 0)) {
-				Adiciona(ID1.Carrosreparados, ID1.num_carros_reparados, ID1.carros_a_ser_reparados[i]);
+				//Adiciona(ID1.Carrosreparados, ID1.num_carros_reparados, ID1.carros_a_ser_reparados[i]);
 				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
-				Remove(ID1.carros_a_ser_reparados, ID1.capacidade, i);
+				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
+				ID1.carros_a_ser_reparados[i].ID = 0;
 				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
 			}
 	}
@@ -87,9 +91,10 @@ bool MarcaPresente(Oficina &Of, string marca) {
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num) {
 	for (int i = 0; i < num; i) {
 		Carro novo = CriarCarro(marcas, modelos);
-		novo.ID = Of.fila_espera_tamanho + 1;
+		novo.ID = Of.carrostotais + 1;
 		if (MarcaPresente(Of, novo.marca)) {
 				Adiciona(Of.fila_espera, Of.fila_espera_tamanho, novo);
+				Of.carrostotais = Of.carrostotais + 1;
 				i++;
 		}
 	}

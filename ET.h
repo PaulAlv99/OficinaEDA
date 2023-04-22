@@ -12,7 +12,7 @@ struct EstacaoTrabalho {
 	Carro* carros_a_ser_reparados; //arrays de carros
 	int num_carros_a_ser_reparados;
 	Carro* Carrosreparados;
-	int num_carros_reparados = 0;
+	int num_carros_reparados;
 
 };
 

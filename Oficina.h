@@ -6,6 +6,7 @@ struct Oficina {
 	int numero_ets;
 	Carro* fila_espera;
 	int fila_espera_tamanho;
+	int carrostotais;
 	int ciclos;
 
 };
