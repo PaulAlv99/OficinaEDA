@@ -11,6 +11,6 @@ void reparacao_manual(Oficina& Of);
 void atualizar_tempo_reparacao(Oficina& Of);
 void adicionar_prioridade(Oficina& Of);
 void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas);
-void gravar_oficina();
-void carregar_oficina();
+void gravar_oficina(Oficina& Of);
+void carregar_oficina(Oficina& Of);
 void imprimir_oficina();
