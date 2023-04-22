@@ -189,7 +189,8 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 	string mecanicoRem;
 	string mecanicoAdi;
 	cout << "Indique o nome do mecanico que deseja remover: " << endl;
-	cin >> mecanicoRem;
+	cin >> ws;
+	getline(cin, mecanicoRem);
 	for (int i = 0; i < Of.numero_ets;i++) {
 		if (Of.ets[i].mecanico.nome == mecanicoRem) {
 			
@@ -216,7 +217,7 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
 			cout << endl;
 			cout << "Indique o nome para o novo mecanico desta et: " << endl;
-			cin >> mecanicoAdi;
+			getline(cin, mecanicoAdi);
 			Mecanico novo = Mecanico();
 
 			novo.marca = marcas.linhas[rand() % marcas.tamanho];
@@ -227,6 +228,7 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
 				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].num_carros_a_ser_reparados << " | " <<
 				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
+			cout << "--------------------------------------------------------------------------------------" << endl;
 		}
 	}
 }
