@@ -6,6 +6,7 @@ struct Oficina {
 	int numero_ets;
 	Carro* fila_espera;
 	int fila_espera_tamanho;
+	int carrostotais;
 	int ciclos;
 
 };
@@ -14,7 +15,7 @@ Oficina criarOficina(LinhasFicheiro &marcas, LinhasFicheiro &modelos);
 
 void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 
-void reparacao(EstacaoTrabalho ID1);
+void reparacao(EstacaoTrabalho &ID1);
 
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num);
 bool  GerarProbalidades(double probalidade);

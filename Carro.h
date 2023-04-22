@@ -9,7 +9,7 @@ struct Carro {
 	string modelo;
 	int dias_em_reparacao;
 	int tempo_reparacao_max;
-	int ID;
+	int ID = 0;
 	bool prioritario;
 
 };

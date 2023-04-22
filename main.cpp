@@ -50,7 +50,8 @@ int main()
     /*limpar os couts*/
 
     system("CLS");
-    CriarCarrosNaFila(METAL, marcas, modelos, 10);
+    //CriarCarrosNaFila(METAL, marcas, modelos, 10);
+    colocarprioritario(METAL);
     MenuInfo(METAL,marcas,modelos);
     
     Menu(METAL,marcas,modelos);

@@ -23,6 +23,7 @@ LinhasFicheiro CarregarFicheirosLista(string Nome_Ficheiro) {
     string* linhas = new string[TamanhoFicheiro(Nome_Ficheiro)];
 
     string line;
+
     ifstream file(Nome_Ficheiro);
     if (file.is_open())
     {

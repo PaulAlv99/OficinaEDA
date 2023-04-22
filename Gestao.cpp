@@ -8,21 +8,42 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 	cout << "Dia: " << Of.ciclos << endl;
 	for (int i = 0; i < Of.numero_ets; i++) {
 			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
-				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].numero_carros << " | " <<
+				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].num_carros_a_ser_reparados << " | " <<
 				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
 			if (Of.ciclos >= 1) {
 				cout << "Carros a ser reparados: " << endl;
 			}
 			int r = Of.ets[i].capacidade;
 			for (int t = 0; t < r; t++) {
-				if (Of.ciclos >= 1) {
+				if ((Of.ciclos >= 1) && (Of.ets[i].carros_a_ser_reparados[t].ID != 0)) {
 					cout << "ID: " << Of.ets[i].carros_a_ser_reparados[t].ID << " | " << "Carro: " << Of.ets[i].carros_a_ser_reparados[t].marca << "-"
 						<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].carros_a_ser_reparados[t].prioritario;
-					cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo";
+					cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
 					cout << Of.ets[i].carros_a_ser_reparados[t].tempo_reparacao_max << endl;
 				}
-			
+				
 		}
+			cout << endl;
+
+
+
+		if (Of.ciclos >= 1) {
+				cout << "Carros reparados: " << endl;
+			}
+			int g = Of.ets[i].num_carros_reparados;
+			for (int t = 0; t < g; t++) {
+				if ((Of.ciclos >= 1) && (Of.ets[i].Carrosreparados[t].ID != 0)) {
+					cout << "ID: " << Of.ets[i].Carrosreparados[t].ID << " | " << "Carro: " << Of.ets[i].Carrosreparados[t].marca << "-"
+						<< Of.ets[i].Carrosreparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].Carrosreparados[t].prioritario;
+					cout << " | " << "Tempo de reparacao: " << Of.ets[i].Carrosreparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
+					cout << Of.ets[i].Carrosreparados[t].tempo_reparacao_max << endl;
+				}
+
+			}
+			cout << endl;
+
+
+
 	}
 	cout << "--------------------------------------------------------------------------------------" << endl;
 	cout << "Lista de Espera: " << endl;
