@@ -39,13 +39,12 @@ void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	cin >> escolha;
 	switch (escolha) {
 	case 's':
-		
 		seguinte(Of,marcas,modelos);
 		MenuInfo(Of,marcas,modelos);
 		Menu(Of,marcas,modelos);
 		break;
 	case 'g':
-		gestao();
+		gestao(Of);
 		break;
 	case (not 'g') and (not 's'):
 		Menu(Of,marcas,modelos);
@@ -54,7 +53,7 @@ void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	}
 
 }
-void gestao() {
+void gestao(Oficina& Of) {
 	int opcao;
 	cout << " ***** Bem Vindo Gestor *****" << endl;
 	cout << "(1).Reparacao Manual" << endl;
@@ -67,10 +66,11 @@ void gestao() {
 	cout << "(8).Sair da gestao" << endl;
 	cout << "Seleccione a sua opcao : ";
 	cin >> opcao;
-	/*switch (opcao) {
+	switch (opcao) {
 	case 1:
-
-	case 2:
+		reparacao_manual(Of);
+		break;
+		/*case 2:
 
 	case 3:
 
@@ -84,17 +84,22 @@ void gestao() {
 
 	case 8:
 	}*/
+	}
 }
 
-void reparacao_manual(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
+void reparacao_manual(Oficina& Of) {
 	/*int CarroReparoManual(Oficina & Of, LinhasFicheiro & marcas, LinhasFicheiro & modelos);*/
-	cout << "indique a marca e o modelo que pretende reparar manualmente: ";
 	string marca;
 	string modelo;
+	cout << "indique a marca a reparar: " << endl;
 	cin >> marca;
+	cout << "indique o modelo a reparar: " << endl;
 	cin >> modelo;
-	for (int i = 0; i <= Of.numero_ets;i++) {
+	for (int i = 0; i < Of.numero_ets;i++) {
+		cout << "ets " << Of.numero_ets << endl;
 		for (int j = 0; j <= Of.ets[i].numero_carros;j++){
+			cout <<"carros " << Of.ets[i].numero_carros << endl;
+			cout << "capcidade " << Of.ets[i].capacidade;
 			if (Of.ets[i].carros_a_ser_reparados[j].marca == marca && Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) {
 				// ir buscar funcao colocarCarrosEt no oficina.cpp    ColocarCarrosET
 			}

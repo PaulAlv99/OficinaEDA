@@ -45,7 +45,7 @@ void Adiciona(Carro*& v, int& tamanho, Carro& carro)
 	}
 	novo[tamanho] = carro;
 
-	delete[] v;
+	//delete[] v;
 
 	v = novo;
 	tamanho = tamanho_novo;
@@ -62,15 +62,16 @@ void Remove(Carro*& v, int& tamanho, int& ind)
 		novo[i] = v[i + 1];
 	}
 
-	delete[] v;
-	novo = v;
+	//delete[] v;
+	//novo = v;
+	v = novo;
 	tamanho = tamanho_novo;
 
 }
 
 void Transfere(Carro*& v_origem, int& tamanho_origem, int& indice, Carro*& v_dest, int& tamanho_dest)
 {
-	Carro carro = v_origem[indice];
-	Adiciona(v_dest, tamanho_dest, carro);
+	Carro c = v_origem[indice];
+	Adiciona(v_dest, tamanho_dest, c);
 	Remove(v_origem, tamanho_origem, indice);
 }
