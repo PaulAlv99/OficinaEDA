@@ -101,9 +101,13 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		Menu(Of, marcas, modelos);
 		break;
 			
-	/*case 3:
+	case 3:
+		adicionar_prioridade(Of);
+		MenuInfo(Of, marcas, modelos);
+		Menu(Of, marcas, modelos);
+		break;
 
-	case 4:
+	/*case 4:
 
 	case 5:
 
@@ -164,7 +168,16 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 	}
 }
 void adicionar_prioridade(Oficina& Of) {
-
+	int Id;
+	cout << "indique O ID do carro que quer por a Prioritario: " << endl;
+	cin >> Id;
+	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
+		//faz se id for igual e se n for prioritario
+		if ((Of.fila_espera[i].ID == Id) && (Of.fila_espera[i].prioritario==false)) {
+			Of.fila_espera[i].prioritario = true;
+		}
+	}
+	
 }
 
 void remover_mecanico(Oficina& Of) {
