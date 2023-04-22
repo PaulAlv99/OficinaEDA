@@ -8,7 +8,7 @@ EstacaoTrabalho CriarET(int ID) {
 	nova.numero_carros = 0;
 	nova.faturacao = 0;
 	nova.ID = ID;
-	nova.Carrosreparados = new string[10];
+	nova.Carrosreparados = new Carro[0];
 	nova.carros_a_ser_reparados = new Carro[nova.capacidade];
 	nova.num_carros_a_ser_reparados = 0;
 	return nova;

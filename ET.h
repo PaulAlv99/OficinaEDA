@@ -11,7 +11,8 @@ struct EstacaoTrabalho {
 	float faturacao;
 	Carro* carros_a_ser_reparados; //arrays de carros
 	int num_carros_a_ser_reparados;
-	string* Carrosreparados;
+	Carro* Carrosreparados;
+	int num_carros_reparados = 0;
 
 };
 

@@ -42,25 +42,29 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
 }
 
 //sugiro usar a funcao bool  GerarProbalidades(double probalidade);
-void reparacao(EstacaoTrabalho ID1) {
+void reparacao(EstacaoTrabalho & ID1) {
 	int chance;
-	for (int i = 0; i < ID1.numero_carros; i++) {
-		if (ID1.carros_a_ser_reparados[i].dias_em_reparacao < ID1.carros_a_ser_reparados[i].tempo_reparacao_max) {
+	for (int i = 0; i < ID1.capacidade; i++) {
+		if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao < ID1.carros_a_ser_reparados[i].tempo_reparacao_max)&&(ID1.carros_a_ser_reparados[i].ID != 0)) {
 			chance = rand() % 100 + 1;
 			if (chance >= 1 and chance <= 15) {
 				//remover carro da lista de espera
 				//sugiro a usar as funcoes definidas em Carro.cpp. Adiciona;Remove e Transfere
 				//para usar aqui na oficina acho que basta esta declarado no header a funcao e os parametros
 				//e passar sempre como argumentos o endereço (&)
-				ID1.Carrosreparados[i] = ID1.carros_a_ser_reparados[i].ID;
+				Adiciona(ID1.Carrosreparados, ID1.num_carros_reparados, ID1.carros_a_ser_reparados[i]);
+				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
+				Remove(ID1.carros_a_ser_reparados, ID1.capacidade, i);
 				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
 			}
 			else
 				ID1.carros_a_ser_reparados[i].dias_em_reparacao++;
 		}
 
-		else if (ID1.carros_a_ser_reparados[i].dias_em_reparacao >= ID1.carros_a_ser_reparados[i].tempo_reparacao_max) {
-				ID1.Carrosreparados[i] = ID1.carros_a_ser_reparados[i].ID;
+		else if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao >= ID1.carros_a_ser_reparados[i].tempo_reparacao_max) && (ID1.carros_a_ser_reparados[i].ID != 0)) {
+				Adiciona(ID1.Carrosreparados, ID1.num_carros_reparados, ID1.carros_a_ser_reparados[i]);
+				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
+				Remove(ID1.carros_a_ser_reparados, ID1.capacidade, i);
 				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
 			}
 	}
@@ -93,19 +97,27 @@ void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& mode
 }
 
 void ColocarCarrosET(Oficina& Of, int num) {
-	for (int i = 0; i < Of.numero_ets; i++) {
-		for (int t = 0; t < num; t++) {
-			if ((Of.ets[i].mecanico.marca == Of.fila_espera[t].marca) && (Of.ets[i].capacidade>Of.ets[i].num_carros_a_ser_reparados)) {
-				for (int z = 0; z < Of.ets[i].capacidade; z++) {
-					if (Of.ets[i].carros_a_ser_reparados[z].ID == 0) {
-						Of.ets[i].carros_a_ser_reparados[z] = Of.fila_espera[t];
+	int colocados = 0;
+	while (colocados < num) {
+		for (int i = 0; i < Of.numero_ets; i++) {
+			for (int t = 0; t < Of.fila_espera_tamanho; t++) {
+				if ((Of.ets[i].mecanico.marca == Of.fila_espera[t].marca) && (Of.ets[i].capacidade > Of.ets[i].num_carros_a_ser_reparados) &&(colocados < num)) {
+					for (int z = 0; z < Of.ets[i].capacidade; z++) {
+						if (Of.ets[i].carros_a_ser_reparados[z].ID == 0) {
+							Of.ets[i].carros_a_ser_reparados[z] = Of.fila_espera[t];
+							colocados++;
+							Of.ets[i].num_carros_a_ser_reparados++;
+							Remove(Of.fila_espera, Of.fila_espera_tamanho, t);
+							break;
+						}
 					}
+
+					
 				}
 
-				Of.ets[i].num_carros_a_ser_reparados++;
 			}
-
 		}
+		break;
 	}
 }
 

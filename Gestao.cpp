@@ -15,14 +15,15 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 			}
 			int r = Of.ets[i].capacidade;
 			for (int t = 0; t < r; t++) {
-				if (Of.ciclos >= 1) {
+				if ((Of.ciclos >= 1) && (Of.ets[i].carros_a_ser_reparados[t].ID != 0)) {
 					cout << "ID: " << Of.ets[i].carros_a_ser_reparados[t].ID << " | " << "Carro: " << Of.ets[i].carros_a_ser_reparados[t].marca << "-"
 						<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].carros_a_ser_reparados[t].prioritario;
 					cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo";
 					cout << Of.ets[i].carros_a_ser_reparados[t].tempo_reparacao_max << endl;
 				}
-			
+				
 		}
+			cout << endl;
 	}
 	cout << "--------------------------------------------------------------------------------------" << endl;
 	cout << "Lista de Espera: " << endl;

@@ -61,9 +61,10 @@ void Remove(Carro*& v, int& tamanho, int& ind)
 	for (int i = ind; i < tamanho_novo; i++) {
 		novo[i] = v[i + 1];
 	}
-
-	delete[] v;
-	novo = v;
+	v = novo;
+	//delete[] novo;
+	//delete[] v;
+	//novo = v;
 	tamanho = tamanho_novo;
 
 }
