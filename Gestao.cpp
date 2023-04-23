@@ -124,9 +124,12 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		break;
 	case 7:
 		imprimir_oficina(Of);
+		//MenuInfo(Of, marcas, modelos);
+		Menu(Of, marcas, modelos);
 		break;
 	case 8:
 		Menu(Of, marcas, modelos);
+
 		break;
 	case 6:
 		string caminho = "oficina.txt";
@@ -134,6 +137,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		MenuInfo(Of, marcas, modelos);
 		Menu(Of, marcas, modelos);
 		break;
+	
 
 	}
 }
@@ -321,222 +325,6 @@ void gravar_oficina(Oficina& Of) {
 
 
 
-
-
-
-/*
-void gravar_oficina(Oficina& Of) {
-
-	string caminho = "oficina.txt";
-
-	// cria um objeto ofstream
-	ofstream ficheiro;
-
-	// abre o ficheiro
-	ficheiro.open(caminho);
-
-	// verifica se o ficheiro foi aberto com sucesso
-	if (ficheiro.is_open()) {
-
-		ficheiro << Of.ciclos << endl;
-		ficheiro << Of.carrostotais << endl;
-		ficheiro << Of.numero_ets << endl;
-		//ets
-		for (int i = 0; i < Of.numero_ets;i++) {
-			ficheiro << Of.ets[i].ID << endl;
-			ficheiro << Of.ets[i].capacidade << endl;
-			ficheiro << Of.ets[i].faturacao << endl;
-			ficheiro << Of.ets[i].numero_carros << endl;
-			ficheiro << Of.ets[i].num_carros_a_ser_reparados << endl;
-			//carros reparados
-			ficheiro << Of.ets[i].num_carros_reparados << endl;
-			for (int j = 0; j < Of.ets[i].num_carros_reparados; j++) {
-
-				ficheiro << Of.ets[i].Carrosreparados[j].ID << endl;
-				ficheiro << Of.ets[i].Carrosreparados[j].dias_em_reparacao << endl;
-				ficheiro << Of.ets[i].Carrosreparados[j].marca << endl;
-				ficheiro << Of.ets[i].Carrosreparados[j].modelo << endl;
-				ficheiro << Of.ets[i].Carrosreparados[j].prioritario << endl;
-				ficheiro << Of.ets[i].Carrosreparados[j].tempo_reparacao_max << endl;
-			}
-			//carros a ser reparados
-			for (int k = 0; k < Of.ets[i].num_carros_a_ser_reparados;k++) {
-				ficheiro << Of.ets[i].carros_a_ser_reparados[k].dias_em_reparacao << endl;
-				ficheiro << Of.ets[i].carros_a_ser_reparados[k].ID << endl;
-				ficheiro << Of.ets[i].carros_a_ser_reparados[k].marca << endl;
-				ficheiro << Of.ets[i].carros_a_ser_reparados[k].modelo << endl;
-				ficheiro << Of.ets[i].carros_a_ser_reparados[k].prioritario << endl;
-				ficheiro << Of.ets[i].carros_a_ser_reparados[k].tempo_reparacao_max << endl;
-			}
-			//mecanico
-			ficheiro << Of.ets[i].mecanico.marca << endl;
-			ficheiro << Of.ets[i].mecanico.nome << endl;
-			ficheiro << Of.ets[i].mecanico.preco_reparacao_por_dia << endl;
-		}
-		//fila de espera
-		ficheiro << Of.fila_espera_tamanho << endl;
-		for (int y = 0; y < Of.fila_espera_tamanho; y++) {
-			ficheiro << Of.fila_espera[y].ID << endl;
-			ficheiro << Of.fila_espera[y].dias_em_reparacao << endl;
-			ficheiro << Of.fila_espera[y].marca << endl;
-			ficheiro << Of.fila_espera[y].modelo << endl;
-			ficheiro << Of.fila_espera[y].prioritario << endl;
-			ficheiro << Of.fila_espera[y].tempo_reparacao_max << endl;
-		}
-
-
-		// fecha o arquivo
-		ficheiro.close();
-	}
-	else {
-		cout << "Erro ao abrir o ficheiro" << endl;
-	}
-
-}
-*/
-
-
-
-
-
-
-
-
-
-
-//void carregar_oficina(Oficina& Of, string caminho) {
-//	//string caminho = "oficina.txt";
-//	string temp;
-//	ifstream ficheiro(caminho);
-//	if (ficheiro.is_open()) {
-//
-//		Oficina nova;
-//		//obtem ciclos e convert para inteiro
-//		ficheiro >> temp;
-//		nova.ciclos = stoi(temp);
-//		//obtem carrostotais
-//		ficheiro >> temp;
-//		nova.carrostotais = stoi(temp);
-//		//obtem numero_ets
-//		ficheiro >> temp;
-//		nova.numero_ets = stoi(temp);
-//		//cria as ets
-//		nova.ets = new EstacaoTrabalho[nova.numero_ets];
-//		//carrega ets
-//		for (int i = 0; i < nova.numero_ets; i++) {
-//			//obtem o id da et
-//			ficheiro >> temp;
-//			nova.ets[i].ID = stoi(temp);
-//			//obtem a capacidade da et
-//			ficheiro >> temp;
-//			nova.ets[i].capacidade = stoi(temp);
-//			//obtem o valor da faturacao da et
-//			ficheiro >> temp;
-//			nova.ets[i].faturacao = stoi(temp);
-//			//obtem o numero de carros da et
-//			ficheiro >> temp;
-//			nova.ets[i].numero_carros = stoi(temp);
-//			//obtem o numero de carros a ser reparados
-//			ficheiro >> temp;
-//			nova.ets[i].num_carros_a_ser_reparados = stoi(temp);
-//			//carros reparados
-//			ficheiro >> temp;
-//			nova.ets[i].num_carros_reparados = stoi(temp);
-//			nova.ets[i].Carrosreparados = new Carro[nova.ets[i].num_carros_reparados];
-//			for (int j = 0; j < nova.ets[i].num_carros_reparados; j++) {
-//				//obtem o id do carro reparado
-//				ficheiro >> temp;
-//				nova.ets[i].Carrosreparados[j].ID = stoi(temp);
-//				//obtem o numero de dias de reparacao
-//				ficheiro >> temp;
-//				nova.ets[i].Carrosreparados[j].dias_em_reparacao = stoi(temp);
-//				//obtem a marca
-//				ficheiro >> nova.ets[i].Carrosreparados[j].marca;
-//				//obtem o modelo
-//				ficheiro >> nova.ets[i].Carrosreparados[j].modelo;
-//				//obtem prioritario
-//				ficheiro >> temp;
-//				nova.ets[i].Carrosreparados[j].prioritario = stoi(temp);
-//				//obtem tempo de reparacao maximo
-//				ficheiro >> temp;
-//				nova.ets[i].Carrosreparados[j].tempo_reparacao_max = stoi(temp);
-//			}
-//			//carros a ser reparados
-//			nova.ets[i].carros_a_ser_reparados = new Carro[nova.ets[i].num_carros_a_ser_reparados];
-//			for (int k = 0; k < nova.ets[i].num_carros_a_ser_reparados; k++) {
-//				//obtem dias em reparacao
-//				ficheiro >> temp;
-//				nova.ets[i].carros_a_ser_reparados[k].dias_em_reparacao = stoi(temp);
-//				//obtem id do carro em peracao
-//				ficheiro >> temp;
-//				nova.ets[i].carros_a_ser_reparados[k].ID = stoi(temp);
-//				//obtem marca
-//				ficheiro >> nova.ets[i].carros_a_ser_reparados[k].marca;
-//				//obtem modelo
-//				ficheiro >> nova.ets[i].carros_a_ser_reparados[k].modelo;
-//				//obtem prioridade
-//				ficheiro >> temp;
-//				nova.ets[i].carros_a_ser_reparados[k].prioritario = stoi(temp);
-//				//obtem tempo de reparacao maximo
-//				ficheiro >> temp;
-//				nova.ets[i].carros_a_ser_reparados[k].tempo_reparacao_max = stoi(temp);
-//
-//			}
-//			//mecanico
-//			nova.ets[i].mecanico = Mecanico();
-//			//obtem marca 
-//			ficheiro >> nova.ets[i].mecanico.marca;
-//			//obtem nome do mecanico
-//			ficheiro >> nova.ets[i].mecanico.nome;
-//			//obtem preço de reparacao por dia
-//			ficheiro >> temp;
-//			nova.ets[i].mecanico.preco_reparacao_por_dia = stoi(temp);
-//		}
-//		//carrega fila de espera
-//		ficheiro >> temp;
-//		nova.fila_espera_tamanho = stoi(temp);
-//		nova.fila_espera = new Carro[nova.fila_espera_tamanho];
-//		for (int y = 0; y < nova.fila_espera_tamanho; y++) {
-//			//obtem id do carro em espera
-//			ficheiro >> temp;
-//			nova.fila_espera[y].ID = stoi(temp);
-//			//obtem dias em reparacao do carro em espera
-//			ficheiro >> temp;
-//			nova.fila_espera[y].dias_em_reparacao = stoi(temp);
-//			//obtem marca do carro
-//			ficheiro >> nova.fila_espera[y].marca;
-//			//obtem modelo do carro
-//			ficheiro >> nova.fila_espera[y].modelo;
-//			//obtem prioridade do carro em espera
-//			ficheiro >> temp;
-//			nova.fila_espera[y].prioritario = stoi(temp);
-//			//obtem tempo de reparacao maximo do carro em espera
-//			ficheiro >> temp;
-//			nova.fila_espera[y].tempo_reparacao_max = stoi(temp);
-//		}
-//		ficheiro.close();
-//
-//		//liberta memoria
-//		delete[] Of.fila_espera;
-//		for (int i = 0; i < Of.numero_ets; i++) {
-//			delete[] Of.ets[i].Carrosreparados;
-//			delete[] Of.ets[i].carros_a_ser_reparados;
-//		}
-//		delete[] Of.ets;
-//		//delete &Of;
-//		//atribui a nova oficina
-//		Of = nova;
-//
-//	}
-//	else {
-//		cout << "Erro: Ficheiro não encontrado!!";
-//	}
-//
-//
-//}
-
-
-
 void carregar_oficina(Oficina& Of, string caminho) {
 	//string caminho = "oficina.txt";
 	
@@ -708,14 +496,56 @@ void carregar_oficina(Oficina& Of, string caminho) {
 
 
 
-
-
-
-
-
-
-
-
 void imprimir_oficina(Oficina& Of) {
+	int num_carros_total = 0;
+	for (int i = 0; i < Of.numero_ets; i++) {
+		num_carros_total += Of.ets[i].num_carros_a_ser_reparados + Of.ets[i].num_carros_reparados;
+	}
+	num_carros_total += Of.fila_espera_tamanho;
+	Carro* carros_total = new Carro[num_carros_total]; // aloca memória para o array de carros
 
+	// Copia os carros de todas as ETs e da fila de espera para o array carros_total
+	int k = 0;
+	for (int i = 0; i < Of.numero_ets; i++) {
+		for (int j = 0; j < Of.ets[i].num_carros_a_ser_reparados; j++) {
+			carros_total[k] = Of.ets[i].carros_a_ser_reparados[j];
+			k++;
+		}
+		for (int r = 0; r < Of.ets[i].num_carros_reparados; r++) {
+			carros_total[k] = Of.ets[i].Carrosreparados[r];
+			k++;
+		}
+	}
+	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
+		carros_total[k] = Of.fila_espera[i];
+		k++;
+	}
+
+	// Ordena o array de carros alfabeticamente e por dias_reparacao
+	OrdenarCarrosAlfabeticamenteEPorDiasReparacao(carros_total, num_carros_total);
+
+
+}
+
+
+void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carros) {
+
+	// Ordenar o array de "carros" alfabeticamente e por dias_em_reparacao
+	for (int i = 0; i < num_carros - 1; i++) {
+		for (int j = i + 1; j < num_carros; j++) {
+			if (carros[i].marca > carros[j].marca ||
+				(carros[i].marca == carros[j].marca && carros[i].modelo > carros[j].modelo) ||
+				(carros[i].marca == carros[j].marca && carros[i].modelo == carros[j].modelo && carros[i].dias_em_reparacao > carros[j].dias_em_reparacao) ||
+				(carros[i].marca == carros[j].marca && carros[i].modelo == carros[j].modelo && carros[i].dias_em_reparacao == carros[j].dias_em_reparacao && carros[i].prioritario < carros[j].prioritario)) {
+				Carro temp = carros[i];
+				carros[i] = carros[j];
+				carros[j] = temp;
+			}
+		}
+	}
+
+	for (int k = 0; k < num_carros; k++)
+	{
+		cout << "ID: " << carros[k].ID << " | Marca: " << carros[k].marca << " | Modelo: " << carros[k].modelo << " | Tempo: " << carros[k].dias_em_reparacao << " | Prioritario: " << carros[k].prioritario << endl;
+	}
 }

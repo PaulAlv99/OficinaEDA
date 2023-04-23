@@ -14,3 +14,4 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas);
 void gravar_oficina(Oficina& Of);
 void carregar_oficina(Oficina& Of, string caminho);
 void imprimir_oficina(Oficina& Of);
+void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carros);
