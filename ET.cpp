@@ -2,7 +2,6 @@
 
 EstacaoTrabalho CriarET(int ID) {
 	EstacaoTrabalho nova = EstacaoTrabalho();
-	Carro carrinhos = Carro();
 	nova.mecanico;
 	nova.capacidade = 2 + (rand() % 3);
 	nova.numero_carros = 0;

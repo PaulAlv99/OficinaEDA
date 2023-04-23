@@ -33,6 +33,7 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
 {
 	Of.ciclos++;
 	CriarCarrosNaFila(Of, marcas, modelos, 10);
+	colocarprioritario(Of);
 	ColocarCarrosET(Of, 8);
 	for (int i = 0; i < Of.numero_ets; i++) {
 		reparacao(Of.ets[i]);
