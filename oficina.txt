@@ -1,30 +1,32 @@
-2|30|3
-1|3|0|0|3|1
-9|0|MAZDA|Mustang|0|3
-2|4|MAZDA|X7|0|2
-2|7|MAZDA|Tundra|0|3
-1|14|MAZDA|Atlas|0|3
-MAZDA|Mario Jose|240
-2|3|0|0|3|0
-2|2|Buick|Silverado|0|2
-2|5|Buick|S8|0|3
-2|11|Buick|Levante|0|4
-Buick|Jose Mario|142
-3|3|0|0|3|1
-1|0|Nissan|TLX|0|4
-1|3|Nissan|Bolt|0|3
-2|8|Nissan|Forte|0|2
-1|10|Nissan|GX|0|3
-Nissan|Maria Jose|198
-19
-0
-Acura
-Sprinter
-0
-3
-20
-0
-Acura
-Ridgeline
-0
-4
+1|20|5
+1|3|0|0|3|0
+1|9|Acura|GV70|0|4
+1|12|Acura|Discovery|0|4
+1|14|Acura|Air|0|3
+Acura|as|127
+2|4|0|0|1|1
+13|0|Honda|S4|0|2
+1|8|Honda|GV60|0|3
+Honda|qw|210
+3|2|0|0|2|0
+1|4|Kia|EcoSport|0|3
+1|6|Kia|Frontier|0|3
+Kia|sd|202
+4|4|0|0|0|1
+1|0|MAZDA|Golf|0|4
+MAZDA|dfg |165
+5|2|0|0|0|0
+GMC|asd asd|338
+12
+18|0|GMC|Savana|1|4
+2|0|MAZDA|LS|0|2
+3|0|GMC|G80|0|4
+5|0|MAZDA|NX|0|4
+7|0|Kia|ZDX|0|2
+10|0|MAZDA|Blazer|0|2
+11|0|GMC|GV60|0|2
+15|0|MAZDA|Forte|0|3
+16|0|MAZDA|F-TYPE|0|4
+17|0|Acura|Charger|0|2
+19|0|Acura|Ocean|0|2
+20|0|GMC|Quattroporte|0|3
