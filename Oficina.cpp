@@ -39,6 +39,7 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
 		reparacao(Of.ets[i]);
 
 	}
+	
 
 	// Proceder às restantes operações de um ciclo
 }
