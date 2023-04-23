@@ -285,7 +285,7 @@ void gravar_oficina(Oficina& Of) {
 				<< Of.ets[i].Carrosreparados[j].tempo_reparacao_max << "\n";
 			}
 			//carros a ser reparados
-			for (int k = 0; k < Of.ets[i].num_carros_a_ser_reparados;k++) {
+			for (int k = 0; k < Of.ets[i].capacidade;k++) {
 				ficheiro << Of.ets[i].carros_a_ser_reparados[k].dias_em_reparacao << "|" 
 				<< Of.ets[i].carros_a_ser_reparados[k].ID << "|"
 				<< Of.ets[i].carros_a_ser_reparados[k].marca << "|" 
@@ -617,9 +617,9 @@ void carregar_oficina(Oficina& Of, string caminho) {
 			}
 			//carros a ser reparados
 			nova.ets[i].carros_a_ser_reparados = new Carro[nova.ets[i].capacidade];
-			if (nova.ets[i].num_carros_a_ser_reparados > 0) {
+			if (nova.ets[i].capacidade > 0) {
 			
-				for (int k = 0; k < nova.ets[i].num_carros_a_ser_reparados; k++) {
+				for (int k = 0; k < nova.ets[i].capacidade; k++) {
 					getline(ficheiro, linha);
 					stringstream ss(linha);
 					//obtem dias em reparacao
@@ -696,11 +696,7 @@ void carregar_oficina(Oficina& Of, string caminho) {
 		}
 		delete[] Of.ets;
 		//atribui a nova oficina
-		//Of = nova;
-		Of.fila_espera = nova.fila_espera;
-		for (int i = 0; i < nova.numero_ets; i ++) {
-			Of.ets[i] = nova.ets[i];
-		}
+		Of = nova;
 
 
 	}
