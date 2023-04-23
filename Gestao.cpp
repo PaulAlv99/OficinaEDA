@@ -148,9 +148,11 @@ void reparacao_manual(Oficina& Of) {
 	cout << "indique o modelo a reparar: " << endl;
 	cin >> ws;
 	getline(cin, modelo);
-	
+	/*Percorre ETs*/
 	for (int i = 0; i < Of.numero_ets;i++) {
+		/*Percorre carros a serem reparados*/
 		for (int j = Of.ets[i].num_carros_a_ser_reparados-1; j >= 0;j--){
+			/*Se alguma das marcas corresponder à marca e modelo em questao*/
 			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo)) {
 				
 				//coloca carro em lista de carros reparados
@@ -169,8 +171,10 @@ void reparacao_manual(Oficina& Of) {
 }
 
 void atualizar_tempo_reparacao(Oficina& Of) {
+	/*Está no discord da disciplina que deve ser introduzido pelo utilizador*/
 	string marca;
 	string modelo;
+	int tempo;
 	cout << "indique a marca a atualizar o tempo de reparacao: " << endl;
 	cin >> ws;
 	getline(cin, marca);
@@ -179,7 +183,9 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 	getline(cin, modelo);
 	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
 		if ((Of.fila_espera[i].marca == marca) && (Of.fila_espera[i].modelo == modelo)) {
-			Of.fila_espera[i].tempo_reparacao_max = 10; // foi colcado a dez de tempo max. 
+			cout << "Introduza o respetivo tempo: \n ";
+			cin >> tempo;
+			Of.fila_espera[i].tempo_reparacao_max = tempo; // foi colcado a dez de tempo max. 
 														//Porque 10?
 		}
 	}
