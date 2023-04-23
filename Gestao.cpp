@@ -543,7 +543,7 @@ void carregar_oficina(Oficina& Of, string caminho) {
 	ifstream ficheiro(caminho);
 	if (ficheiro.is_open()) {
 
-		Oficina nova;
+		Oficina nova = Oficina();
 		string linha;
 		
 		getline(ficheiro, linha);
@@ -586,8 +586,8 @@ void carregar_oficina(Oficina& Of, string caminho) {
 			//carros reparados
 			getline(ss, temp, '|');
 			nova.ets[i].num_carros_reparados = stoi(temp);
-			if (nova.ets[i].num_carros_reparados > 0) {
 			nova.ets[i].Carrosreparados = new Carro[nova.ets[i].num_carros_reparados];
+			if (nova.ets[i].num_carros_reparados > 0) {
 			
 				for (int j = 0; j < nova.ets[i].num_carros_reparados; j++) {
 					getline(ficheiro, linha);
