@@ -64,7 +64,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="modelo.txt" />
-    <Text Include="marcas.txt" />
+    <CopyFileToFolders Include="marcas.txt" />
+    <CopyFileToFolders Include="modelo.txt" />
   </ItemGroup>
 </Project>

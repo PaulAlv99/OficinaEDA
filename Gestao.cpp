@@ -121,7 +121,8 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		Menu(Of, marcas, modelos);
 		break;
 	case 6:
-		carregar_oficina(Of);
+		string caminho = "oficina.txt";
+		carregar_oficina(Of,caminho);
 		MenuInfo(Of, marcas, modelos);
 		Menu(Of, marcas, modelos);
 		break;
@@ -357,8 +358,8 @@ void gravar_oficina(Oficina& Of) {
 	}
 
 }
-void carregar_oficina(Oficina& Of) {
-	string caminho = "oficina.txt";
+void carregar_oficina(Oficina& Of, string caminho) {
+	//string caminho = "oficina.txt";
 	ifstream ficheiro(caminho);
 	if (ficheiro.is_open()) {
 

@@ -12,5 +12,5 @@ void atualizar_tempo_reparacao(Oficina& Of);
 void adicionar_prioridade(Oficina& Of);
 void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas);
 void gravar_oficina(Oficina& Of);
-void carregar_oficina(Oficina& Of);
+void carregar_oficina(Oficina& Of, string caminho);
 void imprimir_oficina();
