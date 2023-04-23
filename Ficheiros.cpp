@@ -38,6 +38,5 @@ LinhasFicheiro CarregarFicheirosLista(string Nome_Ficheiro) {
     novo.tamanho = TamanhoFicheiro(Nome_Ficheiro);
     novo.linhas = linhas;
 
-
     return novo;
 }

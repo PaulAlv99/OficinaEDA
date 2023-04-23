@@ -28,14 +28,13 @@ Carro CriarCarro(LinhasFicheiro &marcas, LinhasFicheiro &modelos) {
 	novo_carro.ID = 0;
 	novo_carro.tempo_reparacao_max = 2 + (rand() % 3);
 	novo_carro.dias_em_reparacao = 0;
-
-	/*Por alguma razao prioritario apenas retorna 0 e 1 sendo falso e verdadeiro,respetivamente*/
-	// "Alguma razao" chama-se que alguem andou a faltar as aulas...
 	novo_carro.prioritario = GerarProbalidades(0.05);
 
 	return novo_carro;
 }
 
+/*Recebe o array de carros, o tamanho e o carro a receber*/
+/*Adiciona elemento no final do array*/
 void Adiciona(Carro*& v, int& tamanho, Carro& carro)
 {
 	int tamanho_novo = tamanho + 1;
@@ -50,7 +49,10 @@ void Adiciona(Carro*& v, int& tamanho, Carro& carro)
 	v = novo;
 	tamanho = tamanho_novo;
 }
-
+/*Recebe o array de carros, o tamanho e o indice a ser removido*/
+/*Verifica que o array nao fica vazio com o if*/
+/*Copia os itens até o indice a ser removido e pega nos itens que estao na direita do el. a remover*/
+/*Deslocando-os para a esquerda*/
 void Remove(Carro*& v, int& tamanho, int& ind)
 {
 	int tamanho_novo = tamanho - 1;
@@ -68,7 +70,8 @@ void Remove(Carro*& v, int& tamanho, int& ind)
 
 }
 
-
+/*Recebe o array de carros inicial, o tamanho e o indice a ser transferido*/
+/*Recebe tambem o array de carros de destino e o respetivo tamanho */
 void Transfere(Carro*& v_origem, int& tamanho_origem, int& indice, Carro*& v_dest, int& tamanho_dest)
 {
 	Carro c = v_origem[indice];

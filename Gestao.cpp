@@ -122,16 +122,19 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		MenuInfo(Of, marcas, modelos);
 		Menu(Of, marcas, modelos);
 		break;
+	case 7:
+		imprimir_oficina(Of);
+		break;
+	case 8:
+		Menu(Of, marcas, modelos);
+		break;
 	case 6:
 		string caminho = "oficina.txt";
 		carregar_oficina(Of,caminho);
 		MenuInfo(Of, marcas, modelos);
 		Menu(Of, marcas, modelos);
 		break;
-	/*case 7:
 
-	case 8:
-	}*/
 	}
 }
 
@@ -170,15 +173,16 @@ void reparacao_manual(Oficina& Of) {
 void atualizar_tempo_reparacao(Oficina& Of) {
 	string marca;
 	string modelo;
-	cout << "indique a marca a reparar: " << endl;
+	cout << "indique a marca a atualizar o tempo de reparacao: " << endl;
 	cin >> ws;
 	getline(cin, marca);
-	cout << "indique o modelo a reparar: " << endl;
+	cout << "indique o modelo a atualizar o tempo de reparacao: " << endl;
 	cin >> ws;
 	getline(cin, modelo);
 	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
 		if ((Of.fila_espera[i].marca == marca) && (Of.fila_espera[i].modelo == modelo)) {
-			Of.fila_espera[i].tempo_reparacao_max = 10; // foi colcado a dez de tempo max
+			Of.fila_espera[i].tempo_reparacao_max = 10; // foi colcado a dez de tempo max. 
+														//Porque 10?
 		}
 	}
 }
@@ -192,7 +196,7 @@ void adicionar_prioridade(Oficina& Of) {
 			Of.fila_espera[i].prioritario = true;
 		}
 	}
-	
+	colocarprioritario(Of);
 }
 
 void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
