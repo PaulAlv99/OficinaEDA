@@ -5,12 +5,12 @@
 using namespace std;
 
 struct Carro {
-	string marca;
-	string modelo;
-	int dias_em_reparacao;
-	int tempo_reparacao_max;
+	string marca = "";
+	string modelo = "";
+	int dias_em_reparacao = 0;
+	int tempo_reparacao_max = 0;
 	int ID = 0;
-	bool prioritario;
+	bool prioritario = 0;
 
 };
 

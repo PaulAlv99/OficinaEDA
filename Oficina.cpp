@@ -58,6 +58,7 @@ void reparacao(EstacaoTrabalho & ID1) {
 				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
 				ID1.carros_a_ser_reparados[i].ID = 0;
 				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
+				
 			}
 			else
 				ID1.carros_a_ser_reparados[i].dias_em_reparacao++;

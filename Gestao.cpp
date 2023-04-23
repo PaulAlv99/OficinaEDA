@@ -1,9 +1,9 @@
 #include <iostream>
 #include "gestao.h"
 #include "Mecanico.h"
-#include <fstream>;
-#include <sstream>;
-#include <string>;
+#include <fstream>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -163,7 +163,7 @@ void reparacao_manual(Oficina& Of) {
 				Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
 
 				//remove carro da lista de carros em reparacao
-				Remove(Of.ets[i].carros_a_ser_reparados, Of.ets[i].num_carros_a_ser_reparados, j);
+				Of.ets[i].carros_a_ser_reparados[i].ID = 0;
 
 			}
 		}
@@ -539,8 +539,10 @@ void gravar_oficina(Oficina& Of) {
 
 void carregar_oficina(Oficina& Of, string caminho) {
 	//string caminho = "oficina.txt";
+	
 
 	ifstream ficheiro(caminho);
+
 	if (ficheiro.is_open()) {
 
 		Oficina nova = Oficina();
@@ -653,7 +655,7 @@ void carregar_oficina(Oficina& Of, string caminho) {
 			nova.ets[i].mecanico.nome = temp;
 			//obtem preço de reparacao por dia
 			getline(ss1, temp, '|');
-			nova.ets[i].mecanico.preco_reparacao_por_dia = stoi(temp);
+			nova.ets[i].mecanico.preco_reparacao_por_dia = stof(temp);
 
 		}
 		getline(ficheiro, linha);
@@ -694,7 +696,12 @@ void carregar_oficina(Oficina& Of, string caminho) {
 		}
 		delete[] Of.ets;
 		//atribui a nova oficina
-		Of = nova;
+		//Of = nova;
+		Of.fila_espera = nova.fila_espera;
+		for (int i = 0; i < nova.numero_ets; i ++) {
+			Of.ets[i] = nova.ets[i];
+		}
+
 
 	}
 	else {
