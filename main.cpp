@@ -25,8 +25,6 @@ int main(int argc, char* argv[])
 
     if (argc == 2) {
 
-        cout << "caminho: " << argv[1];
-
         string caminho = argv[1];
         carregar_oficina(METAL, caminho);
      
