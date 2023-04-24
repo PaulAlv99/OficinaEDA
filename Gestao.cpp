@@ -20,7 +20,7 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 			int r = Of.ets[i].capacidade;
 			if(Of.ets[i].num_carros_a_ser_reparados>0){
 				for (int t = 0; t < r; t++) {
-					if ((Of.ciclos >= 1) && (Of.ets[i].carros_a_ser_reparados[t].ID > 0)) {
+					if ((Of.ciclos >= 1) && (Of.ets[i].carros_a_ser_reparados[t].ID != 0)) {
 						cout << "ID: " << Of.ets[i].carros_a_ser_reparados[t].ID << " | " << "Carro: " << Of.ets[i].carros_a_ser_reparados[t].marca << "-"
 							<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].carros_a_ser_reparados[t].prioritario;
 						cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
@@ -60,31 +60,36 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 
 void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	char escolha;
-	cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
+	bool sair = false;
+	do {
+		cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
 
-	cout << "Seleccione a sua opcao : " << endl;
-	cin >> escolha;
-	switch (escolha) {
-	case 's':
-	case 'S':
-		seguinte(Of,marcas,modelos);
-		MenuInfo(Of,marcas,modelos);
-		Menu(Of,marcas,modelos);
-		break;
-	case 'g':
-	case 'G':
-		gestao(Of, marcas, modelos);
-		break;
-	case 't':
-	case 'T':
-		break;
+		cout << "Seleccione a sua opcao : " << endl;
+		cin >> escolha;
+		switch (escolha) {
+		case 's':
+		case 'S':
+			seguinte(Of, marcas, modelos);
+			MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			sair = true;
+			break;
+		case 'g':
+		case 'G':
+			gestao(Of, marcas, modelos);
+			sair = true;
+			break;
+		case 't':
+		case 'T':
+			sair = true;
+			break;
 
-	default:
-		cout << "Opcao invalida" << endl;
-		Menu(Of,marcas,modelos);
-		break;
+		default:
+			cout << "Opcao invalida" << endl;
+			break;
 
-	}
+		}
+	} while (!sair);
 
 }
 void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
@@ -114,6 +119,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
+			sair = true;
 			break;
 
 		case 2:
@@ -121,6 +127,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			system("CLS");
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
+			sair = true;
 			break;
 
 		case 3:
@@ -128,6 +135,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			system("CLS");
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
+			sair = true;
 			break;
 
 		case 4:
@@ -135,6 +143,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			system("CLS");
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
+			sair = true;
 			break;
 
 		case 5:
@@ -142,6 +151,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			system("CLS");
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
+			sair = true;
 			break;
 		case 7:
 
@@ -160,9 +170,11 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			}
 			//MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
+			sair = true;
 			break;
 		case 8:
 			Menu(Of, marcas, modelos);
+			sair = true;
 
 			break;
 		case 6:
@@ -185,10 +197,12 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			system("CLS");
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
+			sair = true;
 			break;
 
 		default:
 			cout << "Opcao invalida" << endl;
+			break;
 		}
 	} while (!sair);
 }
@@ -207,10 +221,11 @@ void reparacao_manual(Oficina& Of) {
 	getline(cin, modelo);
 	/*Percorre ETs*/
 	for (int i = 0; i < Of.numero_ets;i++) {
+		
 		/*Percorre carros a serem reparados*/
-		for (int j = Of.ets[i].num_carros_a_ser_reparados-1; j >= 0;j--){
+		for (int j = 0; j < Of.ets[i].capacidade; j++) {
 			/*Se alguma das marcas corresponder à marca e modelo em questao*/
-			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo)) {
+			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) && (Of.ets[i].carros_a_ser_reparados[j].ID != 0)) {
 				
 				//coloca carro em lista de carros reparados
 				Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados] = Of.ets[i].carros_a_ser_reparados[j];
@@ -218,7 +233,8 @@ void reparacao_manual(Oficina& Of) {
 				Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
 
 				//remove carro da lista de carros em reparacao
-				Of.ets[i].carros_a_ser_reparados[i].ID = 0;
+				Of.ets[i].carros_a_ser_reparados[j].ID = 0;
+				Of.ets[i].num_carros_a_ser_reparados = Of.ets[i].num_carros_a_ser_reparados - 1;
 
 			}
 		}
@@ -271,17 +287,19 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 			
 
 			//repara todos os carros da et
-			for (int j = Of.ets[i].num_carros_a_ser_reparados - 1; j >= 0;j--) {
+			for (int j = 0; j < Of.ets[i].capacidade; j++) {
 
+				if (Of.ets[i].carros_a_ser_reparados[j].ID != 0) {
+					//coloca carro em lista de carros reparados
+					Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados] = Of.ets[i].carros_a_ser_reparados[j];
+					Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
+					Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
 
-				//coloca carro em lista de carros reparados
-				Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados] = Of.ets[i].carros_a_ser_reparados[j];
-				Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
-				Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
+					//remove carro da lista de carros em reparacao
+					Of.ets[i].carros_a_ser_reparados[j].ID = 0;
+					Of.ets[i].num_carros_a_ser_reparados = Of.ets[i].num_carros_a_ser_reparados - 1;
 
-				//remove carro da lista de carros em reparacao
-				Remove(Of.ets[i].carros_a_ser_reparados, Of.ets[i].num_carros_a_ser_reparados, j);
-			
+				}
 			}
 			Of.ets[i].mecanico = Mecanico();
 
