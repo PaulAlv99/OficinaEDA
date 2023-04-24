@@ -60,18 +60,25 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 
 void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	char escolha;
-	cout << "Dia (s)eguinte *********** (g)estao" << endl;
+	cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
+
 	cout << "Seleccione a sua opcao : " << endl;
 	cin >> escolha;
 	switch (escolha) {
 	case 's':
+	case 'S':
 		seguinte(Of,marcas,modelos);
 		MenuInfo(Of,marcas,modelos);
 		Menu(Of,marcas,modelos);
 		break;
 	case 'g':
+	case 'G':
 		gestao(Of, marcas, modelos);
 		break;
+	case 't':
+	case 'T':
+		break;
+
 	default:
 		cout << "Opcao invalida" << endl;
 		Menu(Of,marcas,modelos);
