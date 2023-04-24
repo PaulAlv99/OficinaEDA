@@ -355,6 +355,7 @@ void gravar_oficina(Oficina& Of) {
 				<< Of.ets[i].Carrosreparados[j].marca << "|" 
 				<< Of.ets[i].Carrosreparados[j].modelo << "|" 
 				<< Of.ets[i].Carrosreparados[j].prioritario << "|"
+				<< Of.ets[i].Carrosreparados[j].custoreparacao << "|"
 				<< Of.ets[i].Carrosreparados[j].tempo_reparacao_max << "\n";
 			}
 			//carros a ser reparados
@@ -466,6 +467,9 @@ void carregar_oficina(Oficina& Of, string caminho) {
 					//obtem prioritario
 					getline(ss, temp, '|');
 					nova.ets[i].Carrosreparados[j].prioritario = stoi(temp);
+					//obtem custo de reparacao
+					getline(ss, temp, '|');
+					nova.ets[i].Carrosreparados[j].custoreparacao = stoi(temp);
 					//obtem tempo de reparacao maximo
 					getline(ss, temp, '|');
 					nova.ets[i].Carrosreparados[j].tempo_reparacao_max = stoi(temp);
