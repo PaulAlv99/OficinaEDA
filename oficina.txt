@@ -1,41 +1,88 @@
-2|30|4
-1|4|0|0|4|1
-1|0|Jeep|Defender|0|2
-1|20|Jeep|Z4|0|4
-2|6|Jeep|EV9|0|3
-2|14|Jeep|GR86|0|3
-2|17|Jeep|M2|0|2
-Jeep|a|186
-2|3|0|0|3|1
-13|0|Chevrolet|Pilot|0|4
-2|4|Chevrolet|A7|0|2
-2|9|Chevrolet|X4|0|2
-1|10|Chevrolet|Civic|0|3
-Chevrolet|s|183
-3|2|0|0|2|0
-2|2|Nissan|XC60|0|3
-1|5|Nissan|Outback|0|2
-Nissan|d|215
-4|2|0|0|1|1
-3|0|Volkswagen|CLA|0|4
-0|0|Volkswagen|CLA|0|4
-1|8|Volkswagen|Prius|0|2
-Volkswagen|f|155
-17
-25|0|Chevrolet|Metris|1|3
-7|0|Volkswagen|Wagoneer|0|3
-11|0|Volkswagen|Forte|0|2
-12|0|Nissan|Passport|0|4
-15|0|Nissan|A4|0|3
-16|0|Chevrolet|Palisade|0|2
-18|0|Nissan|Bolt|0|4
-19|0|Nissan|R1S|0|3
-21|0|Nissan|Silverado|0|3
-22|0|Chevrolet|TX|0|2
-23|0|Volkswagen|Venza|0|4
-24|0|Nissan|Bolt|0|3
-26|0|Chevrolet|Explorer|0|2
-27|0|Nissan|Accord|0|2
-28|0|Jeep|Huracan|0|2
-29|0|Volkswagen|Passat|0|3
-30|0|Chevrolet|Legacy|0|4
+6|70|6
+1|2|1782|0|2|2
+8|3|Jaguar|NSX|0|3
+15|3|Jaguar|Tiguan|0|3
+2|9|Jaguar|DBS|0|2
+2|16|Jaguar|Rogue|0|3
+Jaguar|s|297
+2|3|3890|0|2|4
+4|2|Lincoln|Expedition|0|2
+19|2|Lincoln|Telluride|0|2
+11|4|Lincoln|R1T|0|4
+20|2|Lincoln|Charger|0|4
+3|12|Lincoln|LX|0|4
+1|26|Lincoln|Sequoia|0|3
+2|0|Lincoln|Charger|0|4
+Lincoln|s|389
+3|2|1113|0|1|3
+3|2|Fisker|X6|0|2
+7|3|Fisker|S8|0|3
+21|2|Fisker|S3|1|2
+2|0|Fisker|S3|1|2
+2|5|Fisker|Q5|0|4
+Fisker|s|159
+4|3|1589|0|3|4
+2|1|Aston Martin|Portofino|0|3
+18|2|Aston Martin|Durango|1|2
+17|2|Aston Martin|Pacifica|0|2
+14|2|Aston Martin|Pilot|1|2
+1|24|Aston Martin|Roma|0|4
+2|22|Aston Martin|Giulia|0|2
+2|32|Aston Martin|A-Class|0|2
+Aston Martin|s|227
+5|4|1664|0|3|4
+1|2|Alfa Romeo|Tacoma|0|4
+23|2|Alfa Romeo|XT4|0|2
+42|1|Alfa Romeo|Envision|0|2
+37|3|Alfa Romeo|Palisade|0|3
+2|55|Alfa Romeo|Prius|0|4
+2|57|Alfa Romeo|Q4|0|2
+3|0|Alfa Romeo|Palisade|0|3
+1|62|Alfa Romeo|EV9|0|2
+Alfa Romeo|s|208
+6|2|2178|0|1|3
+6|1|Genesis|F250|0|4
+13|3|Genesis|C-HR|0|3
+39|2|Genesis|Integra|0|2
+2|0|Genesis|Integra|0|2
+1|40|Genesis|Roma|0|3
+Genesis|s|363
+38
+10|0|Fisker|Grand|0|2
+25|0|Jaguar|Versa|0|2
+27|0|Lincoln|XF|0|3
+28|0|Fisker|Maxima|0|4
+29|0|Lincoln|Cybertruck|0|3
+30|0|Jaguar|Sentra|0|4
+31|0|Jaguar|CT4|0|4
+33|0|Fisker|Passat|0|2
+34|0|Aston Martin|Acadia|0|3
+35|0|Lincoln|M3|0|3
+36|0|Fisker|A4|0|2
+38|0|Fisker|S8|0|3
+41|0|Genesis|Flying|0|3
+43|0|Fisker|Seltos|0|2
+44|0|Aston Martin|G80|0|3
+45|0|Jaguar|GR86|0|3
+46|0|Lincoln|i7|0|4
+47|0|Lincoln|Maverick|0|3
+48|0|Genesis|BRZ|0|2
+49|0|Genesis|Clubman|0|3
+50|0|Aston Martin|Suburban|0|2
+51|0|Lincoln|Trax|0|2
+52|0|Fisker|Prologue|0|2
+53|0|Lincoln|Tonale|0|3
+54|0|Fisker|XT5|0|4
+56|0|Jaguar|ES|0|4
+58|0|Genesis|Equinox|0|2
+59|0|Lincoln|Elantra|0|4
+60|0|Jaguar|Electrified|0|4
+61|0|Aston Martin|SQ8|0|2
+63|0|Genesis|X6|0|3
+64|0|Lincoln|G80|0|3
+65|0|Genesis|Convertible|0|4
+66|0|Aston Martin|XT4|0|2
+67|0|Lincoln|Vantage|0|2
+68|0|Genesis|A7|0|4
+69|0|Jaguar|Cherokee|0|4
+70|0|Genesis|Suburban|0|2

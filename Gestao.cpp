@@ -72,74 +72,118 @@ void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	case 'g':
 		gestao(Of, marcas, modelos);
 		break;
-	case (not 'g') and (not 's'):
+	default:
+		cout << "Opcao invalida" << endl;
 		Menu(Of,marcas,modelos);
-			break;
+		break;
 
 	}
 
 }
 void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	int opcao;
-	cout << " ***** Bem Vindo Gestor *****" << endl;
-	cout << "(1).Reparacao Manual" << endl;
-	cout << "(2).Atualizar tempo de reparacao" << endl;
-	cout << "(3).Adicionar Prioridade" << endl;
-	cout << "(4).Remover Mecanico" << endl;
-	cout << "(5).Gravar Oficina" << endl;
-	cout << "(6).Carregar Oficina" << endl;
-	cout << "(7).Imprimir Oficina" << endl;
-	cout << "(8).Sair da gestao" << endl;
-	cout << "Seleccione a sua opcao : ";
-	cin >> opcao;
-	switch (opcao) {
-	case 1:
-		reparacao_manual(Of);
-		MenuInfo(Of, marcas, modelos);
-		Menu(Of, marcas, modelos);
-		break;
-	
-	case 2:
-		atualizar_tempo_reparacao(Of);
-		MenuInfo(Of, marcas, modelos);
-		Menu(Of, marcas, modelos);
-		break;
-			
-	case 3:
-		adicionar_prioridade(Of);
-		MenuInfo(Of, marcas, modelos);
-		Menu(Of, marcas, modelos);
-		break;
+	int escolha = 0;
+	int escolha2 = 0;
+	string caminho = "oficina.txt";
+	bool sair = false;
+	do {
+		cout << " ***** Bem Vindo Gestor *****" << endl;
+		cout << "(1).Reparacao Manual" << endl;
+		cout << "(2).Atualizar tempo de reparacao" << endl;
+		cout << "(3).Adicionar Prioridade" << endl;
+		cout << "(4).Remover Mecanico" << endl;
+		cout << "(5).Gravar Oficina" << endl;
+		cout << "(6).Carregar Oficina" << endl;
+		cout << "(7).Imprimir Oficina" << endl;
+		cout << "(8).Sair da gestao" << endl;
+		cout << "Seleccione a sua opcao : ";
+		cin >> opcao;
 
-	case 4:
-		remover_mecanico(Of, marcas);
-		MenuInfo(Of, marcas, modelos);
-		Menu(Of, marcas, modelos);
-		break;
+		switch (opcao) {
 
-	case 5:
-		gravar_oficina(Of);
-		MenuInfo(Of, marcas, modelos);
-		Menu(Of, marcas, modelos);
-		break;
-	case 7:
-		imprimir_oficina(Of);
-		//MenuInfo(Of, marcas, modelos);
-		Menu(Of, marcas, modelos);
-		break;
-	case 8:
-		Menu(Of, marcas, modelos);
+		case 1:
+			reparacao_manual(Of);
+			system("CLS");
 
-		break;
-	case 6:
-		string caminho = "oficina.txt";
-		carregar_oficina(Of,caminho);
-		MenuInfo(Of, marcas, modelos);
-		Menu(Of, marcas, modelos);
-		break;
-	
+			MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			break;
 
-	}
+		case 2:
+			atualizar_tempo_reparacao(Of);
+			system("CLS");
+			MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			break;
+
+		case 3:
+			adicionar_prioridade(Of);
+			system("CLS");
+			MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			break;
+
+		case 4:
+			remover_mecanico(Of, marcas);
+			system("CLS");
+			MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			break;
+
+		case 5:
+			gravar_oficina(Of);
+			system("CLS");
+			MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			break;
+		case 7:
+
+			cout << "Escolha como quer imprimir a Oficina" << endl << "(1) Alfabeticamente" << endl << "(2) Por dias em reparacao" << endl;
+			cin >> escolha;
+			if (escolha == 1) {
+				system("CLS");
+				imprimir_oficinaalfabeticamente(Of);
+			}
+			else if (escolha == 2) {
+				system("CLS");
+				imprimir_oficinaportempo(Of);
+			}
+			else {
+				cout << "Opcao invalida" << endl;
+			}
+			//MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			break;
+		case 8:
+			Menu(Of, marcas, modelos);
+
+			break;
+		case 6:
+			cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
+			cin >> escolha2;
+			switch (escolha2) {
+
+			case 1:
+				cout << "Digite o caminho (inclua .txt ao fim do nome do arquivo): " << endl;
+				cin >> caminho;
+				break;
+			case 2:
+				break;
+			default:
+				cout << "Opcao invalida" << endl << "Imprimindo usando o caminho padrao..." << endl;
+				break;
+			}
+
+			carregar_oficina(Of, caminho);
+			system("CLS");
+			MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			break;
+
+		default:
+			cout << "Opcao invalida" << endl;
+		}
+	} while (!sair);
 }
 
 void reparacao_manual(Oficina& Of) {
@@ -489,14 +533,14 @@ void carregar_oficina(Oficina& Of, string caminho) {
 
 	}
 	else {
-		cout << "Erro: Ficheiro não encontrado!!";
+		cout << "Erro: Ficheiro não encontrado!!" << endl << "usando valores locais" << endl;
 	}
 
 }
 
 
 
-void imprimir_oficina(Oficina& Of) {
+void imprimir_oficinaalfabeticamente(Oficina& Of) {
 	int num_carros_total = 0;
 	for (int i = 0; i < Of.numero_ets; i++) {
 		num_carros_total += Of.ets[i].num_carros_a_ser_reparados + Of.ets[i].num_carros_reparados;
@@ -527,7 +571,36 @@ void imprimir_oficina(Oficina& Of) {
 
 }
 
+void imprimir_oficinaportempo(Oficina& Of) {
+	int num_carros_total = 0;
+	for (int i = 0; i < Of.numero_ets; i++) {
+		num_carros_total += Of.ets[i].num_carros_a_ser_reparados + Of.ets[i].num_carros_reparados;
+	}
+	num_carros_total += Of.fila_espera_tamanho;
+	Carro* carros_total = new Carro[num_carros_total]; // aloca memória para o array de carros
 
+	// Copia os carros de todas as ETs e da fila de espera para o array carros_total
+	int k = 0;
+	for (int i = 0; i < Of.numero_ets; i++) {
+		for (int j = 0; j < Of.ets[i].num_carros_a_ser_reparados; j++) {
+			carros_total[k] = Of.ets[i].carros_a_ser_reparados[j];
+			k++;
+		}
+		for (int r = 0; r < Of.ets[i].num_carros_reparados; r++) {
+			carros_total[k] = Of.ets[i].Carrosreparados[r];
+			k++;
+		}
+	}
+	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
+		carros_total[k] = Of.fila_espera[i];
+		k++;
+	}
+
+	// Ordena o array de carros alfabeticamente e por dias_reparacao
+	OrdenarCarrosPorDiasReparacao(carros_total, num_carros_total);
+
+
+}
 void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carros) {
 
 	// Ordenar o array de "carros" alfabeticamente e por dias_em_reparacao
@@ -537,6 +610,25 @@ void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carro
 				(carros[i].marca == carros[j].marca && carros[i].modelo > carros[j].modelo) ||
 				(carros[i].marca == carros[j].marca && carros[i].modelo == carros[j].modelo && carros[i].dias_em_reparacao > carros[j].dias_em_reparacao) ||
 				(carros[i].marca == carros[j].marca && carros[i].modelo == carros[j].modelo && carros[i].dias_em_reparacao == carros[j].dias_em_reparacao && carros[i].prioritario < carros[j].prioritario)) {
+				Carro temp = carros[i];
+				carros[i] = carros[j];
+				carros[j] = temp;
+			}
+		}
+	}
+
+	for (int k = 0; k < num_carros; k++)
+	{
+		cout << "ID: " << carros[k].ID << " | Marca: " << carros[k].marca << " | Modelo: " << carros[k].modelo << " | Tempo: " << carros[k].dias_em_reparacao << " | Prioritario: " << carros[k].prioritario << endl;
+	}
+}
+
+void OrdenarCarrosPorDiasReparacao(Carro*& carros, int num_carros) {
+
+	// Ordenar o array de "carros" alfabeticamente e por dias_em_reparacao
+	for (int i = 0; i < num_carros - 1; i++) {
+		for (int j = i + 1; j < num_carros; j++) {
+			if (carros[i].dias_em_reparacao > carros[j].dias_em_reparacao) {
 				Carro temp = carros[i];
 				carros[i] = carros[j];
 				carros[j] = temp;
