@@ -41,7 +41,7 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 					cout << "ID: " << Of.ets[i].Carrosreparados[t].ID << " | " << "Carro: " << Of.ets[i].Carrosreparados[t].marca << "-"
 						<< Of.ets[i].Carrosreparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].Carrosreparados[t].prioritario;
 					cout << " | " << "Tempo de reparacao: " << Of.ets[i].Carrosreparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
-					cout << Of.ets[i].Carrosreparados[t].tempo_reparacao_max << endl;
+					cout << Of.ets[i].Carrosreparados[t].tempo_reparacao_max << "| Custo de reparacao: " << Of.ets[i].Carrosreparados[t].custoreparacao << endl;
 				}
 
 			}
@@ -346,7 +346,7 @@ void gravar_oficina(Oficina& Of) {
 			ficheiro << Of.ets[i].ID << "|"	
 			<< Of.ets[i].capacidade << "|" 
 			<< Of.ets[i].faturacao << "|"
-			<< Of.ets[i].numero_carros << "|" 
+			
 			<< Of.ets[i].num_carros_a_ser_reparados << "|" 
 			<< Of.ets[i].num_carros_reparados << "\n";
 			for (int j = 0; j < Of.ets[i].num_carros_reparados; j++) {
@@ -438,9 +438,7 @@ void carregar_oficina(Oficina& Of, string caminho) {
 			//faturacao
 			getline(ss, temp, '|');
 			nova.ets[i].faturacao = stof(temp);
-			//numero de carros
-			getline(ss, temp, '|');
-			nova.ets[i].numero_carros = stoi(temp);
+			
 			//num carros a ser reparados
 			getline(ss, temp, '|');
 			nova.ets[i].num_carros_a_ser_reparados = stoi(temp);

@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "Oficina.h"
-#include "Ciclos.h"
 
 void MenuInfo(Oficina& METAL,LinhasFicheiro& marcas,LinhasFicheiro& modelos);
 void Menu(Oficina& METAL, LinhasFicheiro& marcas, LinhasFicheiro& modelos);

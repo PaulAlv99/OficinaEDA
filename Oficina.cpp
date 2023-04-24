@@ -29,51 +29,10 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
     return nova;
 }
 
-void seguinte(Oficina& Of, LinhasFicheiro& marcas,LinhasFicheiro& modelos)
-{
-	Of.ciclos++;
-	CriarCarrosNaFila(Of, marcas, modelos, 10);
-	ColocarCarrosET(Of, 8);
-	colocarprioritario(Of);
-	
-	for (int i = 0; i < Of.numero_ets; i++) {
-		reparacao(Of.ets[i]);
-
-	}
-	
-
-	// Proceder às restantes operações de um ciclo
-}
 
 
-void reparacao(EstacaoTrabalho & ID1) {
-	int chance;
-	
-	for (int i = 0; i < ID1.capacidade; i++) {
-		if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao < ID1.carros_a_ser_reparados[i].tempo_reparacao_max)&&(ID1.carros_a_ser_reparados[i].ID != 0)) {
-			chance = rand() % 100 + 1;
-			if ((chance >= 1 and chance <= 15) && (ID1.carros_a_ser_reparados[i].dias_em_reparacao > 0)) {
-				ID1.Carrosreparados[ID1.num_carros_reparados] = ID1.carros_a_ser_reparados[i];
-				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
-				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
-				ID1.carros_a_ser_reparados[i].ID = 0;
-				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
-				
-			}
-			else
-				ID1.carros_a_ser_reparados[i].dias_em_reparacao++;
-		}
 
-		else if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao >= ID1.carros_a_ser_reparados[i].tempo_reparacao_max) && (ID1.carros_a_ser_reparados[i].ID != 0)) {
-				ID1.Carrosreparados[ID1.num_carros_reparados] = ID1.carros_a_ser_reparados[i];
-				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
-				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
-				ID1.carros_a_ser_reparados[i].ID = 0;
-				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
-			}
-	}
 
-}
 
 bool MarcaPresente(Oficina &Of, string marca) {
 	bool temp = false;
@@ -152,10 +111,18 @@ void Transportar(Oficina& Of, int ind) {
 	delete[] novo;
 }
 
-//void RemocaoCarros(Oficina& Of, int num) {
-//	for (int i = 0; i < num; i++) {
-//		if ((Of.fila_espera[i].marca == Of.ets[i].mecanico.marca) && (Of.ets[i].capacidade > (sizeof(Of.ets[i].carros_a_ser_reparados)) / (sizeof(Of.ets[i].carros_a_ser_reparados[0]))) {
-//
-//		}
-//	}
-//}
+void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos)
+{
+	Of.ciclos++;
+	CriarCarrosNaFila(Of, marcas, modelos, 10);
+	ColocarCarrosET(Of, 8);
+	colocarprioritario(Of);
+
+	for (int i = 0; i < Of.numero_ets; i++) {
+		reparacao(Of.ets[i]);
+
+	}
+
+
+	// Proceder às restantes operações de um ciclo
+}

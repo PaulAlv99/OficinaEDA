@@ -1,17 +1,6 @@
 #include "Carro.h"
 #include <string>
 
-Carro CriarCarroRandom(LinhasFicheiro& marca, LinhasFicheiro& modelo) {
-	Carro novo_carro = Carro();
-	novo_carro.marca = marca.linhas[rand() % marca.tamanho];
-	novo_carro.modelo = modelo.linhas[rand() % modelo.tamanho];
-	novo_carro.ID = 0;
-	novo_carro.tempo_reparacao_max = 2 + (rand() % 3);
-	novo_carro.dias_em_reparacao = 0;
-	novo_carro.prioritario = false;
-
-	return novo_carro;
-}
 /*Fazer probalidades--rand() vai retornar um valor entre 0 e rand_max*/
 /*https://stackoverflow.com/questions/20309009/get-true-or-false-with-a-given-probability*/
 
@@ -29,6 +18,7 @@ Carro CriarCarro(LinhasFicheiro &marcas, LinhasFicheiro &modelos) {
 	novo_carro.tempo_reparacao_max = 2 + (rand() % 3);
 	novo_carro.dias_em_reparacao = 0;
 	novo_carro.prioritario = GerarProbalidades(0.05);
+	novo_carro.custoreparacao = 0;
 
 	return novo_carro;
 }
@@ -70,11 +60,3 @@ void Remove(Carro*& v, int& tamanho, int& ind)
 
 }
 
-/*Recebe o array de carros inicial, o tamanho e o indice a ser transferido*/
-/*Recebe tambem o array de carros de destino e o respetivo tamanho */
-void Transfere(Carro*& v_origem, int& tamanho_origem, int& indice, Carro*& v_dest, int& tamanho_dest)
-{
-	Carro c = v_origem[indice];
-	Adiciona(v_dest, tamanho_dest, c);
-	Remove(v_origem, tamanho_origem, indice);
-}

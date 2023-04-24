@@ -15,8 +15,6 @@ Oficina criarOficina(LinhasFicheiro &marcas, LinhasFicheiro &modelos);
 
 void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 
-void reparacao(EstacaoTrabalho &ID1);
-
 void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos, int num);
 bool  GerarProbalidades(double probalidade);
 void ColocarCarrosET(Oficina& Of, int num);
