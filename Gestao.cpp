@@ -244,7 +244,7 @@ void reparacao_manual(Oficina& Of) {
 }
 
 void atualizar_tempo_reparacao(Oficina& Of) {
-	/*Está no discord da disciplina que deve ser introduzido pelo utilizador*/
+	
 	string marca;
 	string modelo;
 	int tempo;
@@ -258,8 +258,8 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 		if ((Of.fila_espera[i].marca == marca) && (Of.fila_espera[i].modelo == modelo)) {
 			cout << "Introduza o respetivo tempo: \n ";
 			cin >> tempo;
-			Of.fila_espera[i].tempo_reparacao_max = tempo; // foi colcado a dez de tempo max. 
-														//Porque 10?
+			Of.fila_espera[i].tempo_reparacao_max = tempo;
+														
 		}
 	}
 }
