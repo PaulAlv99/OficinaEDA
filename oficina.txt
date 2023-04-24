@@ -1,0 +1,58 @@
+3|40|7
+1|2|0|0|2|0
+3|6|Kia|Venue|0|4
+3|20|Kia|EX90|0|4
+Kia|ss|208
+2|2|342|0|1|1
+1|2|GMC|Outlander|1|2
+2|0|GMC|Outlander|1|2
+3|9|GMC|TX|0|3
+GMC|s|171
+3|3|736|0|2|1
+16|2|Alfa Romeo|GR86|0|4
+3|2|Alfa Romeo|Compass|0|3
+2|0|Alfa Romeo|GR86|0|4
+3|18|Alfa Romeo|Bronco|0|4
+Alfa Romeo|s|368
+4|2|267|0|2|1
+3|1|Rolls-Royce|XT5|0|3
+1|22|Rolls-Royce|Bentayga|0|3
+2|11|Rolls-Royce|Murano|1|4
+Rolls-Royce|s|267
+5|3|0|0|3|0
+2|12|Rivian|Challenger|0|4
+2|19|Rivian|SQ5|0|4
+2|23|Rivian|CX-9|0|2
+Rivian|s|342
+6|3|0|0|3|0
+2|5|Hyundai|Odyssey|0|4
+2|15|Hyundai|Tonale|0|2
+1|7|Hyundai|S7|0|2
+Hyundai|s|109
+7|3|0|0|3|0
+2|4|Polestar|Sportage|0|3
+2|8|Polestar|Challenger|0|2
+1|24|Polestar|F-TYPE|0|4
+Polestar|s|360
+21
+10|0|GMC|X6|0|4
+13|0|GMC|Arteon|0|4
+14|0|GMC|Sequoia|0|2
+17|0|GMC|Versa|0|3
+21|0|GMC|G90|0|2
+25|0|Polestar|Encore|0|4
+26|0|Rivian|Integra|0|4
+27|0|Rolls-Royce|Ariya|0|3
+28|0|GMC|E-Transit|0|4
+29|0|Polestar|GR86|0|2
+30|0|Polestar|Celestiq|0|2
+31|0|Polestar|K5|0|3
+32|0|GMC|Passat|0|2
+33|0|Rivian|Renegade|0|4
+34|0|Polestar|Charger|0|3
+35|0|Rolls-Royce|MX-30|0|4
+36|0|Polestar|Hornet|0|3
+37|0|Rolls-Royce|BRZ|0|2
+38|0|Polestar|LC|0|4
+39|0|Rivian|HR-V|0|3
+40|0|Hyundai|Malibu|0|2

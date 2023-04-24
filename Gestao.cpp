@@ -405,7 +405,9 @@ void carregar_oficina(Oficina& Of, string caminho) {
 		nova.numero_ets = stoi(temp);
 		//cria as ets
 		nova.ets = new EstacaoTrabalho[nova.numero_ets];
+		
 		for (int i = 0; i < nova.numero_ets;i++) {
+			
 			getline(ficheiro, linha);
 			stringstream ss(linha);
 
@@ -427,7 +429,7 @@ void carregar_oficina(Oficina& Of, string caminho) {
 			//carros reparados
 			getline(ss, temp, '|');
 			nova.ets[i].num_carros_reparados = stoi(temp);
-			nova.ets[i].Carrosreparados = new Carro[nova.ets[i].num_carros_reparados];
+			nova.ets[i].Carrosreparados = new Carro[100];
 			if (nova.ets[i].num_carros_reparados > 0) {
 			
 				for (int j = 0; j < nova.ets[i].num_carros_reparados; j++) {
