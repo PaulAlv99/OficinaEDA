@@ -13,5 +13,7 @@ void adicionar_prioridade(Oficina& Of);
 void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas);
 void gravar_oficina(Oficina& Of);
 void carregar_oficina(Oficina& Of, string caminho);
-void imprimir_oficina(Oficina& Of);
 void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carros);
+void OrdenarCarrosPorDiasReparacao(Carro*& carros, int num_carros);
+void imprimir_oficinaportempo(Oficina& Of);
+void imprimir_oficinaalfabeticamente(Oficina& Of);
