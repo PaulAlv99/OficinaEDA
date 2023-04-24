@@ -6,7 +6,7 @@ EstacaoTrabalho CriarET(int ID) {
 	nova.capacidade = 2 + (rand() % 3);
 	nova.faturacao = 0;
 	nova.ID = ID;
-	nova.Carrosreparados = new Carro[100];
+	nova.Carrosreparados = new Carro[0];
 	nova.carros_a_ser_reparados = new Carro[nova.capacidade];
 	nova.num_carros_a_ser_reparados = 0;
 	return nova;
@@ -19,7 +19,9 @@ void reparacao(EstacaoTrabalho& ID1) {
 		if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao < ID1.carros_a_ser_reparados[i].tempo_reparacao_max) && (ID1.carros_a_ser_reparados[i].ID != 0)) {
 			chance = rand() % 100 + 1;
 			if ((chance >= 1 and chance <= 15) && (ID1.carros_a_ser_reparados[i].dias_em_reparacao > 0)) {
-				ID1.Carrosreparados[ID1.num_carros_reparados] = ID1.carros_a_ser_reparados[i];
+				int tamanho = (ID1.num_carros_reparados);
+				Adiciona(ID1.Carrosreparados, tamanho, ID1.carros_a_ser_reparados[i]);
+				
 				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
 				ID1.carros_a_ser_reparados[i].ID = 0;
 				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
@@ -32,7 +34,9 @@ void reparacao(EstacaoTrabalho& ID1) {
 		}
 
 		else if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao >= ID1.carros_a_ser_reparados[i].tempo_reparacao_max) && (ID1.carros_a_ser_reparados[i].ID != 0)) {
-			ID1.Carrosreparados[ID1.num_carros_reparados] = ID1.carros_a_ser_reparados[i];
+			int tamanho = (ID1.num_carros_reparados);
+			Adiciona(ID1.Carrosreparados, tamanho, ID1.carros_a_ser_reparados[i]);
+			
 			ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
 			ID1.carros_a_ser_reparados[i].ID = 0;
 			ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);

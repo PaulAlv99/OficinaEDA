@@ -1,58 +1,92 @@
-3|40|7
-1|2|0|0|2|0
-3|6|Kia|Venue|0|4
-3|20|Kia|EX90|0|4
-Kia|ss|208
-2|2|342|0|1|1
-1|2|GMC|Outlander|1|2
-2|0|GMC|Outlander|1|2
-3|9|GMC|TX|0|3
-GMC|s|171
-3|3|736|0|2|1
-16|2|Alfa Romeo|GR86|0|4
-3|2|Alfa Romeo|Compass|0|3
-2|0|Alfa Romeo|GR86|0|4
-3|18|Alfa Romeo|Bronco|0|4
-Alfa Romeo|s|368
-4|2|267|0|2|1
-3|1|Rolls-Royce|XT5|0|3
-1|22|Rolls-Royce|Bentayga|0|3
-2|11|Rolls-Royce|Murano|1|4
-Rolls-Royce|s|267
-5|3|0|0|3|0
-2|12|Rivian|Challenger|0|4
-2|19|Rivian|SQ5|0|4
-2|23|Rivian|CX-9|0|2
-Rivian|s|342
-6|3|0|0|3|0
-2|5|Hyundai|Odyssey|0|4
-2|15|Hyundai|Tonale|0|2
-1|7|Hyundai|S7|0|2
-Hyundai|s|109
-7|3|0|0|3|0
-2|4|Polestar|Sportage|0|3
-2|8|Polestar|Challenger|0|2
-1|24|Polestar|F-TYPE|0|4
-Polestar|s|360
-21
-10|0|GMC|X6|0|4
-13|0|GMC|Arteon|0|4
-14|0|GMC|Sequoia|0|2
-17|0|GMC|Versa|0|3
-21|0|GMC|G90|0|2
-25|0|Polestar|Encore|0|4
-26|0|Rivian|Integra|0|4
-27|0|Rolls-Royce|Ariya|0|3
-28|0|GMC|E-Transit|0|4
-29|0|Polestar|GR86|0|2
-30|0|Polestar|Celestiq|0|2
-31|0|Polestar|K5|0|3
-32|0|GMC|Passat|0|2
-33|0|Rivian|Renegade|0|4
-34|0|Polestar|Charger|0|3
-35|0|Rolls-Royce|MX-30|0|4
-36|0|Polestar|Hornet|0|3
-37|0|Rolls-Royce|BRZ|0|2
-38|0|Polestar|LC|0|4
-39|0|Rivian|HR-V|0|3
-40|0|Hyundai|Malibu|0|2
+7|80|4
+1|3|110|3|4
+2|2|Nissan|CX-90|1|2
+4|3|Nissan|Sonata|0|3
+30|2|Nissan|Recon|0|2
+23|4|Nissan|CLA|0|4
+1|52|Nissan|G70|1|2
+3|31|Nissan|Camaro|0|3
+1|35|Nissan|M4|0|3
+Nissan|s|10
+2|2|80|1|4
+3|1|Aston Martin|Pilot|0|3
+10|2|Aston Martin|Integra|0|2
+5|2|Aston Martin|A8|0|4
+15|3|Aston Martin|Transit|0|3
+2|16|Aston Martin|LEAF|0|2
+3|0|Aston Martin|Transit|0|3
+Aston Martin|s|10
+3|2|70|2|4
+8|2|Maserati|SQ8|0|2
+12|2|Maserati|Ocean|0|4
+9|1|Maserati|Sprinter|0|2
+14|2|Maserati|XT5|0|4
+2|51|Maserati|R8|1|3
+1|18|Maserati|Phantom|0|3
+Maserati|s|10
+4|4|130|3|6
+1|2|VinFast|GLC|0|4
+7|1|VinFast|Maverick|0|4
+6|3|VinFast|Ridgeline|0|3
+11|3|VinFast|Corolla|0|3
+22|2|VinFast|iX|0|2
+13|2|VinFast|BRZ|0|2
+4|40|VinFast|GLS|1|4
+2|0|VinFast|BRZ|0|2
+1|36|VinFast|Rio|0|3
+2|33|VinFast|MAZDA3|0|3
+VinFast|s|10
+53
+75|0|Nissan|i7|1|3
+17|0|Aston Martin|R8|0|4
+19|0|Maserati|RZ|0|2
+20|0|Aston Martin|S-Class|0|3
+21|0|Maserati|XC60|0|4
+24|0|Maserati|Kicks|0|4
+25|0|Aston Martin|Altima|0|3
+26|0|Aston Martin|R1T|0|2
+27|0|Maserati|Macan|0|4
+28|0|Maserati|GT-R|0|4
+29|0|Maserati|Malibu|0|4
+32|0|Aston Martin|ID.Buzz|0|4
+34|0|Aston Martin|Jetta|0|3
+37|0|Nissan|Q4|0|4
+38|0|Nissan|Tacoma|0|3
+39|0|Nissan|Elantra|0|4
+41|0|Aston Martin|CX-50|0|4
+42|0|VinFast|C-HR|0|2
+43|0|Nissan|IONIQ|0|2
+44|0|Maserati|CR-V|0|2
+45|0|Nissan|NSX|0|4
+46|0|Maserati|Compass|0|3
+47|0|VinFast|Traverse|0|2
+48|0|Aston Martin|Titan|0|4
+49|0|Aston Martin|Edge|0|3
+50|0|Maserati|X2|0|4
+53|0|Nissan|Spark|0|3
+54|0|Maserati|F8|0|3
+55|0|Nissan|Ascent|0|3
+56|0|Aston Martin|Outlander|0|2
+57|0|Nissan|GX|0|4
+58|0|Maserati|Terrain|0|3
+59|0|VinFast|Colorado|0|3
+60|0|Nissan|CX-70|0|3
+61|0|Aston Martin|Cherokee|0|4
+62|0|VinFast|Elantra|0|2
+63|0|VinFast|Outback|0|4
+64|0|Maserati|Integra|0|4
+65|0|Aston Martin|LEAF|0|3
+66|0|Maserati|Jetta|0|4
+67|0|Aston Martin|Titan|0|3
+68|0|Aston Martin|Nautilus|0|2
+69|0|Maserati|GX|0|3
+70|0|Maserati|Enclave|0|3
+71|0|Aston Martin|i7|0|4
+72|0|VinFast|Integra|0|4
+73|0|Maserati|Camry|0|4
+74|0|VinFast|Navigator|0|4
+76|0|Aston Martin|Tonale|0|3
+77|0|Maserati|Arteon|0|2
+78|0|Aston Martin|S3|0|4
+79|0|Maserati|EX90|0|2
+80|0|Aston Martin|CT5|0|4
