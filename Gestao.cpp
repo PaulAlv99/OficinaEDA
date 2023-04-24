@@ -327,17 +327,23 @@ void gravar_oficina(Oficina& Of) {
 
 void carregar_oficina(Oficina& Of, string caminho) {
 	//string caminho = "oficina.txt";
-	
 
 	ifstream ficheiro(caminho);
 
 	if (ficheiro.is_open()) {
 
+		//inicializa a oficina
 		Oficina nova = Oficina();
+		nova.ciclos = 0; //dias de trabalho
+		nova.fila_espera = new Carro[0];
+		nova.carrostotais = 0;
+		nova.fila_espera_tamanho = 0;
+
+
 		string linha;
-		
+
 		getline(ficheiro, linha);
-			
+
 		stringstream ss(linha);
 		string temp;
 
@@ -376,9 +382,9 @@ void carregar_oficina(Oficina& Of, string caminho) {
 			//carros reparados
 			getline(ss, temp, '|');
 			nova.ets[i].num_carros_reparados = stoi(temp);
-			nova.ets[i].Carrosreparados = new Carro[nova.ets[i].num_carros_reparados];
+			nova.ets[i].Carrosreparados = new Carro[1000];
 			if (nova.ets[i].num_carros_reparados > 0) {
-			
+
 				for (int j = 0; j < nova.ets[i].num_carros_reparados; j++) {
 					getline(ficheiro, linha);
 					stringstream ss(linha);
@@ -406,7 +412,7 @@ void carregar_oficina(Oficina& Of, string caminho) {
 			//carros a ser reparados
 			nova.ets[i].carros_a_ser_reparados = new Carro[nova.ets[i].capacidade];
 			if (nova.ets[i].capacidade > 0) {
-			
+
 				for (int k = 0; k < nova.ets[i].capacidade; k++) {
 					getline(ficheiro, linha);
 					stringstream ss(linha);
@@ -496,7 +502,9 @@ void carregar_oficina(Oficina& Of, string caminho) {
 
 
 
+
 void imprimir_oficina(Oficina& Of) {
+	//calcula o numero total de carros
 	int num_carros_total = 0;
 	for (int i = 0; i < Of.numero_ets; i++) {
 		num_carros_total += Of.ets[i].num_carros_a_ser_reparados + Of.ets[i].num_carros_reparados;
@@ -521,16 +529,25 @@ void imprimir_oficina(Oficina& Of) {
 		k++;
 	}
 
-	// Ordena o array de carros alfabeticamente e por dias_reparacao
+	// Ordena o array de carros alfabeticamente, por dias_reparacao e prioridade
 	OrdenarCarrosAlfabeticamenteEPorDiasReparacao(carros_total, num_carros_total);
 
+	//imprime (mostra)
+	for (int t = 0; t < num_carros_total; t++)
+	{
+		cout << "ID: " << carros_total[t].ID << " | Marca: " << carros_total[t].marca << " | Modelo: " << carros_total[t].modelo << " | Tempo: " << carros_total[t].dias_em_reparacao << " | Prioritario: " << carros_total[t].prioritario << endl;
+	}
+
+
+	//liberta memoria ( apaga o carros_total )
+	delete[] carros_total;
 
 }
 
 
 void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carros) {
 
-	// Ordenar o array de "carros" alfabeticamente e por dias_em_reparacao
+	// Ordenar o array de "carros" alfabeticamente e por dias_em_reparacao e prioridade 
 	for (int i = 0; i < num_carros - 1; i++) {
 		for (int j = i + 1; j < num_carros; j++) {
 			if (carros[i].marca > carros[j].marca ||
@@ -544,8 +561,5 @@ void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carro
 		}
 	}
 
-	for (int k = 0; k < num_carros; k++)
-	{
-		cout << "ID: " << carros[k].ID << " | Marca: " << carros[k].marca << " | Modelo: " << carros[k].modelo << " | Tempo: " << carros[k].dias_em_reparacao << " | Prioritario: " << carros[k].prioritario << endl;
-	}
+
 }
