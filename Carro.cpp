@@ -34,7 +34,7 @@ void Adiciona(Carro*& v, int& tamanho, Carro& carro)
 	}
 	novo[tamanho] = carro;
 
-	//delete[] v;
+	delete[] v;
 
 	v = novo;
 	tamanho = tamanho_novo;

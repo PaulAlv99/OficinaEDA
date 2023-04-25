@@ -225,16 +225,14 @@ void reparacao_manual(Oficina& Of) {
 		/*Percorre carros a serem reparados*/
 		for (int j = 0; j < Of.ets[i].capacidade; j++) {
 			/*Se alguma das marcas corresponder à marca e modelo em questao*/
-			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) && (Of.ets[i].carros_a_ser_reparados[j].ID != 0)) {
-				
-				//coloca carro em lista de carros reparados
-				Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados] = Of.ets[i].carros_a_ser_reparados[j];
-				Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
-				Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
-
-				//remove carro da lista de carros em reparacao
-				Of.ets[i].carros_a_ser_reparados[j].ID = 0;
+			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) && (Of.ets[i].carros_a_ser_reparados[j].ID != 0) && (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao >=1)) {
+				int tamanho = (Of.ets[i].num_carros_reparados);
+				Adiciona(Of.ets[i].Carrosreparados, tamanho, Of.ets[i].carros_a_ser_reparados[j]);
 				Of.ets[i].num_carros_a_ser_reparados = Of.ets[i].num_carros_a_ser_reparados - 1;
+				Of.ets[i].carros_a_ser_reparados[j].ID = 0;
+				Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
+				Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados].custoreparacao = Of.ets[i].mecanico.preco_reparacao_por_dia * Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados].dias_em_reparacao;
+				Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
 
 			}
 		}
