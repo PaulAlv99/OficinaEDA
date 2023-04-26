@@ -212,11 +212,11 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 }
 
 void reparacao_manual(Oficina& Of) {
-	
+
 	string marca;
 	string modelo;
 	cout << "indique a marca a reparar: " << endl;
-	
+
 	//ws tira os espaços em branco
 	cin >> ws;
 	getline(cin, marca);
@@ -224,12 +224,12 @@ void reparacao_manual(Oficina& Of) {
 	cin >> ws;
 	getline(cin, modelo);
 	/*Percorre ETs*/
-	for (int i = 0; i < Of.numero_ets;i++) {
-		
+	for (int i = 0; i < Of.numero_ets; i++) {
+
 		/*Percorre carros a serem reparados*/
 		for (int j = 0; j < Of.ets[i].capacidade; j++) {
 			/*Se alguma das marcas corresponder à marca e modelo em questao*/
-			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) && (Of.ets[i].carros_a_ser_reparados[j].ID != 0) && (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao >=1)) {
+			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) && (Of.ets[i].carros_a_ser_reparados[j].ID != 0) && (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao >= 1)) {
 				int tamanho = (Of.ets[i].num_carros_reparados);
 				Adiciona(Of.ets[i].Carrosreparados, tamanho, Of.ets[i].carros_a_ser_reparados[j]);
 				Of.ets[i].num_carros_a_ser_reparados = Of.ets[i].num_carros_a_ser_reparados - 1;
@@ -240,16 +240,17 @@ void reparacao_manual(Oficina& Of) {
 
 			}
 		}
-		
+
 	}
 
 }
 
 void atualizar_tempo_reparacao(Oficina& Of) {
-	
+
 	string marca;
 	string modelo;
 	string entrada;
+	double tempotemp = 0;
 	int tempo;
 	cout << "indique a marca a atualizar o tempo de reparacao: " << endl;
 	cin >> ws;
@@ -258,12 +259,24 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 	cin >> ws;
 	getline(cin, modelo);
 	cout << "Introduza o respetivo tempo: \n ";
-	getline(cin,entrada);
-	while (!verificarnumero(entrada)) {
-		cout << "Tempo invalido!" << endl << "introduza um tempo de reparacao valido (inteiro): " << endl;
-		getline(cin, entrada);
+	getline(cin, entrada);
+	while ((tempotemp > 2147483647) || (tempotemp <= 0)) {
+		while (!verificarnumero(entrada)) {
+			cout << "Tempo invalido!" << endl << "introduza um tempo de reparacao valido (inteiro entre 0 e 2147483647): " << endl;
+			getline(cin, entrada);
+		}
+		tempotemp = stod(entrada);
+		if ((tempotemp <= 2147483647) &&( tempotemp > 0)){
+			tempo = int(tempotemp);
+
+		}
+		else {
+			cout << "Tempo invalido!" << endl << "introduza um tempo de reparacao valido (inteiro entre 0 e 2147483647): " << endl;
+			getline(cin, entrada);
+			tempotemp = 0;
+		}
 	}
-	tempo = stoi(entrada);
+
 	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
 		if ((Of.fila_espera[i].marca == marca) && (Of.fila_espera[i].modelo == modelo)) {
 			Of.fila_espera[i].tempo_reparacao_max = tempo;
@@ -273,14 +286,27 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 }
 void adicionar_prioridade(Oficina& Of) {
 	string entrada;
+	double Idtemp = 0;
 	int Id;
 	cout << "indique O ID do carro que quer por a Prioritario: " << endl;
+	cin >> ws;
 	getline(cin, entrada);
-	while (!verificarnumero(entrada)) {
-		cout << "ID invalido!" << endl << "Indique um ID valido para colocar como prioritario (inteiro): " << endl;
-		getline(cin, entrada);
+	while ((Idtemp > 2147483647) || (Idtemp <= 0)) {
+		while (!verificarnumero(entrada)) {
+			cout << "ID invalido!" << endl << "Indique um ID valido para colocar como prioritario (inteiro): " << endl;
+			getline(cin, entrada);
+		}
+		Idtemp = stod(entrada);
+		if ((Idtemp <= 2147483647) && (Idtemp > 0)) {
+			Id = int(Idtemp);
+
+		}
+		else {
+			cout << "Tempo invalido!" << endl << "Indique um ID valido para colocar como prioritario (inteiro entre 0 e 2147483647): " << endl;
+			getline(cin, entrada);
+			Idtemp = 0;
+			}
 	}
-	Id = stoi(entrada);
 	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
 		//faz se id for igual e se n for prioritario
 		if ((Of.fila_espera[i].ID == Id) && (Of.fila_espera[i].prioritario==false)) {
