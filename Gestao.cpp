@@ -21,7 +21,13 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 				for (int t = 0; t < r; t++) {
 					if ((Of.ciclos >= 1) && (Of.ets[i].carros_a_ser_reparados[t].ID != 0)) {
 						cout << "ID: " << Of.ets[i].carros_a_ser_reparados[t].ID << " | " << "Carro: " << Of.ets[i].carros_a_ser_reparados[t].marca << "-"
-							<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].carros_a_ser_reparados[t].prioritario;
+							<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: "; 
+						if (Of.ets[i].carros_a_ser_reparados[t].prioritario == 1) {
+							cout << "Sim";
+						}
+						else {
+							cout << "Nao";
+						}
 						cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
 						cout << Of.ets[i].carros_a_ser_reparados[t].tempo_reparacao_max << endl;
 					}
@@ -38,7 +44,13 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 			for (int t = 0; t < g; t++) {
 				if ((Of.ciclos >= 1) && (Of.ets[i].Carrosreparados[t].ID != 0)) {
 					cout << "ID: " << Of.ets[i].Carrosreparados[t].ID << " | " << "Carro: " << Of.ets[i].Carrosreparados[t].marca << "-"
-						<< Of.ets[i].Carrosreparados[t].modelo << " | " << "Prioritario: " << Of.ets[i].Carrosreparados[t].prioritario;
+						<< Of.ets[i].Carrosreparados[t].modelo << " | " << "Prioritario: ";
+					if (Of.ets[i].Carrosreparados[t].prioritario == 1) {
+						cout << "Sim";
+					}
+					else {
+						cout << "Nao";
+					}
 					cout << " | " << "Tempo de reparacao: " << Of.ets[i].Carrosreparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
 					cout << Of.ets[i].Carrosreparados[t].tempo_reparacao_max << "| Custo de reparacao: " << Of.ets[i].Carrosreparados[t].custoreparacao << endl;
 				}
@@ -53,19 +65,35 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 	cout << "Lista de Espera: " << endl;
 	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
 		cout << "ID: " << Of.fila_espera[i].ID << " | " << "Modelo: " << Of.fila_espera[i].modelo << " | " << "Marca: " << Of.fila_espera[i].marca << " | "
-			<< "Prioritario: " << Of.fila_espera[i].prioritario << " | " << "Tempo de reparacao maximo: " << Of.fila_espera[i].tempo_reparacao_max << endl;
+			<< "Prioritario: ";
+		if (Of.fila_espera[i].prioritario == 1) {
+			cout << "Sim";
+		}
+		else {
+			cout << "Nao";
+		}
+		cout<< " | " << "Tempo de reparacao maximo: " << Of.fila_espera[i].tempo_reparacao_max << endl;
 	}
 }
 
 void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
-	char escolha;
+	string escolha;
 	bool sair = false;
 	do {
 		cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
 
 		cout << "Seleccione a sua opcao : " << endl;
-		cin >> escolha;
-		switch (escolha) {
+		getline(cin, escolha);
+		while (escolha.length() != 1) {
+			cout << "Escolha invalida! Digite apenas uma das letras destacadas abaixo." << endl;
+			cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
+
+			cout << "Seleccione a sua opcao : " << endl;
+			getline(cin, escolha);
+			cout << endl;
+		}
+
+		switch (escolha[0]) {
 		case 's':
 		case 'S':
 			seguinte(Of, marcas, modelos);
