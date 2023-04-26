@@ -289,14 +289,13 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 
 				if (Of.ets[i].carros_a_ser_reparados[j].ID != 0) {
 					//coloca carro em lista de carros reparados
-					Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados] = Of.ets[i].carros_a_ser_reparados[j];
-					Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
-					Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
-
-					//remove carro da lista de carros em reparacao
-					Of.ets[i].carros_a_ser_reparados[j].ID = 0;
+					int tamanho = (Of.ets[i].num_carros_reparados);
+					Adiciona(Of.ets[i].Carrosreparados, tamanho, Of.ets[i].carros_a_ser_reparados[j]);
 					Of.ets[i].num_carros_a_ser_reparados = Of.ets[i].num_carros_a_ser_reparados - 1;
-
+					Of.ets[i].carros_a_ser_reparados[j].ID = 0;
+					Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
+					Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados].custoreparacao = Of.ets[i].mecanico.preco_reparacao_por_dia * Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados].dias_em_reparacao;
+					Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
 				}
 			}
 			Of.ets[i].mecanico = Mecanico();
@@ -312,7 +311,7 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 			Mecanico novo = Mecanico();
 
 			novo.marca = marcas.linhas[rand() % marcas.tamanho];
-			novo.preco_reparacao_por_dia = float(rand() % 300 + 90);
+			novo.preco_reparacao_por_dia = (rand() % 300 + 90);
 			novo.nome = mecanicoAdi;
 			Of.ets[i].mecanico = novo;
 			cout << "O mecanico com o nome " << Of.ets[i].mecanico.nome << ", foi adicionado na et" << endl;
@@ -514,7 +513,7 @@ void carregar_oficina(Oficina& Of, string caminho) {
 			nova.ets[i].mecanico.nome = temp;
 			//obtem preço de reparacao por dia
 			getline(ss1, temp, '|');
-			nova.ets[i].mecanico.preco_reparacao_por_dia = stof(temp);
+			nova.ets[i].mecanico.preco_reparacao_por_dia = stoi(temp);
 
 		}
 		getline(ficheiro, linha);
