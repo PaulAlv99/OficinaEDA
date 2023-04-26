@@ -184,6 +184,45 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			Menu(Of, marcas, modelos);
 			sair = true;
 			break;
+		case 6:
+
+			while ((escolha2temporaria > 2) || (escolha2temporaria <= 0)) {
+				cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
+				cin >> ws;
+				getline(cin, escolha2temp);
+				while (!verificarnumero(escolha2temp)) {
+					cout << "Opcao invalida! Tente novamente" << endl;;
+					cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
+					getline(cin, escolha2temp);
+				}
+				escolha2temporaria = stod(escolha2temp);
+				if ((escolha2temporaria > 2) || (escolha2temporaria <= 0)) {
+					escolha2temporaria = 0;
+				}
+				else {
+					escolha2 = escolha2temporaria;
+				}
+			}
+			switch (escolha2) {
+
+			case 1:
+				cout << "Digite o caminho (inclua .txt ao fim do nome do arquivo): " << endl;
+				cin >> caminho;
+				break;
+			case 2:
+				break;
+			default:
+				cout << "Opcao invalida" << endl << "Imprimindo usando o caminho padrao..." << endl;
+				break;
+			}
+
+			carregar_oficina(Of, caminho);
+			system("CLS");
+			MenuInfo(Of, marcas, modelos);
+			Menu(Of, marcas, modelos);
+			sair = true;
+			break;
+
 		case 7:
 
 			
@@ -229,44 +268,6 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			sair = true;
 
 			break;
-		case 6:
-			
-			while ((escolha2temporaria > 2) || (escolha2temporaria <= 0)) {
-				cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
-				cin >> ws;
-				getline(cin, escolha2temp);
-				while (!verificarnumero(escolha2temp)) {
-					cout << "Opcao invalida! Tente novamente" << endl;;
-					cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
-					getline(cin, escolha2temp);
-				}
-				escolha2temporaria = stod(escolha2temp);
-				if ((escolha2temporaria > 2) || (escolha2temporaria <= 0)) {
-					escolha2temporaria = 0;
-				}
-				else {
-					escolha2 = escolha2temporaria;
-				}
-			}
-			switch (escolha2) {
-
-			case 1:
-				cout << "Digite o caminho (inclua .txt ao fim do nome do arquivo): " << endl;
-				cin >> caminho;
-				break;
-			case 2:
-				break;
-			default:
-				cout << "Opcao invalida" << endl << "Imprimindo usando o caminho padrao..." << endl;
-				break;
-			}
-
-			carregar_oficina(Of, caminho);
-			system("CLS");
-			MenuInfo(Of, marcas, modelos);
-			Menu(Of, marcas, modelos);
-			sair = true;
-			break;
 
 		default:
 			cout << "Opcao invalida" << endl;
@@ -293,7 +294,9 @@ void reparacao_manual(Oficina& Of) {
 		/*Percorre carros a serem reparados*/
 		for (int j = 0; j < Of.ets[i].capacidade; j++) {
 			/*Se alguma das marcas corresponder à marca e modelo em questao*/
-			if (removerespacos(maiuscula((Of.ets[i].carros_a_ser_reparados[j].marca))) == removerespacos(maiuscula(marca)) && (removerespacos(maiuscula(Of.ets[i].carros_a_ser_reparados[j].modelo)) == removerespacos(maiuscula(modelo))) && (Of.ets[i].carros_a_ser_reparados[j].ID != 0) && (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao >= 1)) {
+			if (removerespacos(maiuscula((Of.ets[i].carros_a_ser_reparados[j].marca))) == removerespacos(maiuscula(marca)) 
+				&& (removerespacos(maiuscula(Of.ets[i].carros_a_ser_reparados[j].modelo)) == removerespacos(maiuscula(modelo)))
+				&& (Of.ets[i].carros_a_ser_reparados[j].ID != 0) && (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao >= 1)) {
 				int tamanho = (Of.ets[i].num_carros_reparados);
 				Adiciona(Of.ets[i].Carrosreparados, tamanho, Of.ets[i].carros_a_ser_reparados[j]);
 				Of.ets[i].num_carros_a_ser_reparados = Of.ets[i].num_carros_a_ser_reparados - 1;
@@ -766,7 +769,13 @@ void OrdenarCarrosPorDiasReparacao(Carro*& carros, int num_carros) {
 
 	for (int k = 0; k < num_carros; k++)
 	{
-		cout << "ID: " << carros[k].ID << " | Marca: " << carros[k].marca << " | Modelo: " << carros[k].modelo << " | Tempo: " << carros[k].dias_em_reparacao << " | Prioritario: " << carros[k].prioritario << endl;
+		cout << "ID: " << carros[k].ID << " | Marca: " << carros[k].marca << " | Modelo: " << carros[k].modelo << " | Tempo: " << carros[k].dias_em_reparacao << " | Prioritario: ";
+			if (carros[k].prioritario == 1) {
+				cout << "Sim" << endl;
+			}
+			else {
+				cout << "Nao" << endl;
+			}
 	}
 }
 

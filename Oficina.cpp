@@ -130,8 +130,4 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos)
 	colocarprioritario(Of);
 	ColocarCarrosET(Of, 8);
 	
-
-
-
-	// Proceder às restantes operações de um ciclo
 }
