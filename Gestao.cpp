@@ -159,16 +159,20 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			cin >> escolha;
 			if (escolha == 1) {
 				system("CLS");
+				cout << "Lista ordenada alfabeticamente: " << endl;
 				imprimir_oficinaalfabeticamente(Of);
+				cout << endl;
 			}
 			else if (escolha == 2) {
 				system("CLS");
+				cout << "Lista ordenada por tempo de reparacao: " << endl;
 				imprimir_oficinaportempo(Of);
+				cout << endl;
 			}
 			else {
 				cout << "Opcao invalida" << endl;
 			}
-			//MenuInfo(Of, marcas, modelos);
+			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
 			sair = true;
 			break;
@@ -245,6 +249,7 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 	
 	string marca;
 	string modelo;
+	string entrada;
 	int tempo;
 	cout << "indique a marca a atualizar o tempo de reparacao: " << endl;
 	cin >> ws;
@@ -252,19 +257,30 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 	cout << "indique o modelo a atualizar o tempo de reparacao: " << endl;
 	cin >> ws;
 	getline(cin, modelo);
+	cout << "Introduza o respetivo tempo: \n ";
+	getline(cin,entrada);
+	while (!verificarnumero(entrada)) {
+		cout << "Tempo invalido!" << endl << "introduza um tempo de reparacao valido (inteiro): " << endl;
+		getline(cin, entrada);
+	}
+	tempo = stoi(entrada);
 	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
 		if ((Of.fila_espera[i].marca == marca) && (Of.fila_espera[i].modelo == modelo)) {
-			cout << "Introduza o respetivo tempo: \n ";
-			cin >> tempo;
 			Of.fila_espera[i].tempo_reparacao_max = tempo;
 														
 		}
 	}
 }
 void adicionar_prioridade(Oficina& Of) {
+	string entrada;
 	int Id;
 	cout << "indique O ID do carro que quer por a Prioritario: " << endl;
-	cin >> Id;
+	getline(cin, entrada);
+	while (!verificarnumero(entrada)) {
+		cout << "ID invalido!" << endl << "Indique um ID valido para colocar como prioritario (inteiro): " << endl;
+		getline(cin, entrada);
+	}
+	Id = stoi(entrada);
 	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
 		//faz se id for igual e se n for prioritario
 		if ((Of.fila_espera[i].ID == Id) && (Of.fila_espera[i].prioritario==false)) {

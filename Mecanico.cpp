@@ -9,16 +9,14 @@ Mecanico CriarMecanico(LinhasFicheiro& marcas)
 	cout << "Introduza o nome do mecanico " << endl;
 	cin >> ws;
 	getline(cin,novo.nome);
-	cout << "Introduza o preco por dia do mecanico (inteiro entre 0 e 100)" << endl;
-	cin >> entrada;
-	while (!verificarnumero(entrada)) {
-		cout << "Entrada invalida!" << endl << "Introduza o preco por dia do mecanico (inteiro entre 0 e 100)" << endl;
-		cin >> entrada;
-	}
-	preco = stoi(entrada);
 	while ((preco > 100) || (preco <= 0)) {
-		cout << "Entrada invalida!" << endl << "Introduza o preco por dia do mecanico (inteiro entre 0 e 100) " << endl;
-		cin >> preco;
+		cout << "Introduza um preco por dia do mecanico valido (inteiro entre 0 e 100)" << endl;
+		getline(cin,entrada);
+		while (!verificarnumero(entrada)) {
+			cout << "Entrada invalida!" << endl << "Introduza o preco por dia do mecanico (inteiro entre 0 e 100)" << endl;
+			getline(cin,entrada);
+		}
+	preco = stoi(entrada);
 	}
 	novo.preco_reparacao_por_dia = preco;
 	return novo;
