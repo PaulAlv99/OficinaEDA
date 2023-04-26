@@ -93,7 +93,11 @@ void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 }
 void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	int opcao;
+	string escolha1temp;
+	double escolha1temporaria = 0;
 	int escolha = 0;
+	string escolha2temp;
+	double escolha2temporaria = 0;
 	int escolha2 = 0;
 	string caminho = "oficina.txt";
 	bool sair = false;
@@ -154,8 +158,25 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			break;
 		case 7:
 
-			cout << "Escolha como quer imprimir a Oficina" << endl << "(1) Alfabeticamente" << endl << "(2) Por dias em reparacao" << endl;
-			cin >> escolha;
+			
+			while ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
+				cout << "Escolha como quer imprimir a Oficina" << endl << "(1) Alfabeticamente" << endl << "(2) Por dias em reparacao" << endl;
+				cin >> ws;
+				getline(cin, escolha1temp);
+				while (!verificarnumero(escolha1temp)) {
+					cout << "Opcao invalida! Tente novamente" << endl;;
+					cout << "Escolha como quer imprimir a Oficina" << endl << "(1) Alfabeticamente" << endl << "(2) Por dias em reparacao" << endl;
+					getline(cin, escolha1temp);
+				}
+				escolha1temporaria = stod(escolha1temp);
+				if ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
+					escolha1temporaria = 0;
+				}
+				else {
+					escolha = escolha1temporaria;
+				}
+			}
+			escolha = (int)escolha1temporaria;
 			if (escolha == 1) {
 				system("CLS");
 				cout << "Lista ordenada alfabeticamente: " << endl;
@@ -181,8 +202,24 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
 			break;
 		case 6:
-			cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
-			cin >> escolha2;
+			
+			while ((escolha2temporaria > 2) || (escolha2temporaria <= 0)) {
+				cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
+				cin >> ws;
+				getline(cin, escolha2temp);
+				while (!verificarnumero(escolha2temp)) {
+					cout << "Opcao invalida! Tente novamente" << endl;;
+					cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
+					getline(cin, escolha2temp);
+				}
+				escolha2temporaria = stod(escolha2temp);
+				if ((escolha2temporaria > 2) || (escolha2temporaria <= 0)) {
+					escolha2temporaria = 0;
+				}
+				else {
+					escolha2 = escolha2temporaria;
+				}
+			}
 			switch (escolha2) {
 
 			case 1:
@@ -266,7 +303,7 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 		}
 		tempotemp = stod(entrada);
 		if ((tempotemp <= 2147483647) &&( tempotemp > 0)){
-			tempo = int(tempotemp);
+			tempo = (int)tempotemp;
 
 		}
 		else {
@@ -277,7 +314,7 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 	}
 
 	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
-		if ((Of.fila_espera[i].marca == marca) && (Of.fila_espera[i].modelo == modelo)) {
+		if ((maiuscula(Of.fila_espera[i].marca) == maiuscula(marca)) && (maiuscula(Of.fila_espera[i].modelo) == maiuscula(modelo))) {
 			Of.fila_espera[i].tempo_reparacao_max = tempo;
 														
 		}
@@ -297,7 +334,7 @@ void adicionar_prioridade(Oficina& Of) {
 		}
 		Idtemp = stod(entrada);
 		if ((Idtemp <= 2147483647) && (Idtemp > 0)) {
-			Id = int(Idtemp);
+			Id = (int)Idtemp;
 
 		}
 		else {
@@ -322,7 +359,7 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 	cin >> ws;
 	getline(cin, mecanicoRem);
 	for (int i = 0; i < Of.numero_ets;i++) {
-		if (Of.ets[i].mecanico.nome == mecanicoRem) {
+		if (maiuscula(Of.ets[i].mecanico.nome) == maiuscula(mecanicoRem)) {
 			
 
 			//repara todos os carros da et
@@ -339,7 +376,6 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 					Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
 				}
 			}
-			Of.ets[i].mecanico = Mecanico();
 
 			//adicionar novo mecanico
 			cout << "O mecanico com o nome " << mecanicoRem << ", foi removido da et" << endl;
@@ -347,19 +383,10 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].num_carros_a_ser_reparados << " | " <<
 				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
 			cout << endl;
-			cout << "Indique o nome para o novo mecanico desta et: " << endl;
-			getline(cin, mecanicoAdi);
-			Mecanico novo = Mecanico();
-
-			novo.marca = marcas.linhas[rand() % marcas.tamanho];
-			novo.preco_reparacao_por_dia = (rand() % 300 + 90);
-			novo.nome = mecanicoAdi;
+			Mecanico novo = CriarMecanico(marcas);
+			
+			Of.ets[i] = CriarET(Of.ets[i].ID);
 			Of.ets[i].mecanico = novo;
-			cout << "O mecanico com o nome " << Of.ets[i].mecanico.nome << ", foi adicionado na et" << endl;
-			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
-				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].num_carros_a_ser_reparados << " | " <<
-				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
-			cout << "--------------------------------------------------------------------------------------" << endl;
 		}
 	}
 }
@@ -708,3 +735,4 @@ void OrdenarCarrosPorDiasReparacao(Carro*& carros, int num_carros) {
 		cout << "ID: " << carros[k].ID << " | Marca: " << carros[k].marca << " | Modelo: " << carros[k].modelo << " | Tempo: " << carros[k].dias_em_reparacao << " | Prioritario: " << carros[k].prioritario << endl;
 	}
 }
+

@@ -1,5 +1,5 @@
 #include "Ficheiros.h"
-
+#include <cctype>
 
 int TamanhoFicheiro(string Nome_Ficheiro) {
     int numero_linhas = 0;
@@ -38,5 +38,14 @@ LinhasFicheiro CarregarFicheirosLista(string Nome_Ficheiro) {
     novo.tamanho = TamanhoFicheiro(Nome_Ficheiro);
     novo.linhas = linhas;
 
+    return novo;
+}
+
+string maiuscula(string str) {
+    int tamanho = str.length();
+    char* novo = new char[tamanho];
+    for (int i = 0; i <= tamanho; i++) {
+        novo[i] = toupper(str[i]);
+    }
     return novo;
 }

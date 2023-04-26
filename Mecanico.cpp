@@ -6,7 +6,22 @@ Mecanico CriarMecanico(LinhasFicheiro& marcas)
 	string entrada;
 	double precotemp = 0;
 	int preco = 0;
-	novo.marca = marcas.linhas[rand() % marcas.tamanho];
+	string marca;
+	bool sair = false;
+
+	while (!sair) {
+		cout << "Insira uma marca valida do mecanico: " << endl;
+		cin >> ws;
+		getline(cin, marca);
+		for (int i = 0; i < marcas.tamanho; i++) {
+			if (maiuscula(marca) == maiuscula(marcas.linhas[i])) {
+				novo.marca = marcas.linhas[i];
+				sair = true;
+				break;
+			}
+		}
+		
+	}
 	cout << "Introduza o nome do mecanico " << endl;
 	cin >> ws;
 	getline(cin,novo.nome);
@@ -19,7 +34,7 @@ Mecanico CriarMecanico(LinhasFicheiro& marcas)
 		}
 	precotemp = stod(entrada);
 	}
-	preco = int(precotemp);
+	preco = (int)precotemp;
 	novo.preco_reparacao_por_dia = preco;
 	return novo;
 }
