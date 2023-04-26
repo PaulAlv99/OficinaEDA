@@ -408,7 +408,7 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 			//adicionar novo mecanico
 			cout << "O mecanico com o nome " << mecanicoRem << ", foi removido da et" << endl;
 			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
-				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].num_carros_a_ser_reparados << " | " <<
+				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " <<
 				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
 			cout << endl;
 			Mecanico novo = CriarMecanico(marcas);
