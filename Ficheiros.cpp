@@ -30,7 +30,7 @@ LinhasFicheiro CarregarFicheirosLista(string Nome_Ficheiro) {
         for (int i = 0; i < TamanhoFicheiro(Nome_Ficheiro);i++)
         {
             getline(file, line);
-            linhas[i] = line;
+            *(linhas + i) = line;
         }
         file.close();
     }

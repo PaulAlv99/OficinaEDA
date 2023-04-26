@@ -1,6 +1,5 @@
 #pragma once
-#pragma warning(push)
-#pragma warning(disable:6385)
+
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
