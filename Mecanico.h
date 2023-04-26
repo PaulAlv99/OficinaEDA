@@ -7,3 +7,4 @@ struct Mecanico {
 };
 
 Mecanico CriarMecanico(LinhasFicheiro& marcas);
+bool verificarnumero(string n);
