@@ -302,7 +302,7 @@ void adicionar_prioridade(Oficina& Of) {
 
 		}
 		else {
-			cout << "Tempo invalido!" << endl << "Indique um ID valido para colocar como prioritario (inteiro entre 0 e 2147483647): " << endl;
+			cout << "ID invalido!" << endl << "Indique um ID valido para colocar como prioritario (inteiro entre 0 e 2147483647): " << endl;
 			getline(cin, entrada);
 			Idtemp = 0;
 			}
