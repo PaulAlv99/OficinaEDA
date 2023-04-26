@@ -18,3 +18,4 @@ struct LinhasFicheiro {
 int TamanhoFicheiro(string Nome_Ficheiro);
 LinhasFicheiro CarregarFicheirosLista(string Nome_Ficheiro);
 string maiuscula(string str);
+string removerespacos(string str);

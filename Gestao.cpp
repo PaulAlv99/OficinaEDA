@@ -293,7 +293,7 @@ void reparacao_manual(Oficina& Of) {
 		/*Percorre carros a serem reparados*/
 		for (int j = 0; j < Of.ets[i].capacidade; j++) {
 			/*Se alguma das marcas corresponder à marca e modelo em questao*/
-			if ((Of.ets[i].carros_a_ser_reparados[j].marca == marca) && (Of.ets[i].carros_a_ser_reparados[j].modelo == modelo) && (Of.ets[i].carros_a_ser_reparados[j].ID != 0) && (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao >= 1)) {
+			if (removerespacos(maiuscula((Of.ets[i].carros_a_ser_reparados[j].marca))) == removerespacos(maiuscula(marca)) && (removerespacos(maiuscula(Of.ets[i].carros_a_ser_reparados[j].modelo)) == removerespacos(maiuscula(modelo))) && (Of.ets[i].carros_a_ser_reparados[j].ID != 0) && (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao >= 1)) {
 				int tamanho = (Of.ets[i].num_carros_reparados);
 				Adiciona(Of.ets[i].Carrosreparados, tamanho, Of.ets[i].carros_a_ser_reparados[j]);
 				Of.ets[i].num_carros_a_ser_reparados = Of.ets[i].num_carros_a_ser_reparados - 1;
@@ -342,7 +342,7 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 	}
 
 	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
-		if ((maiuscula(Of.fila_espera[i].marca) == maiuscula(marca)) && (maiuscula(Of.fila_espera[i].modelo) == maiuscula(modelo))) {
+		if (removerespacos((maiuscula(Of.fila_espera[i].marca))) == removerespacos(maiuscula(marca)) && (removerespacos(maiuscula(Of.fila_espera[i].modelo)) == removerespacos(maiuscula(modelo)))) {
 			Of.fila_espera[i].tempo_reparacao_max = tempo;
 														
 		}
@@ -387,7 +387,7 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 	cin >> ws;
 	getline(cin, mecanicoRem);
 	for (int i = 0; i < Of.numero_ets;i++) {
-		if (maiuscula(Of.ets[i].mecanico.nome) == maiuscula(mecanicoRem)) {
+		if (removerespacos(maiuscula(Of.ets[i].mecanico.nome)) == removerespacos(maiuscula(mecanicoRem))) {
 			
 
 			//repara todos os carros da et
@@ -741,7 +741,13 @@ void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carro
 
 	for (int k = 0; k < num_carros; k++)
 	{
-		cout << "ID: " << carros[k].ID << " | Marca: " << carros[k].marca << " | Modelo: " << carros[k].modelo << " | Tempo: " << carros[k].dias_em_reparacao << " | Prioritario: " << carros[k].prioritario << endl;
+		cout << "ID: " << carros[k].ID << " | Marca: " << carros[k].marca << " | Modelo: " << carros[k].modelo << " | Tempo: " << carros[k].dias_em_reparacao << " | Prioritario: ";
+			if (carros[k].prioritario == 1) {
+				cout << "Sim" << endl;
+			}
+			else {
+				cout << "Nao" << endl;
+			}
 	}
 }
 

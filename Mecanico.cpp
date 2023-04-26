@@ -11,10 +11,9 @@ Mecanico CriarMecanico(LinhasFicheiro& marcas)
 
 	while (!sair) {
 		cout << "Insira uma marca valida do mecanico: " << endl;
-		cin >> ws;
 		getline(cin, marca);
 		for (int i = 0; i < marcas.tamanho; i++) {
-			if (maiuscula(marca) == maiuscula(marcas.linhas[i])) {
+			if (removerespacos(maiuscula(marca)) == removerespacos(maiuscula(marcas.linhas[i]))) {
 				novo.marca = marcas.linhas[i];
 				sair = true;
 				break;

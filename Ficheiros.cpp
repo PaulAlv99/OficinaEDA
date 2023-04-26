@@ -49,3 +49,18 @@ string maiuscula(string str) {
     }
     return novo;
 }
+
+string removerespacos(string str) {
+    int tamanho = str.length();
+    int k = 0;
+    char* novo = new char[tamanho];
+    
+    for (int i = 0; i <= str.length(); i++) {
+        if (str[i] != ' ') {
+            novo[k] = str[i];
+            k++;
+            tamanho--;
+        }
+    }
+    return novo;
+}
