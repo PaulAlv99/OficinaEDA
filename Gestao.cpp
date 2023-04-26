@@ -8,7 +8,6 @@
 using namespace std;
 
 void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
-/* Fazer um for para aparecer as informacoes na consola(ainda falta algumas informações) */
 	cout << "Dia: " << Of.ciclos << endl;
 	for (int i = 0; i < Of.numero_ets; i++) {
 			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome

@@ -95,10 +95,18 @@ void colocarprioritario(Oficina& Of) {
 
 void Transportar(Oficina& Of, int ind) {
 	int tamanho = Of.fila_espera_tamanho;
+	int indice = 0;
+	for (int z = 0; z < ind; z++) {
+		if (Of.fila_espera[z].prioritario) {
+			indice = indice + 1;
+		}
+	}
 	Carro* novo = new Carro[tamanho];
-	novo[0] = Of.fila_espera[ind];
-	//Remove(Of.fila_espera, Of.fila_espera_tamanho, ind);
-	for (int i = 0; i < ind; i++) {
+	novo[indice] = Of.fila_espera[ind];
+	for (int k = 0; k < indice; k++) {
+		novo[k] = Of.fila_espera[k];
+	}
+	for (int i = indice; i < ind; i++) {
 		novo[i + 1] = Of.fila_espera[i];
 	}
 	for (int j = ind + 1; j < tamanho; j++) {
