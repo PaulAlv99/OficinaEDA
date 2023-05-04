@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Arvore.cpp" />
     <ClCompile Include="Carro.cpp" />
     <ClCompile Include="ET.cpp" />
     <ClCompile Include="Ficheiros.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="Oficina.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arvore.h" />
     <ClInclude Include="Carro.h" />
     <ClInclude Include="ET.h" />
     <ClInclude Include="Gestao.h" />

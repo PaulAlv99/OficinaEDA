@@ -36,10 +36,11 @@ nodoDuplo insereInicio(nodoDuplo*& head, Carro& carro_a_receber) {
 	head = newNode;
 
 }
-void insereMeio(nodoDuplo*& anterior, Carro& carro_a_receber)
+//insert a node after a given node in the linked list
+void insereMeio(nodoDuplo*& anterior_onde_quero_inserir, Carro& carro_a_receber)
 {
 	/*1. check if the given prev_node is NULL */
-	if (anterior == NULL) {
+	if (anterior_onde_quero_inserir == NULL) {
 		cout << "the given previous node cannot be NULL";
 		return;
 	}
@@ -51,13 +52,13 @@ void insereMeio(nodoDuplo*& anterior, Carro& carro_a_receber)
 	newNode->carros_a_ser_reparados = carro_a_receber;
 
 	/* 4. Make next of new node as next of prev_node */
-	newNode->seguinte = anterior->seguinte;
+	newNode->seguinte = anterior_onde_quero_inserir->seguinte;
 
 	/* 5. Make the next of prev_node as new_node */
-	anterior->seguinte = newNode;
+	anterior_onde_quero_inserir->seguinte = newNode;
 
 	/* 6. Make prev_node as previous of new_node */
-	newNode->anterior = anterior;
+	newNode->anterior = anterior_onde_quero_inserir;
 
 	/* 7. Change previous of new_node's next node */
 	if (newNode->seguinte != NULL)
