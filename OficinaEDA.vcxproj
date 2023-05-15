@@ -132,19 +132,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Arvore.cpp" />
     <ClCompile Include="Carro.cpp" />
     <ClCompile Include="ET.cpp" />
     <ClCompile Include="Ficheiros.cpp" />
     <ClCompile Include="Ficheiros.h" />
     <ClCompile Include="Gestao.cpp" />
+    <ClCompile Include="ListaLigada.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mecanico.cpp" />
     <ClCompile Include="Oficina.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arvore.h" />
     <ClInclude Include="Carro.h" />
     <ClInclude Include="ET.h" />
     <ClInclude Include="Gestao.h" />
+    <ClInclude Include="ListLigada.h" />
     <ClInclude Include="Mecanico.h" />
     <ClInclude Include="Oficina.h" />
   </ItemGroup>

@@ -39,6 +39,12 @@
     <ClCompile Include="Oficina.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ListaLigada.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Arvore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gestao.h">
@@ -54,6 +60,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Oficina.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListLigada.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Arvore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
