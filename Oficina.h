@@ -2,7 +2,7 @@
 #include "ET.h"
 
 struct Oficina {
-	EstacaoTrabalho* ets;
+	EstacaoTrabalho ets;
 	int numero_ets;
 	Carro* fila_espera;
 	int fila_espera_tamanho;

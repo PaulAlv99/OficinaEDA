@@ -12,7 +12,8 @@ struct EstacaoTrabalho {
 	int num_carros_a_ser_reparados = 0;
 	Carro* Carrosreparados = {};
 	int num_carros_reparados = 0;
-
+	EstacaoTrabalho* seguinte;
+	EstacaoTrabalho* inicio;
 };
 
 EstacaoTrabalho CriarET(int ID);
