@@ -1,6 +1,7 @@
 #include "ListLigada.h"
 
 //numa ET
+
 int num_carros_a_ser_reparados(nodoDuplo* head) {
 	nodoDuplo* current = head;
 	int count = 0;
@@ -24,7 +25,7 @@ void insereFim(nodoDuplo*& head, Carro& carro_a_receber) {
 
 }
 
-nodoDuplo insereInicio(nodoDuplo*& head, Carro& carro_a_receber) {
+void insereInicio(nodoDuplo*& head, Carro& carro_a_receber) {
 	nodoDuplo* newNode = new nodoDuplo;
 	newNode->carros_a_ser_reparados = carro_a_receber;
 	newNode->seguinte = head;
@@ -35,6 +36,7 @@ nodoDuplo insereInicio(nodoDuplo*& head, Carro& carro_a_receber) {
 	}
 	head = newNode;
 
+	
 }
 //insert a node after a given node in the linked list
 void insereMeio(nodoDuplo*& anterior_onde_quero_inserir, Carro& carro_a_receber)
@@ -59,7 +61,7 @@ void insereMeio(nodoDuplo*& anterior_onde_quero_inserir, Carro& carro_a_receber)
 
 	/* 6. Make prev_node as previous of new_node */
 	newNode->anterior = anterior_onde_quero_inserir;
-
+	
 	/* 7. Change previous of new_node's next node */
 	if (newNode->seguinte != NULL)
 		newNode->seguinte->anterior = newNode;
