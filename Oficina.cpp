@@ -142,3 +142,96 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos)
 	ColocarCarrosET(Of, 8);
 	
 }
+
+
+
+/*void NovaListaEspera(LEspera& l) {
+    l.primeiro = 0;
+}
+
+void InsereElementoListaEspera(LEspera& l, Carro c) {
+    // Insere o carro no final da lista de carros
+    LEspera::Elemento* aux = new LEspera::Elemento;
+    aux->viatura = c;
+    aux->seguinte = 0;
+    if (l.primeiro == 0)
+        l.primeiro = aux;
+    else {
+        LEspera::Elemento* temp = l.primeiro;
+        while (temp->seguinte != 0)
+            temp = temp->seguinte;
+        temp->seguinte = aux;
+
+    }
+
+};
+
+
+bool Vazia(LEspera& l)
+{
+    if (l.primeiro == 0)
+        return true;
+    else
+        return false;
+}
+
+
+void Remove(LEspera& l) {
+    // Remove primeiro o carro da lista de carros
+    if (Vazia(l)) throw ERRO_LISTA_VAZIA;
+    LEspera::Elemento* aux = l.primeiro;
+    l.primeiro = aux->seguinte;
+    delete aux;
+   
+};
+
+void InserePrioritario(LEspera& l, Carro c) {
+    // Insere o carro prioritário no início da lista de carros
+    LEspera::Elemento* aux = new LEspera::Elemento;;
+    aux->viatura = c;
+    if (Vazia(l)) {
+        aux->seguinte = 0;
+        l.primeiro = aux;
+    }
+    LEspera::Elemento* temp = l.primeiro;
+    aux->seguinte = temp;
+    l.primeiro = aux;
+};
+
+
+Carro Primeiro(LEspera& l)
+{
+    if (Vazia(l)) throw ERRO_LISTA_VAZIA;
+    return l.primeiro->viatura;
+
+}
+
+int Comprimento(LEspera& l)
+{
+    LEspera::Elemento* aux = l.primeiro;
+    int comprimento = 0;
+    while (aux != 0) {
+        comprimento++;
+        aux = aux->seguinte;
+    }
+    return comprimento;
+
+}
+
+void Escreve(LEspera& l)
+{
+    if (Vazia(l))
+        cout << "-> NULL" << endl;
+    else
+    {
+        LEspera::Elemento* aux = l.primeiro;
+        cout << endl;
+        while (aux != 0)
+        {
+            cout << "Modelo: " << aux->viatura.modelo << " | " << "Marca: " << aux->viatura.marca << " | "
+                << "Prioritario: " << aux->viatura.prioritario << endl;
+            aux = aux->seguinte;
+        }
+    }
+}
+*/
