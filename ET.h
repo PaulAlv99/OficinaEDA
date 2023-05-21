@@ -8,9 +8,9 @@ struct EstacaoTrabalho {
 	int ID = 0;
 	int capacidade = 0;
 	float faturacao = 0;
-	Carro* carros_a_ser_reparados = {}; //arrays de carros
+	listacarros* carros_a_ser_reparados;
 	int num_carros_a_ser_reparados = 0;
-	Carro* Carrosreparados = {};
+	listacarros* Carrosreparados;
 	int num_carros_reparados = 0;
 	EstacaoTrabalho* seguinte;
 	EstacaoTrabalho* inicio;

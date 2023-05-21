@@ -27,3 +27,4 @@ bool  GerarProbalidades(double probalidade);
 void Adiciona(Carro*& v, int& tamanho, Carro& carro);
 void Remove(Carro*& v, int& tamanho, int& ind);
 void adicionarcarro(listacarros& lista, Carro& carro);
+void removecarro(listacarros& lista, Carro& carro);
