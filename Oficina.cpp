@@ -12,7 +12,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
     nova.numero_ets = numero_de_et();
 	nova.ets = CriarET(1);
 	nova.ets.inicio = &nova.ets;
-    nova.fila_espera = new Carro[0];
+	nova.listaespera;
 	nova.carrostotais = 0;
     nova.fila_espera_tamanho = 0;
 
@@ -145,7 +145,7 @@ void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos)
 
 
 
-/*void NovaListaEspera(LEspera& l) {
+void NovaListaEspera(l) {
     l.primeiro = 0;
 }
 

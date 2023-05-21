@@ -4,7 +4,7 @@
 struct Oficina {
 	EstacaoTrabalho ets;
 	int numero_ets;
-	Carro* fila_espera;
+	listacarros listaespera;
 	int fila_espera_tamanho;
 	int carrostotais;
 	int ciclos;
@@ -22,3 +22,4 @@ void Transportar(Oficina& Of, int ind);
 
 void colocarprioritario(Oficina& Of);
 void ColocarCarrosET(Oficina& Of, int num);
+void NovaListaEspera(listacarros & l);
