@@ -535,176 +535,260 @@ void gravar_oficina(Oficina& Of) {
 
 
 
-void carregar_oficina(Oficina& Of, string caminho) {
-	//string caminho = "oficina.txt";
-	
-
+void carregar_oficina(Oficina& Of, const string& caminho) {
 	ifstream ficheiro(caminho);
 
 	if (ficheiro.is_open()) {
-
-		Oficina nova = Oficina();
+		Oficina nova;
 		string linha;
-		
+
 		getline(ficheiro, linha);
-			
 		stringstream ss(linha);
 		string temp;
 
-		//obtem ciclos
+		// Obtém ciclos
 		getline(ss, temp, '|');
 		nova.ciclos = stoi(temp);
 
-		//obtem carrostotais
+		// Obtém carrostotais
 		getline(ss, temp, '|');
 		nova.carrostotais = stoi(temp);
 
-		//obtem numero_ets
+		// Obtém numero_ets
 		getline(ss, temp, '|');
 		nova.numero_ets = stoi(temp);
-		//cria as ets
+
+		// Cria as ets
 		nova.ets = new EstacaoTrabalho[nova.numero_ets];
-		
-		for (int i = 0; i < nova.numero_ets;i++) {
-			
+
+		for (int i = 0; i < nova.numero_ets; i++) {
 			getline(ficheiro, linha);
 			stringstream ss(linha);
 
-			//obtem ID
+			// Obtém ID
 			getline(ss, temp, '|');
 			nova.ets[i].ID = stoi(temp);
-			//obtem capacidade
+
+			// Obtém capacidade
 			getline(ss, temp, '|');
 			nova.ets[i].capacidade = stoi(temp);
-			//faturacao
+
+			// Obtém faturacao
 			getline(ss, temp, '|');
 			nova.ets[i].faturacao = stof(temp);
-			
-			//num carros a ser reparados
+
+			// Obtém num carros a ser reparados
 			getline(ss, temp, '|');
 			nova.ets[i].num_carros_a_ser_reparados = stoi(temp);
-			//carros reparados
+
+			// Obtém carros reparados
 			getline(ss, temp, '|');
 			nova.ets[i].num_carros_reparados = stoi(temp);
-			nova.ets[i].Carrosreparados = new Carro[nova.ets[i].num_carros_reparados];
+			nova.ets[i].Carrosreparados = nullptr;
+
 			if (nova.ets[i].num_carros_reparados > 0) {
-			
+				Carro* carros_reparados_head = nullptr;
+				Carro* carros_reparados_tail = nullptr;
+
 				for (int j = 0; j < nova.ets[i].num_carros_reparados; j++) {
 					getline(ficheiro, linha);
 					stringstream ss(linha);
-					//obtem o id do carro reparado
-					getline(ss, temp, '|');
-					nova.ets[i].Carrosreparados[j].ID = stoi(temp);
-					//obtem o numero de dias de reparacao
-					getline(ss, temp, '|');
-					nova.ets[i].Carrosreparados[j].dias_em_reparacao = stoi(temp);
-					//obtem a marca
-					getline(ss, temp, '|');
-					nova.ets[i].Carrosreparados[j].marca = temp;
-					//obtem o modelo
-					getline(ss, temp, '|');
-					nova.ets[i].Carrosreparados[j].modelo = temp;
-					//obtem prioritario
-					getline(ss, temp, '|');
-					nova.ets[i].Carrosreparados[j].prioritario = stoi(temp);
-					//obtem custo de reparacao
-					getline(ss, temp, '|');
-					nova.ets[i].Carrosreparados[j].custoreparacao = stoi(temp);
-					//obtem tempo de reparacao maximo
-					getline(ss, temp, '|');
-					nova.ets[i].Carrosreparados[j].tempo_reparacao_max = stoi(temp);
 
+					// Obtém o id do carro reparado
+					getline(ss, temp, '|');
+					int id = stoi(temp);
+
+					// Obtém o numero de dias de reparacao
+					getline(ss, temp, '|');
+					int dias = stoi(temp);
+
+					// Obtém a marca
+					getline(ss, temp, '|');
+					string marca = temp;
+
+					// Obtém o modelo
+					getline(ss, temp, '|');
+					string modelo = temp;
+
+					// Obtém prioritario
+					getline(ss, temp, '|');
+					int prioritario = stoi(temp);
+
+					// Obtém custo de reparacao
+					getline(ss, temp, '|');
+					int custo_reparacao = stoi(temp);
+
+					// Obtém tempo de reparacao maximo
+					getline(ss, temp, '|');
+					int tempo_reparacao_max = stoi(temp);
+
+					Carro* carro = new Carro(id, dias, marca, modelo, prioritario, tempo_reparacao_max);
+
+					if (carros_reparados_head == nullptr) {
+						carros_reparados_head = carro;
+						carros_reparados_tail = carro;
+					}
+					else {
+						carros_reparados_tail->next = carro;
+						carros_reparados_tail = carro;
+					}
 				}
+
+				nova.ets[i].Carrosreparados = carros_reparados_head;
 			}
-			//carros a ser reparados
-			nova.ets[i].carros_a_ser_reparados = new Carro[nova.ets[i].capacidade];
+
+			// Obtém carros a ser reparados
+			getline(ss, temp, '|');
+			nova.ets[i].carros_a_ser_reparados = nullptr;
+
 			if (nova.ets[i].capacidade > 0) {
-			
+				Carro* carros_a_ser_reparados_head = nullptr;
+				Carro* carros_a_ser_reparados_tail = nullptr;
+
 				for (int k = 0; k < nova.ets[i].capacidade; k++) {
 					getline(ficheiro, linha);
 					stringstream ss(linha);
-					//obtem dias em reparacao
-					getline(ss, temp, '|');
-					nova.ets[i].carros_a_ser_reparados[k].dias_em_reparacao = stoi(temp);
-					//obtem id do carro em peracao
-					getline(ss, temp, '|');
-					nova.ets[i].carros_a_ser_reparados[k].ID = stoi(temp);
-					//obtem marca
-					getline(ss, temp, '|');
-					nova.ets[i].carros_a_ser_reparados[k].marca = temp;
-					//obtem modelo
-					getline(ss, temp, '|');
-					nova.ets[i].carros_a_ser_reparados[k].modelo = temp;
-					//obtem prioridade
-					getline(ss, temp, '|');
-					nova.ets[i].carros_a_ser_reparados[k].prioritario = stoi(temp);
-					//obtem tempo de reparacao maximo
-					getline(ss, temp, '|');
-					nova.ets[i].carros_a_ser_reparados[k].tempo_reparacao_max = stoi(temp);
 
+					// Obtém dias em reparacao
+					getline(ss, temp, '|');
+					int dias = stoi(temp);
+
+					// Obtém id do carro em peracao
+					getline(ss, temp, '|');
+					int id = stoi(temp);
+
+					// Obtém marca
+					getline(ss, temp, '|');
+					string marca = temp;
+
+					// Obtém modelo
+					getline(ss, temp, '|');
+					string modelo = temp;
+
+					// Obtém prioridade
+					getline(ss, temp, '|');
+					int prioritario = stoi(temp);
+
+					// Obtém tempo de reparacao maximo
+					getline(ss, temp, '|');
+					int tempo_reparacao_max = stoi(temp);
+
+					Carro* carro = new Carro(id, dias, marca, modelo, prioritario, tempo_reparacao_max);
+
+					if (carros_a_ser_reparados_head == nullptr) {
+						carros_a_ser_reparados_head = carro;
+						carros_a_ser_reparados_tail = carro;
+					}
+					else {
+						carros_a_ser_reparados_tail->next = carro;
+						carros_a_ser_reparados_tail = carro;
+					}
 				}
+
+				nova.ets[i].carros_a_ser_reparados = carros_a_ser_reparados_head;
 			}
+
 			getline(ficheiro, linha);
 			stringstream ss1(linha);
-			//mecanico
+
+			// Mecanico
 			nova.ets[i].mecanico = Mecanico();
-			//obtem marca
+
+			// Obtém marca
 			getline(ss1, temp, '|');
 			nova.ets[i].mecanico.marca = temp;
-			//obtem nome do mecanico
+
+			// Obtém nome do mecanico
 			getline(ss1, temp, '|');
 			nova.ets[i].mecanico.nome = temp;
-			//obtem preço de reparacao por dia
+
+			// Obtém preço de reparacao por dia
 			getline(ss1, temp, '|');
 			nova.ets[i].mecanico.preco_reparacao_por_dia = stoi(temp);
-
 		}
+
 		getline(ficheiro, linha);
 		stringstream ss2(linha);
-		//carrega fila de espera
+
+		// Carrega fila de espera
 		getline(ss2, temp, '|');
 		nova.fila_espera_tamanho = stoi(temp);
-		nova.fila_espera = new Carro[nova.fila_espera_tamanho];
-		for (int y = 0; y < nova.fila_espera_tamanho; y++) {
-			getline(ficheiro, linha);
-			stringstream ss3(linha);
-			//obtem id do carro em espera
-			getline(ss3, temp, '|');
-			nova.fila_espera[y].ID = stoi(temp);
-			//obtem dias em reparacao do carro em espera
-			getline(ss3, temp, '|');
-			nova.fila_espera[y].dias_em_reparacao = stoi(temp);
-			//obtem marca do carro
-			getline(ss3, temp, '|');
-			nova.fila_espera[y].marca = temp;
-			//obtem modelo do carro
-			getline(ss3, temp, '|');
-			nova.fila_espera[y].modelo = temp;
-			//obtem prioridade do carro em espera
-			getline(ss3, temp, '|');
-			nova.fila_espera[y].prioritario = stoi(temp);
-			//obtem tempo de reparacao maximo do carro em espera
-			getline(ss3, temp, '|');
-			nova.fila_espera[y].tempo_reparacao_max = stoi(temp);
+		nova.fila_espera = nullptr;
+
+		if (nova.fila_espera_tamanho > 0) {
+			Carro* fila_espera_head = nullptr;
+			Carro* fila_espera_tail = nullptr;
+
+			for (int y = 0; y < nova.fila_espera_tamanho; y++) {
+				getline(ficheiro, linha);
+				stringstream ss3(linha);
+
+				// Obtém id do carro em espera
+				getline(ss3, temp, '|');
+				int id = stoi(temp);
+
+				// Obtém dias em reparacao do carro em espera
+				getline(ss3, temp, '|');
+				int dias = stoi(temp);
+
+				// Obtém marca do carro
+				getline(ss3, temp, '|');
+				string marca = temp;
+
+				// Obtém modelo do carro
+				getline(ss3, temp, '|');
+				string modelo = temp;
+
+				// Obtém prioridade do carro em espera
+				getline(ss3, temp, '|');
+				int prioritario = stoi(temp);
+
+				// Obtém tempo de reparacao maximo do carro em espera
+				getline(ss3, temp, '|');
+				int tempo_reparacao_max = stoi(temp);
+
+				Carro* carro = new Carro(id, dias, marca, modelo, prioritario, tempo_reparacao_max);
+
+				if (fila_espera_head == nullptr) {
+					fila_espera_head = carro;
+					fila_espera_tail = carro;
+				}
+				else {
+					fila_espera_tail->next = carro;
+					fila_espera_tail = carro;
+				}
+			}
+
+			nova.fila_espera = fila_espera_head;
 		}
+
 		ficheiro.close();
 
-		//liberta memoria
+		// Liberta memoria
 		delete[] Of.fila_espera;
 		for (int i = 0; i < Of.numero_ets; i++) {
-			delete[] Of.ets[i].Carrosreparados;
-			delete[] Of.ets[i].carros_a_ser_reparados;
+			Carro* carro_reparado = nova.ets[i].Carrosreparados;
+			while (carro_reparado != nullptr) {
+				Carro* next = carro_reparado->next;
+				delete carro_reparado;
+				carro_reparado = next;
+			}
+
+			Carro* carro_a_reparar = nova.ets[i].carros_a_ser_reparados;
+			while (carro_a_reparar != nullptr) {
+				Carro* next = carro_a_reparar->next;
+				delete carro_a_reparar;
+				carro_a_reparar = next;
+			}
 		}
 		delete[] Of.ets;
-		//atribui a nova oficina
+
+		// Atribui a nova oficina
 		Of = nova;
-
-
 	}
 	else {
-		cout << "Erro: Ficheiro não encontrado!!" << endl << "usando valores locais" << endl;
+		cout << "Erro: Ficheiro nao encontrado!!" << endl << "usando valores locais" << endl;
 	}
-
 }
 
 
