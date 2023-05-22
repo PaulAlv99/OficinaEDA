@@ -1,4 +1,5 @@
 #include "Arvore.h"
+
 Arvore* novoNodo(Carro carro) {
     Arvore* novonodo = new Arvore();
     novonodo->carros_reparados = carro;
