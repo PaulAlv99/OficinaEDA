@@ -189,7 +189,7 @@ void ColocarCarrosET(Oficina& Of, int num) {
 //	delete[] novo;
 //}
 
-void organizarprioritario(Oficina& Of, Carro& carro) {
+void organizarprioritario(Oficina& Of) {
 	listacarros* atualespera = &Of.listaespera;
 	listacarros* novo;
 	listacarros* temp;

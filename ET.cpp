@@ -70,15 +70,16 @@ void reparacao(EstacaoTrabalho& ID1) {
         if ((atual->carro.dias_em_reparacao < atual->carro.tempo_reparacao_max) && (atual->carro.ID != 0)) {
             chance = rand() % 100 + 1;
             if ((chance >= 1 && chance <= 15) && (atual->carro.dias_em_reparacao > 0)) {
+             /* Adicionar a arvore de carros reparados  
                 listacarros* novono = new listacarros();
                 novono->carro = atual->carro;
                 novono->seguinte = ID1.Carrosreparados;
-                ID1.Carrosreparados = novono;
+                ID1.Carrosreparados = novono;*/
 
                 ID1.num_carros_a_ser_reparados--;
-                atual->carro.ID = 0;
+                atual->carro.ID = 0; //remove o carro da lista de carros a ser reparados
                 ID1.faturacao += atual->carro.dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia;
-                ID1.Carrosreparados->carro.custoreparacao = ID1.mecanico.preco_reparacao_por_dia * atual->carro.dias_em_reparacao;
+                //ID1.Carrosreparados->carro.custoreparacao = ID1.mecanico.preco_reparacao_por_dia * atual->carro.dias_em_reparacao;   O paulo tem de ver
                 ID1.num_carros_reparados++;
             }
             else {
@@ -86,15 +87,16 @@ void reparacao(EstacaoTrabalho& ID1) {
             }
         }
         else if ((atual->carro.dias_em_reparacao >= atual->carro.tempo_reparacao_max) && (atual->carro.ID != 0)) {
-            listacarros* novono = new listacarros();
-            novono->carro = atual->carro;
-            novono->seguinte = ID1.Carrosreparados;
-            ID1.Carrosreparados = novono;
+            /* Adicionar a arvore de carros reparados
+               listacarros* novono = new listacarros();
+               novono->carro = atual->carro;
+               novono->seguinte = ID1.Carrosreparados;
+               ID1.Carrosreparados = novono;*/
 
             ID1.num_carros_a_ser_reparados--;
-            atual->carro.ID = 0;
+            atual->carro.ID = 0; //remove o carro da lista de carros a ser reparados
             ID1.faturacao += atual->carro.dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia;
-            ID1.Carrosreparados->carro.custoreparacao = ID1.mecanico.preco_reparacao_por_dia * atual->carro.dias_em_reparacao;
+            //ID1.Carrosreparados->carro.custoreparacao = ID1.mecanico.preco_reparacao_por_dia * atual->carro.dias_em_reparacao;   O paulo tem de ver
             ID1.num_carros_reparados++;
         }
 

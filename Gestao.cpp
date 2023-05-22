@@ -4,34 +4,42 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "Arvore.h"
 
 using namespace std;
 
 void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 	cout << "Dia: " << Of.ciclos << endl;
-	for (int i = 0; i < Of.numero_ets; i++) {
-			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
-				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " << "Carros: " << Of.ets[i].num_carros_a_ser_reparados << " | " <<
-				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
+	EstacaoTrabalho* atualET = Of.ets;
+	
+	
+	listacarros* atualespera = &Of.listaespera;
+	while (atualET != NULL) {
+			cout << "ET: " << Of.ets->ID << " | " << "Mecanico: " << Of.ets->mecanico.nome
+				<< " | " << "Capacidade: " << Of.ets->capacidade << " | " << "Carros: " << Of.ets->num_carros_a_ser_reparados << " | " <<
+				"Marca: " << Of.ets->mecanico.marca << " | " << "Total Faturacao: " << Of.ets->faturacao << endl;
 			if (Of.ciclos >= 1) {
 				cout << "Carros a ser reparados: " << endl;
 			}
-			int r = Of.ets[i].capacidade;
-			if(Of.ets[i].num_carros_a_ser_reparados>0){
-				for (int t = 0; t < r; t++) {
-					if ((Of.ciclos >= 1) && (Of.ets[i].carros_a_ser_reparados[t].ID != 0)) {
-						cout << "ID: " << Of.ets[i].carros_a_ser_reparados[t].ID << " | " << "Carro: " << Of.ets[i].carros_a_ser_reparados[t].marca << "-"
-							<< Of.ets[i].carros_a_ser_reparados[t].modelo << " | " << "Prioritario: "; 
-						if (Of.ets[i].carros_a_ser_reparados[t].prioritario == 1) {
+			int r = Of.ets->capacidade;
+			if(Of.ets->num_carros_a_ser_reparados>0){
+				listacarros* atualcarrosaserreparados = atualET->carros_a_ser_reparados;
+				while (atualcarrosaserreparados != NULL) {
+					if ((Of.ciclos >= 1) && (atualcarrosaserreparados->carro.ID != 0)) {
+						cout << "ID: " << atualcarrosaserreparados->carro.ID << " | " << "Carro: " << atualcarrosaserreparados->carro.marca << "-"
+							<< atualcarrosaserreparados->carro.modelo << " | " << "Prioritario: ";
+						if (atualcarrosaserreparados->carro.prioritario == 1) {
 							cout << "Sim";
 						}
 						else {
 							cout << "Nao";
 						}
-						cout << " | " << "Tempo de reparacao: " << Of.ets[i].carros_a_ser_reparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
-						cout << Of.ets[i].carros_a_ser_reparados[t].tempo_reparacao_max << endl;
+						cout << " | " << "Tempo de reparacao: " << atualcarrosaserreparados->carro.dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
+						cout << atualcarrosaserreparados->carro.tempo_reparacao_max << endl;
 					}
+					atualcarrosaserreparados = atualcarrosaserreparados->seguinte;
 				}
+				atualcarrosaserreparados = atualcarrosaserreparados->inicio;
 		}
 			cout << endl;
 
@@ -40,8 +48,9 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 		if (Of.ciclos >= 1) {
 				cout << "Carros reparados: " << endl;
 			}
-			int g = Of.ets[i].num_carros_reparados;
-			for (int t = 0; t < g; t++) {
+			//O Paulo e que sabe como fez a arvore
+			/*Arvore* atualcarrosreparados = atualET->Carrosreparados;
+			while (atualcarrosreparados != NULL) {
 				if ((Of.ciclos >= 1) && (Of.ets[i].Carrosreparados[t].ID != 0)) {
 					cout << "ID: " << Of.ets[i].Carrosreparados[t].ID << " | " << "Carro: " << Of.ets[i].Carrosreparados[t].marca << "-"
 						<< Of.ets[i].Carrosreparados[t].modelo << " | " << "Prioritario: ";
@@ -56,24 +65,27 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 				}
 
 			}
-			cout << endl;
+			cout << endl;*/
 
 
-
+			atualET = atualET->seguinte;
 	}
 	cout << "--------------------------------------------------------------------------------------" << endl;
 	cout << "Lista de Espera: " << endl;
-	for (int i = 0; i < Of.fila_espera_tamanho; i++) {
-		cout << "ID: " << Of.fila_espera[i].ID << " | " << "Modelo: " << Of.fila_espera[i].modelo << " | " << "Marca: " << Of.fila_espera[i].marca << " | "
+	while (atualespera != NULL) {
+		cout << "ID: " << atualespera->carro.ID << " | " << "Modelo: " << atualespera->carro.modelo << " | " << "Marca: " << atualespera->carro.marca << " | "
 			<< "Prioritario: ";
-		if (Of.fila_espera[i].prioritario == 1) {
+		if (atualespera->carro.prioritario == 1) {
 			cout << "Sim";
 		}
 		else {
 			cout << "Nao";
 		}
-		cout<< " | " << "Tempo de reparacao maximo: " << Of.fila_espera[i].tempo_reparacao_max << endl;
+		cout<< " | " << "Tempo de reparacao maximo: " << atualespera->carro.tempo_reparacao_max << endl;
+		atualespera = atualespera->seguinte;
 	}
+	atualespera = atualespera->inicio;
+
 }
 
 void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
@@ -289,6 +301,7 @@ void reparacao_manual(Oficina& Of) {
 	cin >> ws;
 	getline(cin, modelo);
 	/*Percorre ETs*/
+	//A partir daqui e copiar a funcao reparar
 	for (int i = 0; i < Of.numero_ets; i++) {
 
 		/*Percorre carros a serem reparados*/
@@ -343,13 +356,16 @@ void atualizar_tempo_reparacao(Oficina& Of) {
 			tempotemp = 0;
 		}
 	}
-
-	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
-		if (removerespacos((maiuscula(Of.fila_espera[i].marca))) == removerespacos(maiuscula(marca)) && (removerespacos(maiuscula(Of.fila_espera[i].modelo)) == removerespacos(maiuscula(modelo)))) {
-			Of.fila_espera[i].tempo_reparacao_max = tempo;
+	//percorrer lista de espera
+	listacarros* atual = &Of.listaespera;
+	while  (atual != NULL) {
+		if (removerespacos((maiuscula(atual->carro.marca))) == removerespacos(maiuscula(marca)) && (removerespacos(maiuscula(atual->carro.modelo)) == removerespacos(maiuscula(modelo)))) {
+			atual->carro.tempo_reparacao_max = tempo;
 														
 		}
+		atual = atual->seguinte;
 	}
+	atual = atual->inicio;
 }
 void adicionar_prioridade(Oficina& Of) {
 	string entrada;
@@ -374,13 +390,16 @@ void adicionar_prioridade(Oficina& Of) {
 			Idtemp = 0;
 			}
 	}
-	for (int i = 0; i < Of.fila_espera_tamanho;i++) {
+	//percorrer lista de espera
+	listacarros* atual = &Of.listaespera;
+	while (atual != NULL) {
 		//faz se id for igual e se n for prioritario
-		if ((Of.fila_espera[i].ID == Id) && (Of.fila_espera[i].prioritario==false)) {
-			Of.fila_espera[i].prioritario = true;
+		if ((atual->carro.ID == Id) && (atual->carro.prioritario==false)) {
+			atual->carro.prioritario = true;
 		}
+		atual = atual->seguinte;
 	}
-	colocarprioritario(Of);
+	organizarprioritario(Of);
 }
 
 void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
@@ -389,37 +408,55 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 	cout << "Indique o nome do mecanico que deseja remover: " << endl;
 	cin >> ws;
 	getline(cin, mecanicoRem);
-	for (int i = 0; i < Of.numero_ets;i++) {
-		if (removerespacos(maiuscula(Of.ets[i].mecanico.nome)) == removerespacos(maiuscula(mecanicoRem))) {
+	EstacaoTrabalho* atualET = Of.ets;
+	while (atualET != NULL) {
+		if (removerespacos(maiuscula(atualET->mecanico.nome)) == removerespacos(maiuscula(mecanicoRem))) {
 			
 
 			//repara todos os carros da et
-			for (int j = 0; j < Of.ets[i].capacidade; j++) {
+			listacarros* atualcarrosaserreparados = atualET->carros_a_ser_reparados;
+			while (atualcarrosaserreparados !=NULL) {
 
-				if (Of.ets[i].carros_a_ser_reparados[j].ID != 0) {
+				if (atualcarrosaserreparados->carro.ID != 0) {
 					//coloca carro em lista de carros reparados
-					int tamanho = (Of.ets[i].num_carros_reparados);
-					Adiciona(Of.ets[i].Carrosreparados, tamanho, Of.ets[i].carros_a_ser_reparados[j]);
-					Of.ets[i].num_carros_a_ser_reparados = Of.ets[i].num_carros_a_ser_reparados - 1;
-					Of.ets[i].carros_a_ser_reparados[j].ID = 0;
-					Of.ets[i].faturacao = Of.ets[i].faturacao + (Of.ets[i].carros_a_ser_reparados[j].dias_em_reparacao * Of.ets[i].mecanico.preco_reparacao_por_dia);
-					Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados].custoreparacao = Of.ets[i].mecanico.preco_reparacao_por_dia * Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados].dias_em_reparacao;
-					Of.ets[i].num_carros_reparados = Of.ets[i].num_carros_reparados + 1;
+					// adicionar numa arvore
+					//Adiciona(Of.ets[i].Carrosreparados, tamanho, Of.ets[i].carros_a_ser_reparados[j]);
+					atualET->num_carros_a_ser_reparados = atualET->num_carros_a_ser_reparados - 1;
+					atualcarrosaserreparados->carro.ID = 0;
+					atualET->faturacao = atualET->faturacao + (atualcarrosaserreparados->carro.dias_em_reparacao * atualET->mecanico.preco_reparacao_por_dia);
+					//Adicionar o custo de reparacao deste ultimo carro reparado
+					//Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados].custoreparacao = Of.ets[i].mecanico.preco_reparacao_por_dia * Of.ets[i].Carrosreparados[Of.ets[i].num_carros_reparados].dias_em_reparacao;
+					atualET->num_carros_reparados = atualET->num_carros_reparados + 1;
 				}
+				atualcarrosaserreparados = atualcarrosaserreparados->seguinte;
 			}
+			atualcarrosaserreparados = atualcarrosaserreparados->seguinte;
 
 			//adicionar novo mecanico
 			cout << "O mecanico com o nome " << mecanicoRem << ", foi removido da et" << endl;
-			cout << "ET: " << Of.ets[i].ID << " | " << "Mecanico: " << Of.ets[i].mecanico.nome
-				<< " | " << "Capacidade: " << Of.ets[i].capacidade << " | " <<
-				"Marca: " << Of.ets[i].mecanico.marca << " | " << "Total Faturacao: " << Of.ets[i].faturacao << endl;
+			cout << "ET: " << atualET->ID << " | " << "Mecanico: " << atualET->mecanico.nome
+				<< " | " << "Capacidade: " << atualET->capacidade << " | " <<
+				"Marca: " << atualET->mecanico.marca << " | " << "Total Faturacao: " << atualET->faturacao << endl;
 			cout << endl;
-			Mecanico novo = CriarMecanico(marcas);
+			Mecanico* novo = CriarMecanico(marcas);
 			
+			//remover a ET antiga e criar uma nova ou algo semelhante
+			EstacaoTrabalho* temp = &CriarET(atualET->ID);
+			atualET->ID = temp->ID;
+			atualET->capacidade = temp->capacidade;
+			atualET->Carrosreparados = temp->Carrosreparados;
+			atualET->carros_a_ser_reparados = temp->carros_a_ser_reparados;
+			atualET->faturacao = temp->faturacao;
+			atualET->mecanico = temp->mecanico;
+			atualET->num_carros_a_ser_reparados = temp->num_carros_a_ser_reparados;
+			atualET->num_carros_reparados = temp->num_carros_reparados;
+			/*
 			Of.ets[i] = CriarET(Of.ets[i].ID);
-			Of.ets[i].mecanico = novo;
+			Of.ets[i].mecanico = novo;*/
 		}
+		atualET = atualET->seguinte;
 	}
+	atualET = atualET->inicio;
 }
 void gravar_oficina(Oficina& Of) {
     string caminho = "oficina.txt";
@@ -442,7 +479,7 @@ void gravar_oficina(Oficina& Of) {
                      << et.num_carros_reparados << "\n";
 
             // Gravação dos carros reparados
-            no* atualReparados = et.Carrosreparados;
+            listacarros* atualReparados = et.Carrosreparados;
             while (atualReparados != nullptr) {
                 Carro& carro = atualReparados->carro;
                 ficheiro << carro.ID << "|" 
@@ -452,11 +489,11 @@ void gravar_oficina(Oficina& Of) {
                          << carro.prioritario << "|"
                          << carro.custoreparacao << "|"
                          << carro.tempo_reparacao_max << "\n";
-                atualReparados = atualReparados->proximo;
+                atualReparados = atualReparados->seguinte;
             }
 
             // Gravação dos carros na fila de espera
-            no* atualEspera = et.carros_a_ser_reparados;
+            listacarros* atualEspera = et.carros_a_ser_reparados;
             while (atualEspera != nullptr) {
                 Carro& carro = atualEspera->carro;
                 ficheiro << carro.dias_em_reparacao << "|" 
@@ -465,7 +502,7 @@ void gravar_oficina(Oficina& Of) {
                          << carro.modelo << "|" 
                          << carro.prioritario << "|" 
                          << carro.tempo_reparacao_max <<"\n";
-                atualEspera = atualEspera->proximo;
+                atualEspera = atualEspera->seguinte;
             }
 
             // Gravação dos dados do mecânico
@@ -477,7 +514,7 @@ void gravar_oficina(Oficina& Of) {
 
         // Gravação dos dados da fila de espera
         ficheiro << Of.fila_espera_tamanho << "\n";
-        no* atualFilaEspera = Of.fila_espera;
+        listacarros* atualFilaEspera = &Of.listaespera;
         while (atualFilaEspera != nullptr) {
             Carro& carro = atualFilaEspera->carro;
             ficheiro << carro.ID << "|" 
@@ -486,7 +523,7 @@ void gravar_oficina(Oficina& Of) {
                      << carro.modelo << "|"
                      << carro.prioritario << "|" 
                      << carro.tempo_reparacao_max << "\n";
-            atualFilaEspera = atualFilaEspera->proximo;
+            atualFilaEspera = atualFilaEspera->seguinte;
         }
 
         ficheiro.close();

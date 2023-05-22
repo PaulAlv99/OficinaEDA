@@ -22,7 +22,7 @@ struct Mecanico {
 
 
 Mecanico* CriarMecanico(LinhasFicheiro& marcas);
-bool VerificarNumero(const string& n);
+bool verificarnumero(string n);
 
 Mecanico* AdicionarMecanico(Mecanico* lista, Mecanico* novoMecanico);
 void LiberarLista(Mecanico* lista);
