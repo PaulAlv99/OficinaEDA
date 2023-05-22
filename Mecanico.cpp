@@ -44,17 +44,7 @@ using namespace std;
 }
 
 
-bool verificarnumero(string n) {
-	if (n.length() == 0) {
-		return false;
-	}
-	for (int i = 0; i < n.length(); i++) {
-		if (isdigit(n[i]) == false) {
-			return false;
-		}
-	}
-	return true;
-}
+
 */
 
 
@@ -141,7 +131,7 @@ Mecanico* CriarMecanico(LinhasFicheiro& marcas) {
             cin >> entrada;
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-
+        
         precotemp = stod(entrada);  // converte uma string em um valor double
     }
 
@@ -171,18 +161,17 @@ void LiberarLista(Mecanico* lista) {
     }
 }
 
-bool VerificarNumero(const string& n) {
-    if (n.empty()) {
+bool verificarnumero(string n) {
+    if (n.length() == 0) {
         return false;
     }
-    for (char c : n) {
-        if (isdigit(c)) {  //verifica se um caractere c é um dígito decimal
+    for (int i = 0; i < n.length(); i++) {
+        if (isdigit(n[i]) == false) {
             return false;
         }
     }
     return true;
 }
-
 
 
 
