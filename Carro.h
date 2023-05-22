@@ -16,7 +16,7 @@ struct Carro {
 };
 
 struct listacarros {
-	Carro carro;
+	Carro carro = Carro();
 	listacarros* seguinte = NULL;
 	listacarros* inicio = NULL;
 };
