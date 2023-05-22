@@ -48,9 +48,9 @@ void reparacao(EstacaoTrabalho& ID1) {
 }
 */
 
-struct no {
+struct listacarros {
     Carro carro;
-    no* proximo;
+    listacarros* proximo;
 };
 
 EstacaoTrabalho CriarET(int ID) {
@@ -67,17 +67,17 @@ EstacaoTrabalho CriarET(int ID) {
 
 void reparacao(EstacaoTrabalho& ID1) {
     int chance;
-    no* atual = ID1.carros_a_ser_reparados;
-    no* anterior = nullptr;
+    listacarros* atual = ID1.carros_a_ser_reparados;
+    listacarros* anterior = nullptr;
 
     while (atual != nullptr) {
         if ((atual->carro.dias_em_reparacao < atual->carro.tempo_reparacao_max) && (atual->carro.ID != 0)) {
             chance = rand() % 100 + 1;
             if ((chance >= 1 && chance <= 15) && (atual->carro.dias_em_reparacao > 0)) {
-                no* novono = new no();
-                novono->carro = atual->carro;
-                novono->proximo = ID1.Carrosreparados;
-                ID1.Carrosreparados = novono;
+                listacarros* novolistacarros = new listacarros();
+                novolistacarros->carro = atual->carro;
+                novolistacarros->proximo = ID1.Carrosreparados;
+                ID1.Carrosreparados = novolistacarros;
 
                 ID1.num_carros_a_ser_reparados--;
                 atual->carro.ID = 0;
@@ -90,10 +90,10 @@ void reparacao(EstacaoTrabalho& ID1) {
             }
         }
         else if ((atual->carro.dias_em_reparacao >= atual->carro.tempo_reparacao_max) && (atual->carro.ID != 0)) {
-            no* novono = new no();
-            novono->carro = atual->carro;
-            novono->proximo = ID1.Carrosreparados;
-            ID1.Carrosreparados = novono;
+            listacarros* novolistacarros = new listacarros();
+            novolistacarros->carro = atual->carro;
+            novolistacarros->proximo = ID1.Carrosreparados;
+            ID1.Carrosreparados = novolistacarros;
 
             ID1.num_carros_a_ser_reparados--;
             atual->carro.ID = 0;
