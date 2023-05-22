@@ -1,6 +1,7 @@
 #pragma once
 #include "Mecanico.h"
 #include "Carro.h"
+#include "Arvore.h"
 #include <string>
 #include <iostream>
 struct EstacaoTrabalho {
@@ -10,7 +11,7 @@ struct EstacaoTrabalho {
 	float faturacao = 0;
 	listacarros* carros_a_ser_reparados;
 	int num_carros_a_ser_reparados = 0;
-	Arvore* Carrosreparados;
+	Arvore * Carrosreparados;
 	int num_carros_reparados = 0;
 	EstacaoTrabalho* seguinte;
 	EstacaoTrabalho* inicio;

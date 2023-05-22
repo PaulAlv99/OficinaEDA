@@ -49,52 +49,30 @@ using namespace std;
 
 
 
-struct Mecanico {
-    string marca;
-    string nome;
-    int preco_reparacao_por_dia;
-    Mecanico* proximo;
-
-    Mecanico(const string& m, const string& n, int preco)
-        : marca(m), nome(n), preco_reparacao_por_dia(preco), proximo(nullptr)  // os dois pontos são usados para iniciar a lista de inicialização do construtor da classe. 
-    {
-    }
-};
-
-struct LinhasFicheiro {
-    string* linhas;
-    int tamanho;
-};
-
-Mecanico* CriarMecanico(LinhasFicheiro& marcas);
-bool VerificarNumero(const string& n);
-
-Mecanico* AdicionarMecanico(Mecanico* lista, Mecanico* novoMecanico);
-void LiberarLista(Mecanico* lista);
-
-int main() {
-    LinhasFicheiro marcas;
-    // Preenche a estrutura LinhasFicheiro com as marcas de mecânico disponíveis
-
-    Mecanico* listaMecanicos = nullptr;
-    bool sair = false;
-
-    while (!sair) {
-        Mecanico* novoMecanico = CriarMecanico(marcas);
-        listaMecanicos = AdicionarMecanico(listaMecanicos, novoMecanico);
-        cout << "Deseja adicionar outro mecânico? (S/N): ";
-        char resposta;
-        cin >> resposta;
-        if (toupper(resposta) != 'S') {    //toupper é uma função em C++ que converte um caractere em letra maiúscula,por exemplo um s passa a S
-            sair = true;
-        }
-    }
-
-    // Utiliza a lista de mecânicos conforme necessário
-
-    LiberarLista(listaMecanicos);
-    return 0;
-}
+//?
+// int main() {
+//    LinhasFicheiro marcas;
+//    // Preenche a estrutura LinhasFicheiro com as marcas de mecânico disponíveis
+//
+//    Mecanico* listaMecanicos = nullptr;
+//    bool sair = false;
+//
+//    while (!sair) {
+//        Mecanico* novoMecanico = CriarMecanico(marcas);
+//        listaMecanicos = AdicionarMecanico(listaMecanicos, novoMecanico);
+//        cout << "Deseja adicionar outro mecânico? (S/N): ";
+//        char resposta;
+//        cin >> resposta;
+//        if (toupper(resposta) != 'S') {    //toupper é uma função em C++ que converte um caractere em letra maiúscula,por exemplo um s passa a S
+//            sair = true;
+//        }
+//    }
+//
+//    // Utiliza a lista de mecânicos conforme necessário
+//
+//    LiberarLista(listaMecanicos);
+//    return 0;
+//}
 
 Mecanico* CriarMecanico(LinhasFicheiro& marcas) {
     string marca;
@@ -115,7 +93,7 @@ Mecanico* CriarMecanico(LinhasFicheiro& marcas) {
 
     string nome;
     cout << "Introduza o nome do mecânico: " << endl;
-    cin >> nome;
+    getline(cin,nome);
 
     string entrada;
     double precotemp = 0;
@@ -126,7 +104,7 @@ Mecanico* CriarMecanico(LinhasFicheiro& marcas) {
         cin >> entrada;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        while (!VerificarNumero(entrada)) {
+        while (!verificarnumero(entrada)) {
             cout << "Entrada inválida!" << endl << "Introduza o preço por dia do mecânico (inteiro entre 0 e 100): " << endl;
             cin >> entrada;
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -136,7 +114,11 @@ Mecanico* CriarMecanico(LinhasFicheiro& marcas) {
     }
 
     preco = static_cast<int>(precotemp);
-    return new Mecanico(marca, nome, preco);
+    Mecanico* novo = &Mecanico();
+    novo->marca = marca;
+    novo->nome = nome;
+    novo->preco_reparacao_por_dia = preco;
+    return novo;
 }
 
 Mecanico* AdicionarMecanico(Mecanico* lista, Mecanico* novoMecanico) {

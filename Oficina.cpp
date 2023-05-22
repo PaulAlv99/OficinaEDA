@@ -10,8 +10,8 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
     Oficina nova = Oficina();
     nova.ciclos = 0; //dias de trabalho
     nova.numero_ets = numero_de_et();
-	nova.ets = &CriarET(1);
-	nova.ets->inicio = nova.ets;
+	nova.ets = CriarET(1);
+	nova.ets.inicio = &nova.ets;
 	nova.listaespera;
 	nova.carrostotais = 0;
     nova.fila_espera_tamanho = 0;
@@ -19,10 +19,10 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
     /* Criar os mecanicos conforme o numero de ets gerado*/
 	
-	nova.ets->mecanico = *CriarMecanico(marcas);
-	EstacaoTrabalho * atual = nova.ets;
+	nova.ets.mecanico = *CriarMecanico(marcas);
+	EstacaoTrabalho * atual = &nova.ets;
     for (int i = 1; i < nova.numero_ets - 1; i++) {
-		atual->seguinte = &CriarET(i + 1);
+		atual->seguinte = &CriarET(i + 1); ;
 		atual->seguinte->inicio = atual->inicio;
 		atual->seguinte->mecanico = *CriarMecanico(marcas);
 		atual = atual->seguinte;
@@ -45,7 +45,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
 bool MarcaPresente(Oficina &Of, string marca) {
 	bool temp = false;
-	EstacaoTrabalho * atual = Of.ets;
+	EstacaoTrabalho * atual = &Of.ets;
 	while(atual != NULL) {
 		temp = (marca == atual->mecanico.marca);
 		if (temp) {
@@ -99,13 +99,14 @@ void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& mode
 
 void ColocarCarrosET(Oficina& Of, int num) {
 	listacarros* atualespera = &Of.listaespera;
-	EstacaoTrabalho* atualets = Of.ets;
-	listacarros* atualcarrosaserreparados = Of.ets->carros_a_ser_reparados;
+	EstacaoTrabalho* atualets = &Of.ets;
+	
 	int colocados = 0;
 	while (colocados < num) {
 		while (atualets != NULL) {
 			while(atualespera!= NULL){
-				if ((atualets->mecanico.marca == Of.listaespera.carro.marca) && (atualets->capacidade > atualets->num_carros_a_ser_reparados) && (colocados < num)) {
+				if ((atualets->mecanico.marca == atualespera->carro.marca) && (atualets->capacidade > atualets->num_carros_a_ser_reparados) && (colocados < num)) {
+					listacarros* atualcarrosaserreparados = atualets->carros_a_ser_reparados;
 					while (atualcarrosaserreparados->seguinte != NULL) {
 						if (atualcarrosaserreparados->carro.ID == 0) {
 							atualcarrosaserreparados->carro = atualespera->carro;
@@ -116,6 +117,7 @@ void ColocarCarrosET(Oficina& Of, int num) {
 						}
 						atualcarrosaserreparados = atualcarrosaserreparados->seguinte;
 					}
+					atualcarrosaserreparados = atualcarrosaserreparados->inicio;
 				}
 				atualespera = atualespera->seguinte;
 			}
@@ -124,7 +126,6 @@ void ColocarCarrosET(Oficina& Of, int num) {
 	}
 	atualespera = atualespera->inicio;
 	atualets = atualets->inicio;
-	atualcarrosaserreparados = atualcarrosaserreparados->inicio;
 }
 
 //void colocarprioritario(Oficina& Of) {
@@ -254,7 +255,7 @@ void organizarprioritario(Oficina& Of) {
 void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos)
 {
 	for (int i = 0; i < Of.numero_ets; i++) {
-		reparacao(Of.ets[i]);
+		//reparacao();
 
 	}
 	Of.ciclos++;

@@ -138,7 +138,6 @@
     <ClCompile Include="Ficheiros.cpp" />
     <ClCompile Include="Ficheiros.h" />
     <ClCompile Include="Gestao.cpp" />
-    <ClCompile Include="ListaLigada.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mecanico.cpp" />
     <ClCompile Include="Oficina.cpp" />

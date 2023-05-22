@@ -39,9 +39,6 @@
     <ClCompile Include="Oficina.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ListaLigada.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Arvore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
