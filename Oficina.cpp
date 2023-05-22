@@ -19,12 +19,12 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
     /* Criar os mecanicos conforme o numero de ets gerado*/
 	
-	nova.ets->mecanico = CriarMecanico(marcas);
+	nova.ets->mecanico = *CriarMecanico(marcas);
 	EstacaoTrabalho * atual = nova.ets;
     for (int i = 1; i < nova.numero_ets - 1; i++) {
 		atual->seguinte = &CriarET(i + 1);
 		atual->seguinte->inicio = atual->inicio;
-		atual->seguinte->mecanico = CriarMecanico(marcas);
+		atual->seguinte->mecanico = *CriarMecanico(marcas);
 		atual = atual->seguinte;
     }
 	atual->seguinte = NULL;
