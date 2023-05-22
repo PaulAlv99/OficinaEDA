@@ -56,7 +56,7 @@ Arvore* removerCopia(Arvore* raiz, int num) {
 	Arvore* ant = NULL;
 	while (no != NULL) {
 		if (num == no->carros_reparados.ID) {
-			return raiz = removerCopia(raiz, no, ant);
+			return raiz = removerCopia2(raiz, no, ant);
 		}
 		else if (num < no->carros_reparados.ID) {
 			ant = no;
@@ -70,7 +70,7 @@ Arvore* removerCopia(Arvore* raiz, int num) {
 	return raiz;
 }
 
-Arvore* removerCopia(Arvore* raiz, Arvore* no, Arvore* ant) {
+Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant) {
 	if (ant == NULL) { //remover a raiz
 		if (no->esquerda == NULL && no->direita == NULL)
 			raiz = NULL;
@@ -130,4 +130,13 @@ Arvore* removerCopia(Arvore* raiz, Arvore* no, Arvore* ant) {
 	}
 	delete no;
 	return raiz;
+}
+
+void infixa(Arvore* raiz)//travessia infixa
+{
+	if (raiz != NULL) {
+		infixa(raiz->esquerda);
+		cout << raiz->carros_reparados.ID << " ";
+		infixa(raiz->direita);
+	}
 }
