@@ -6,6 +6,8 @@ Arvore* novoNodo(Carro carro) {
 	novonodo->esquerda = NULL;
 	return novonodo;
 }
+
+
 Arvore* inserirNodo(Arvore* raiz, Carro carros_reparados) {
 	if (carros_reparados.ID > raiz->carros_reparados.ID) {
 		raiz->direita = inserirNodo(raiz->direita, carros_reparados);
@@ -18,6 +20,8 @@ Arvore* inserirNodo(Arvore* raiz, Carro carros_reparados) {
 	}
 	return raiz;
 }
+
+
 int numeroNiveis(Arvore* raiz) {
 	if (raiz == NULL) {
 		return 0;
@@ -26,6 +30,8 @@ int numeroNiveis(Arvore* raiz) {
 		return 1 + int(max(numeroNiveis(raiz->esquerda), numeroNiveis(raiz->direita)));
 	}
 }
+
+
 int numeroVertices(Arvore* raiz)
 {
 	if (raiz == NULL)
@@ -36,6 +42,8 @@ int numeroVertices(Arvore* raiz)
 
 	return 1 + l + r;
 }
+
+
 void imprimeArvore(Arvore* raiz, int nivel) {
 	int nivel = numeroNiveis(raiz);
 	if (raiz == NULL) {
@@ -50,6 +58,7 @@ void imprimeArvore(Arvore* raiz, int nivel) {
 	cout << raiz->carros_reparados.marca << "-" << raiz->carros_reparados.modelo << endl;
 	imprimeArvore(raiz->esquerda, nivel + 1);
 }
+
 
 Arvore* removerCopia(Arvore* raiz, int num) {
 	Arvore* no = raiz;
@@ -69,6 +78,7 @@ Arvore* removerCopia(Arvore* raiz, int num) {
 	}
 	return raiz;
 }
+
 
 Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant) {
 	if (ant == NULL) { //remover a raiz
@@ -131,6 +141,7 @@ Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant) {
 	delete no;
 	return raiz;
 }
+
 
 void infixa(Arvore* raiz)//travessia infixa
 {
