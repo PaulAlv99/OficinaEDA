@@ -48,10 +48,6 @@ void reparacao(EstacaoTrabalho& ID1) {
 }
 */
 
-struct no {
-    Carro carro;
-    no* proximo;
-};
 
 EstacaoTrabalho CriarET(int ID) {
     EstacaoTrabalho nova = EstacaoTrabalho();
