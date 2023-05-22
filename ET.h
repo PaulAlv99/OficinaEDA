@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 struct EstacaoTrabalho {
-	Mecanico mecanico;
+	Mecanico mecanico = Mecanico();
 	int ID = 0;
 	int capacidade = 0;
 	float faturacao = 0;

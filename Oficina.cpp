@@ -46,7 +46,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 bool MarcaPresente(Oficina &Of, string marca) {
 	bool temp = false;
 	EstacaoTrabalho * atual = Of.ets;
-	while(atual->seguinte != NULL) {
+	while(atual != NULL) {
 		temp = (marca == atual->mecanico.marca);
 		if (temp) {
 			break;
@@ -103,8 +103,8 @@ void ColocarCarrosET(Oficina& Of, int num) {
 	listacarros* atualcarrosaserreparados = Of.ets->carros_a_ser_reparados;
 	int colocados = 0;
 	while (colocados < num) {
-		while (atualets->seguinte != NULL) {
-			while(atualespera->seguinte!= NULL){
+		while (atualets != NULL) {
+			while(atualespera!= NULL){
 				if ((atualets->mecanico.marca == Of.listaespera.carro.marca) && (atualets->capacidade > atualets->num_carros_a_ser_reparados) && (colocados < num)) {
 					while (atualcarrosaserreparados->seguinte != NULL) {
 						if (atualcarrosaserreparados->carro.ID == 0) {
@@ -202,7 +202,7 @@ void organizarprioritario(Oficina& Of, Carro& carro) {
 	novo->seguinte = NULL;
 	novo->inicio = novo;
 	removecarro(*atualespera, atualespera->carro);
-	while (atualespera->seguinte != NULL && atualespera->inicio != NULL) {
+	while (atualespera != NULL && atualespera->inicio != NULL) {
 		if (atualespera->carro.prioritario) {
 			temp->carro = atualespera->carro;
 			temp->seguinte = NULL;
@@ -231,7 +231,7 @@ void organizarprioritario(Oficina& Of, Carro& carro) {
 	else if (novo->inicio == NULL && atualespera->inicio == NULL) {
 		final = NULL;
 	}
-	while (novo->seguinte != NULL) {
+	while (novo != NULL) {
 		finaltemp->carro = novo->carro;
 		finaltemp->seguinte = NULL;
 		finaltemp->inicio = final->inicio;
@@ -239,7 +239,7 @@ void organizarprioritario(Oficina& Of, Carro& carro) {
 		final = final->seguinte;
 		novo = novo->seguinte;
 	}
-	while (atualespera->seguinte != NULL) {
+	while (atualespera != NULL) {
 		finaltemp->carro = atualespera->carro;
 		finaltemp->seguinte = NULL;
 		finaltemp->inicio = final->inicio;

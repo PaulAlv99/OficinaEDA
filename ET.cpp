@@ -48,14 +48,10 @@ void reparacao(EstacaoTrabalho& ID1) {
 }
 */
 
-struct no {
-    Carro carro;
-    no* proximo;
-};
 
 EstacaoTrabalho CriarET(int ID) {
-    EstacaoTrabalho nova;
-    nova.mecanico = Mecanico(); // Atribuir um novo objeto Mecanico a nova.mecanico
+    EstacaoTrabalho nova = EstacaoTrabalho();
+    nova.mecanico; // Atribuir um novo objeto Mecanico a nova.mecanico
     nova.capacidade = 2 + (rand() % 3);
     nova.faturacao = 0;
     nova.ID = ID;
@@ -67,16 +63,16 @@ EstacaoTrabalho CriarET(int ID) {
 
 void reparacao(EstacaoTrabalho& ID1) {
     int chance;
-    no* atual = ID1.carros_a_ser_reparados;
-    no* anterior = nullptr;
+    listacarros* atual = ID1.carros_a_ser_reparados;
+    listacarros* anterior = NULL;
 
-    while (atual != nullptr) {
+    while (atual != NULL) {
         if ((atual->carro.dias_em_reparacao < atual->carro.tempo_reparacao_max) && (atual->carro.ID != 0)) {
             chance = rand() % 100 + 1;
             if ((chance >= 1 && chance <= 15) && (atual->carro.dias_em_reparacao > 0)) {
-                no* novono = new no();
+                listacarros* novono = new listacarros();
                 novono->carro = atual->carro;
-                novono->proximo = ID1.Carrosreparados;
+                novono->seguinte = ID1.Carrosreparados;
                 ID1.Carrosreparados = novono;
 
                 ID1.num_carros_a_ser_reparados--;
@@ -90,9 +86,9 @@ void reparacao(EstacaoTrabalho& ID1) {
             }
         }
         else if ((atual->carro.dias_em_reparacao >= atual->carro.tempo_reparacao_max) && (atual->carro.ID != 0)) {
-            no* novono = new no();
+            listacarros* novono = new listacarros();
             novono->carro = atual->carro;
-            novono->proximo = ID1.Carrosreparados;
+            novono->seguinte = ID1.Carrosreparados;
             ID1.Carrosreparados = novono;
 
             ID1.num_carros_a_ser_reparados--;
@@ -103,8 +99,8 @@ void reparacao(EstacaoTrabalho& ID1) {
         }
 
         anterior = atual;
-        atual = atual->proximo;
-        delete anterior;
+        atual = atual->seguinte;
+        //delete anterior;
     }
 
     ID1.carros_a_ser_reparados = nullptr;

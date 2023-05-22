@@ -422,72 +422,79 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 	}
 }
 void gravar_oficina(Oficina& Of) {
+    string caminho = "oficina.txt";
+    ofstream ficheiro;
+    ficheiro.open(caminho);
 
-	string caminho = "oficina.txt";
+    if (ficheiro.is_open()) {
+        // Gravação dos dados da oficina
+        ficheiro << Of.ciclos << "|" 
+                 << Of.carrostotais << "|" 
+                 << Of.numero_ets << "\n";
 
-	// cria um objeto ofstream
-	ofstream ficheiro;
+        // Gravação dos dados de cada EstacaoTrabalho
+        for (int i = 0; i < Of.numero_ets; i++) {
+            EstacaoTrabalho& et = Of.ets[i];
+            ficheiro << et.ID << "|" 
+                     << et.capacidade << "|" 
+                     << et.faturacao << "|"
+                     << et.num_carros_a_ser_reparados << "|" 
+                     << et.num_carros_reparados << "\n";
 
-	// abre o ficheiro
-	ficheiro.open(caminho);
+            // Gravação dos carros reparados
+            no* atualReparados = et.Carrosreparados;
+            while (atualReparados != nullptr) {
+                Carro& carro = atualReparados->carro;
+                ficheiro << carro.ID << "|" 
+                         << carro.dias_em_reparacao << "|"
+                         << carro.marca << "|" 
+                         << carro.modelo << "|" 
+                         << carro.prioritario << "|"
+                         << carro.custoreparacao << "|"
+                         << carro.tempo_reparacao_max << "\n";
+                atualReparados = atualReparados->proximo;
+            }
 
-	// verifica se o ficheiro foi aberto com sucesso
-	if (ficheiro.is_open()) {
+            // Gravação dos carros na fila de espera
+            no* atualEspera = et.carros_a_ser_reparados;
+            while (atualEspera != nullptr) {
+                Carro& carro = atualEspera->carro;
+                ficheiro << carro.dias_em_reparacao << "|" 
+                         << carro.ID << "|"
+                         << carro.marca << "|" 
+                         << carro.modelo << "|" 
+                         << carro.prioritario << "|" 
+                         << carro.tempo_reparacao_max <<"\n";
+                atualEspera = atualEspera->proximo;
+            }
 
-		ficheiro << Of.ciclos << "|" 
-		<< Of.carrostotais << "|" 
-		<< Of.numero_ets << "\n";
-		//ets
-		for (int i = 0; i < Of.numero_ets;i++) {
-			ficheiro << Of.ets[i].ID << "|"	
-			<< Of.ets[i].capacidade << "|" 
-			<< Of.ets[i].faturacao << "|"
-			
-			<< Of.ets[i].num_carros_a_ser_reparados << "|" 
-			<< Of.ets[i].num_carros_reparados << "\n";
-			for (int j = 0; j < Of.ets[i].num_carros_reparados; j++) {
-				ficheiro << Of.ets[i].Carrosreparados[j].ID << "|" 
-				<< Of.ets[i].Carrosreparados[j].dias_em_reparacao << "|"
-				<< Of.ets[i].Carrosreparados[j].marca << "|" 
-				<< Of.ets[i].Carrosreparados[j].modelo << "|" 
-				<< Of.ets[i].Carrosreparados[j].prioritario << "|"
-				<< Of.ets[i].Carrosreparados[j].custoreparacao << "|"
-				<< Of.ets[i].Carrosreparados[j].tempo_reparacao_max << "\n";
-			}
-			//carros a ser reparados
-			for (int k = 0; k < Of.ets[i].capacidade;k++) {
-				ficheiro << Of.ets[i].carros_a_ser_reparados[k].dias_em_reparacao << "|" 
-				<< Of.ets[i].carros_a_ser_reparados[k].ID << "|"
-				<< Of.ets[i].carros_a_ser_reparados[k].marca << "|" 
-				<< Of.ets[i].carros_a_ser_reparados[k].modelo << "|" 
-				<< Of.ets[i].carros_a_ser_reparados[k].prioritario << "|" 
-				<< Of.ets[i].carros_a_ser_reparados[k].tempo_reparacao_max <<"\n";
-			}
-			//mecanico
-			ficheiro << Of.ets[i].mecanico.marca << "|" 
-			<< Of.ets[i].mecanico.nome << "|" 
-			<< Of.ets[i].mecanico.preco_reparacao_por_dia << "\n";
-		}
-		//fila de espera
-		ficheiro << Of.fila_espera_tamanho << "\n";
-		for (int y = 0; y < Of.fila_espera_tamanho; y++) {
-			ficheiro << Of.fila_espera[y].ID << "|" 
-			<< Of.fila_espera[y].dias_em_reparacao << "|"
-			<< Of.fila_espera[y].marca << "|" 
-			<< Of.fila_espera[y].modelo << "|"
-			<< Of.fila_espera[y].prioritario << "|" 
-			<< Of.fila_espera[y].tempo_reparacao_max << "\n";
-		}
+            // Gravação dos dados do mecânico
+            Mecanico& mecanico = et.mecanico;
+            ficheiro << mecanico.marca << "|" 
+                     << mecanico.nome << "|" 
+                     << mecanico.preco_reparacao_por_dia << "\n";
+        }
 
+        // Gravação dos dados da fila de espera
+        ficheiro << Of.fila_espera_tamanho << "\n";
+        no* atualFilaEspera = Of.fila_espera;
+        while (atualFilaEspera != nullptr) {
+            Carro& carro = atualFilaEspera->carro;
+            ficheiro << carro.ID << "|" 
+                     << carro.dias_em_reparacao << "|"
+                     << carro.marca << "|" 
+                     << carro.modelo << "|"
+                     << carro.prioritario << "|" 
+                     << carro.tempo_reparacao_max << "\n";
+            atualFilaEspera = atualFilaEspera->proximo;
+        }
 
-		// fecha o arquivo
-		ficheiro.close();
-	}
-	else {
-		cout << "Erro ao abrir o ficheiro" << endl;
-	}
-
+        ficheiro.close();
+    } else {
+        cout << "Erro ao abrir o ficheiro" << endl;
+    }
 }
+
 
 
 
