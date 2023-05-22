@@ -23,6 +23,7 @@ void Transportar(Oficina& Of, int ind);
 void colocarprioritario(Oficina& Of);
 void ColocarCarrosET(Oficina& Of, int num);
 void NovaListaEspera(listacarros & l);
+void organizarprioritario(Oficina& Of);
 
 /*
 #include <iostream>
