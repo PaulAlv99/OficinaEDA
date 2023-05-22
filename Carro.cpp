@@ -77,6 +77,7 @@ void adicionarcarro(listacarros& lista, Carro& carro) {
 		}
 		atual->seguinte = novo;
 	}
+	atual = atual->inicio;
 }
 
 void removecarro(listacarros& lista, Carro& carro) {
@@ -114,4 +115,5 @@ void removecarro(listacarros& lista, Carro& carro) {
 
 	}
 	atual = temp;
+	atual = atual->inicio;
 }

@@ -19,12 +19,12 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
     /* Criar os mecanicos conforme o numero de ets gerado*/
 	
-	nova.ets->mecanico = CriarMecanico(marcas);
+	nova.ets->mecanico = *CriarMecanico(marcas);
 	EstacaoTrabalho * atual = nova.ets;
     for (int i = 1; i < nova.numero_ets - 1; i++) {
 		atual->seguinte = &CriarET(i + 1);
 		atual->seguinte->inicio = atual->inicio;
-		atual->seguinte->mecanico = CriarMecanico(marcas);
+		atual->seguinte->mecanico = *CriarMecanico(marcas);
 		atual = atual->seguinte;
     }
 	atual->seguinte = NULL;
@@ -33,7 +33,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
     /*Criar 10 carros random*/
     CriarCarrosNaFila(nova,marcas,modelos,10);
 
-
+	atual = atual->inicio;
     //Criar ET; criar os mecanicos; encher a fila ; criar os carros (lista das marcas e dos modelos);
     return nova;
 }
@@ -55,6 +55,7 @@ bool MarcaPresente(Oficina &Of, string marca) {
 	}
 
 	return temp;
+	atual = atual->inicio;
 }
 
 
@@ -121,6 +122,9 @@ void ColocarCarrosET(Oficina& Of, int num) {
 		}
 		break;
 	}
+	atualespera = atualespera->inicio;
+	atualets = atualets->inicio;
+	atualcarrosaserreparados = atualcarrosaserreparados->inicio;
 }
 
 //void colocarprioritario(Oficina& Of) {
@@ -244,6 +248,7 @@ void organizarprioritario(Oficina& Of, Carro& carro) {
 		novo = novo->seguinte;
 	}
 	atualespera = final;
+	atualespera = atualespera->inicio;
 }
 
 void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos)
