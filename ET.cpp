@@ -100,7 +100,7 @@ void reparacao(EstacaoTrabalho& ID1) {
 
         anterior = atual;
         atual = atual->seguinte;
-        delete anterior;
+        //delete anterior;
     }
 
     ID1.carros_a_ser_reparados = nullptr;
