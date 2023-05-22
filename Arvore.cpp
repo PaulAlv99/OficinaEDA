@@ -9,18 +9,21 @@ Arvore* novoNodo(Carro carro) {
 }
 
 Arvore* inserirNodo(Arvore* raiz, Carro carros_reparados) {
-    if (raiz == NULL) {
-        return novoNodo(carros_reparados);
+    Arvore* aux = raiz;
+    Arvore* prev = NULL;
+    if (raiz == NULL)
+        aux = novoNodo(carros_reparados);
+    else {
+        while (raiz != NULL) {
+            prev = raiz;
+            raiz = (raiz->carros_reparados.ID > carros_reparados.ID ? raiz->esquerda : raiz->direita);
+        }
+        if (prev->carros_reparados.ID < carros_reparados.ID)
+            prev->direita = novoNodo(carros_reparados);
+        else
+            prev->esquerda = novoNodo(carros_reparados);
     }
-
-    if (carros_reparados.ID > raiz->carros_reparados.ID) {
-        raiz->direita = inserirNodo(raiz->direita, carros_reparados);
-    }
-    else if (carros_reparados.ID < raiz->carros_reparados.ID) {
-        raiz->esquerda = inserirNodo(raiz->esquerda, carros_reparados);
-    }
-
-    return raiz;
+    return aux;
 }
 
 int numeroNiveis(Arvore* raiz) {
@@ -46,16 +49,15 @@ void imprimeArvore(Arvore* raiz, int nivel) {
     if (raiz == NULL) {
         return;
     }
-
     imprimeArvore(raiz->direita, nivel + 1);
-    for (int i = 0; i < nivel; i++) {
-        cout << "\t";
+
+    for (int i = 1; i < nivel; i++) {
+        std::cout << "\t";
     }
-    cout << raiz->carros_reparados.ID << endl;
+    std::cout << raiz->carros_reparados.marca << "-" << raiz->carros_reparados.modelo << std::endl;
+
     imprimeArvore(raiz->esquerda, nivel + 1);
 }
-
-Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant);
 
 Arvore* removerCopia(Arvore* raiz, int num) {
     Arvore* no = raiz;
