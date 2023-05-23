@@ -228,7 +228,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 				break;
 			}
 
-			carregar_oficina(Of, caminho);
+			carregar_oficina ( Of, caminho);
 			system("CLS");
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
@@ -236,6 +236,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			break;
 
 		case 6: // Adicionar et
+
 
 
 		case 7: // imprimir carros reparados 
@@ -507,57 +508,56 @@ void gravar_oficina(Oficina& Of) {
     ofstream ficheiro;
     ficheiro.open(caminho);
 
-    if (ficheiro.is_open()) {
-        // Gravação dos dados da oficina
-        ficheiro << Of.ciclos << "|" 
-                 << Of.carrostotais << "|" 
-                 << Of.numero_ets << "\n";
+	if (ficheiro.is_open()) {
+		// Gravação dos dados da oficina
+		ficheiro << Of.ciclos << "|"
+			<< Of.carrostotais << "|"
+			<< Of.numero_ets << "\n";
 
-        // Gravação dos dados de cada EstacaoTrabalho
+		// Gravação dos dados de cada EstacaoTrabalho
 		EstacaoTrabalho* atualET = &Of.ets;
-        while (atualET != NULL) {
-            ficheiro << atualET->ID << "|" 
-                     << atualET->capacidade << "|"
-                     << atualET->faturacao << "|"
-                     << atualET->num_carros_a_ser_reparados << "|"
-                     << atualET->num_carros_reparados << "\n";
+		while (atualET != NULL) {
+			ficheiro << atualET->ID << "|"
+				<< atualET->capacidade << "|"
+				<< atualET->faturacao << "|"
+				<< atualET->num_carros_a_ser_reparados << "|"
+				<< atualET->num_carros_reparados << "\n";
+			// Gravação dos carros reparados
+		   // O Paulo tem de ver
+	/*       listacarros* atualReparados = ;
+		   while (atualReparados != nullptr) {
+			   Carro& carro = atualReparados->carro;
+			   ficheiro << carro.ID << "|"
+						<< carro.dias_em_reparacao << "|"
+						<< carro.marca << "|"
+						<< carro.modelo << "|"
+						<< carro.prioritario << "|"
+						<< carro.custoreparacao << "|"
+						<< carro.tempo_reparacao_max << "\n";
+			   atualReparados = atualReparados->seguinte;
+		   }*/
 
-            // Gravação dos carros reparados
-			// O Paulo tem de ver
-     /*       listacarros* atualReparados = ;
-            while (atualReparados != nullptr) {
-                Carro& carro = atualReparados->carro;
-                ficheiro << carro.ID << "|" 
-                         << carro.dias_em_reparacao << "|"
-                         << carro.marca << "|" 
-                         << carro.modelo << "|" 
-                         << carro.prioritario << "|"
-                         << carro.custoreparacao << "|"
-                         << carro.tempo_reparacao_max << "\n";
-                atualReparados = atualReparados->seguinte;
-            }*/
+		   // Gravação dos carros a ser reparados
 
-            // Gravação dos carros a ser reparados
 			listacarros* atualcarrosaserreparados = atualET->carros_a_ser_reparados;;
-            while (atualcarrosaserreparados != NULL) {
-                ficheiro << atualcarrosaserreparados->carro.dias_em_reparacao << "|"
-                         << atualcarrosaserreparados->carro.ID << "|"
-                         << atualcarrosaserreparados->carro.marca << "|"
-                         << atualcarrosaserreparados->carro.modelo << "|"
-                         << atualcarrosaserreparados->carro.prioritario << "|"
-                         << atualcarrosaserreparados->carro.tempo_reparacao_max <<"\n";
+			while (atualcarrosaserreparados != NULL) {
+				ficheiro << atualcarrosaserreparados->carro.dias_em_reparacao << "|"
+					<< atualcarrosaserreparados->carro.ID << "|"
+					<< atualcarrosaserreparados->carro.marca << "|"
+					<< atualcarrosaserreparados->carro.modelo << "|"
+					<< atualcarrosaserreparados->carro.prioritario << "|"
+					<< atualcarrosaserreparados->carro.tempo_reparacao_max << "\n";
 				atualcarrosaserreparados = atualcarrosaserreparados->seguinte;
-            }
+			}
 			atualcarrosaserreparados = atualcarrosaserreparados->inicio;
-
+		}
+	}
 }
 
 
 
-void carregar_oficina(Oficina& Of, string caminho) {
-	//string caminho = "oficina.txt";
+void carregar_oficina(Oficina& Of, string caminho){
 	
-
 	ifstream ficheiro(caminho);
 
 	if (ficheiro.is_open()) {
@@ -725,13 +725,20 @@ void carregar_oficina(Oficina& Of, string caminho) {
 	}
 
 }
+void adicionar_ET(Oficina& Of , LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
+	EstacaoTrabalho* atual = &Of.ets;
+	atual->seguinte = &CriarET(Of.numero_ets + 1);
+	atual->seguinte->inicio = atual->inicio;
+	atual->seguinte->mecanico = CriarMecanico(marcas);
+	atual = atual->seguinte;
 
+}
 
 
 void imprimir_oficinaalfabeticamente(Oficina& Of) {
 	int num_carros_total = 0;
 	for (int i = 0; i < Of.numero_ets; i++) {
-		num_carros_total += Of.ets[i].num_carros_a_ser_reparados + Of.ets[i].num_carros_reparados;
+		num_carros_total += Of.ets.num_carros_a_ser_reparados + Of.ets.num_carros_reparados;
 	}
 	num_carros_total += Of.fila_espera_tamanho;
 	Carro* carros_total = new Carro[num_carros_total]; // aloca memória para o array de carros
@@ -752,16 +759,19 @@ void imprimir_oficinaalfabeticamente(Oficina& Of) {
 		carros_total[k] = Of.fila_espera[i];
 		k++;
 	}
+}
 
 
 
-void imprimir_oficinaportempo(Oficina& Of) {
+void imprimir_oficinaportempo(Oficina & Of) {
 	int num_carros_total = 0;
 	for (int i = 0; i < Of.numero_ets; i++) {
 		num_carros_total += Of.ets[i].num_carros_a_ser_reparados + Of.ets[i].num_carros_reparados;
 	}
 	num_carros_total += Of.fila_espera_tamanho;
-	Carro* carros_total = new Carro[num_carros_total]; // aloca memória para o array de carros
+	Carro* carros_total = new Carro[num_carros_total];
+}
+	// aloca memória para o array de carros
 
 //void carregar_oficina(Oficina& Of, const string& caminho) {
 //	ifstream ficheiro(caminho);
@@ -1075,7 +1085,7 @@ void imprimir_oficinaportempo(Oficina& Of) {
 //
 //}
 
-}
+
 void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carros) {
 
 	// Ordenar o array de "carros" alfabeticamente e por dias_em_reparacao
