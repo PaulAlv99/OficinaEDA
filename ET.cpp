@@ -1,6 +1,7 @@
 #include "ET.h"
+#include "Oficina.h"
 
-EstacaoTrabalho CriarET(int ID) {
+/*EstacaoTrabalho CriarET(int ID) {
 	EstacaoTrabalho nova = EstacaoTrabalho();
 	nova.mecanico;
 	nova.capacidade = 2 + (rand() % 3);
@@ -12,37 +13,113 @@ EstacaoTrabalho CriarET(int ID) {
 	return nova;
 }
 
-void reparacao(EstacaoTrabalho& ID1) {
+void reparacao(EstacaoTrabalho& ET) {
 	int chance;
 
-	for (int i = 0; i < ID1.capacidade; i++) {
-		if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao < ID1.carros_a_ser_reparados[i].tempo_reparacao_max) && (ID1.carros_a_ser_reparados[i].ID != 0)) {
+	for (int i = 0; i < ET.capacidade; i++) {
+		if ((ET.carros_a_ser_reparados[i].dias_em_reparacao < ET.carros_a_ser_reparados[i].tempo_reparacao_max) && (ET.carros_a_ser_reparados[i].ID != 0)) {
 			chance = rand() % 100 + 1;
-			if ((chance >= 1 and chance <= 15) && (ID1.carros_a_ser_reparados[i].dias_em_reparacao > 0)) {
-				int tamanho = (ID1.num_carros_reparados);
-				Adiciona(ID1.Carrosreparados, tamanho, ID1.carros_a_ser_reparados[i]);
+			if ((chance >= 1 and chance <= 15) && (ET.carros_a_ser_reparados[i].dias_em_reparacao > 0)) {
+				int tamanho = (ET.num_carros_reparados);
+				Adiciona(ET.Carrosreparados, tamanho, ET.carros_a_ser_reparados[i]);
 				
-				ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
-				ID1.carros_a_ser_reparados[i].ID = 0;
-				ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
-				ID1.Carrosreparados[ID1.num_carros_reparados].custoreparacao = ID1.mecanico.preco_reparacao_por_dia * ID1.Carrosreparados[ID1.num_carros_reparados].dias_em_reparacao;
-				ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
+				ET.num_carros_a_ser_reparados = ET.num_carros_a_ser_reparados - 1;
+				ET.carros_a_ser_reparados[i].ID = 0;
+				ET.faturacao = ET.faturacao + (ET.carros_a_ser_reparados[i].dias_em_reparacao * ET.mecanico.preco_reparacao_por_dia);
+				ET.Carrosreparados[ET.num_carros_reparados].custoreparacao = ET.mecanico.preco_reparacao_por_dia * ET.Carrosreparados[ET.num_carros_reparados].dias_em_reparacao;
+				ET.num_carros_reparados = ET.num_carros_reparados + 1;
 
 			}
 			else
-				ID1.carros_a_ser_reparados[i].dias_em_reparacao++;
+				ET.carros_a_ser_reparados[i].dias_em_reparacao++;
 		}
 
-		else if ((ID1.carros_a_ser_reparados[i].dias_em_reparacao >= ID1.carros_a_ser_reparados[i].tempo_reparacao_max) && (ID1.carros_a_ser_reparados[i].ID != 0)) {
-			int tamanho = (ID1.num_carros_reparados);
-			Adiciona(ID1.Carrosreparados, tamanho, ID1.carros_a_ser_reparados[i]);
+		else if ((ET.carros_a_ser_reparados[i].dias_em_reparacao >= ET.carros_a_ser_reparados[i].tempo_reparacao_max) && (ET.carros_a_ser_reparados[i].ID != 0)) {
+			int tamanho = (ET.num_carros_reparados);
+			Adiciona(ET.Carrosreparados, tamanho, ET.carros_a_ser_reparados[i]);
 			
-			ID1.num_carros_a_ser_reparados = ID1.num_carros_a_ser_reparados - 1;
-			ID1.carros_a_ser_reparados[i].ID = 0;
-			ID1.faturacao = ID1.faturacao + (ID1.carros_a_ser_reparados[i].dias_em_reparacao * ID1.mecanico.preco_reparacao_por_dia);
-			ID1.Carrosreparados[ID1.num_carros_reparados].custoreparacao = ID1.mecanico.preco_reparacao_por_dia * ID1.Carrosreparados[ID1.num_carros_reparados].dias_em_reparacao;
-			ID1.num_carros_reparados = ID1.num_carros_reparados + 1;
+			ET.num_carros_a_ser_reparados = ET.num_carros_a_ser_reparados - 1;
+			ET.carros_a_ser_reparados[i].ID = 0;
+			ET.faturacao = ET.faturacao + (ET.carros_a_ser_reparados[i].dias_em_reparacao * ET.mecanico.preco_reparacao_por_dia);
+			ET.Carrosreparados[ET.num_carros_reparados].custoreparacao = ET.mecanico.preco_reparacao_por_dia * ET.Carrosreparados[ET.num_carros_reparados].dias_em_reparacao;
+			ET.num_carros_reparados = ET.num_carros_reparados + 1;
 		}
 	}
 
+}
+*/
+
+
+EstacaoTrabalho CriarET(int ID) {
+    EstacaoTrabalho nova = EstacaoTrabalho();
+    nova.mecanico; // Atribuir um novo objeto Mecanico a nova.mecanico
+    nova.capacidade = 2 + (rand() % 3);
+    nova.faturacao = 0;
+    nova.ID = ID;
+    nova.Carrosreparados = NULL;
+    nova.carros_a_ser_reparados = NULL;
+    nova.num_carros_a_ser_reparados = 0;
+    nova.seguinte = NULL;
+    nova.inicio = NULL;
+    return nova;
+}
+//Tem dois pointers um para o todos os elementos node->inicio e outro para seguinte->NULL
+void reparacao(Oficina& Of) {
+	int chance;
+	EstacaoTrabalho* atualET = &Of.ets;
+	listacarros* atualcarro = atualET->carros_a_ser_reparados;
+	Arvore* raiz = atualET->Carrosreparados;
+	while (atualET != NULL) {
+		while (ultimoInfixa(raiz) != NULL){
+			if ((atualET->carros_a_ser_reparados->carro.dias_em_reparacao < atualET->carros_a_ser_reparados->carro.tempo_reparacao_max) && (atualET->carros_a_ser_reparados->carro.ID != 0))
+				chance = rand() % 100 + 1;
+			if ((chance >= 1 && chance <= 15) && (atualET->carros_a_ser_reparados->carro.dias_em_reparacao > 0)) {
+				int tamanho = atualET->num_carros_a_ser_reparados;
+				/* Adicionar a arvore de carros reparados
+				   listacarros* novono = new listacarros();
+				   novono->carro = atual->carro;
+				   novono->seguinte = ET.Carrosreparados;
+				   ET.Carrosreparados = novono;*/
+
+				Of.ets.num_carros_a_ser_reparados--;
+
+				Of.ets.faturacao += (atualET->carros_a_ser_reparados->carro.dias_em_reparacao * Of.ets.mecanico.preco_reparacao_por_dia);
+				Of.ets.Carrosreparados->carros_reparados.custoreparacao = Of.ets.mecanico.preco_reparacao_por_dia * atualET->carros_a_ser_reparados->carro.dias_em_reparacao;
+				if (Of.ets.Carrosreparados == NULL) {
+					Of.ets.Carrosreparados = novoNodo(atualET->carros_a_ser_reparados->carro);
+					atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
+				}
+				else {
+					Of.ets.Carrosreparados = inserirNodo(Of.ets.Carrosreparados, atualET->carros_a_ser_reparados->carro);
+					atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
+				}
+				Of.ets.num_carros_reparados++;
+				atualET->carros_a_ser_reparados->carro.dias_em_reparacao++;
+			}
+			else if ((atualET->carros_a_ser_reparados->carro.dias_em_reparacao >= atualET->carros_a_ser_reparados->carro.tempo_reparacao_max) && (atualET->carros_a_ser_reparados->carro.ID != 0)) {
+				/* Adicionar a arvore de carros reparados
+				   listacarros* novono = new listacarros();
+				   novono->carro = atual->carro;
+				   novono->seguinte = ET.Carrosreparados;
+				   ET.Carrosreparados = novono;*/
+
+				Of.ets.num_carros_a_ser_reparados--;
+				atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
+				Of.ets.faturacao += atualET->carros_a_ser_reparados->carro.dias_em_reparacao * Of.ets.mecanico.preco_reparacao_por_dia;
+				Of.ets.Carrosreparados->carros_reparados.custoreparacao = Of.ets.mecanico.preco_reparacao_por_dia * atualET->carros_a_ser_reparados->carro.dias_em_reparacao;
+				if (Of.ets.Carrosreparados == NULL) {
+					Of.ets.Carrosreparados = novoNodo(atualET->carros_a_ser_reparados->carro);
+					atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
+				}
+				else {
+					Of.ets.Carrosreparados = inserirNodo(Of.ets.Carrosreparados, atualET->carros_a_ser_reparados->carro);
+					atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
+				}
+				Of.ets.num_carros_reparados++;
+				atualET->carros_a_ser_reparados->carro.dias_em_reparacao++;
+			}
+			atualET->carros_a_ser_reparados++;
+		}
+		atualET++;
+	}
 }

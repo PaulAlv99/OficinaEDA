@@ -60,3 +60,60 @@ void Remove(Carro*& v, int& tamanho, int& ind)
 
 }
 
+
+void adicionarcarro(listacarros& lista, Carro& carro) {
+	listacarros* atual = &lista;
+	listacarros novo = listacarros();
+	if (atual->inicio = NULL) {
+		atual->carro = carro;
+		atual->inicio = atual;
+	}
+	else {
+		novo.carro = carro;
+		novo.seguinte = NULL;
+		novo.inicio = atual->inicio;
+		while (atual->seguinte != NULL) {
+			atual = atual->seguinte;
+		}
+		atual->seguinte = &novo;
+	}
+	atual = atual->inicio;
+}
+
+void removecarro(listacarros& lista, Carro& carro) {
+	listacarros* atual = &lista;
+	listacarros* temp;
+	listacarros* nova;
+	bool terminar = false;
+	if (atual->inicio->carro.ID != carro.ID && atual->inicio != NULL) {
+		temp->carro = atual->carro;
+		temp->inicio = temp;
+		temp->seguinte = NULL;
+		terminar = false;
+		atual = atual->seguinte;
+	}
+	else if(atual->inicio != NULL && atual->inicio->carro.ID == carro.ID) {
+		temp = atual->seguinte;
+		temp->inicio = temp;
+		terminar = true;
+	}
+
+	if (atual->inicio != NULL && terminar == false) {
+		while (atual->seguinte != NULL) {
+			if (atual->carro.ID != carro.ID) {
+				nova->carro = atual->carro;
+				nova->seguinte = NULL;
+				nova->inicio = temp->inicio;
+				temp->seguinte = nova;
+				atual = atual->seguinte;
+			}
+			else {
+				atual = atual->seguinte;
+			}
+			
+		}
+
+	}
+	atual = temp;
+	atual = atual->inicio;
+}

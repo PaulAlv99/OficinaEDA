@@ -15,8 +15,16 @@ struct Carro {
 
 };
 
+struct listacarros {
+	Carro carro = Carro();
+	listacarros* seguinte = NULL;
+	listacarros* inicio = NULL;
+};
+
 
 Carro CriarCarro(LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 bool  GerarProbalidades(double probalidade);
 void Adiciona(Carro*& v, int& tamanho, Carro& carro);
 void Remove(Carro*& v, int& tamanho, int& ind);
+void adicionarcarro(listacarros& lista, Carro& carro);
+void removecarro(listacarros& lista, Carro& carro);
