@@ -147,7 +147,6 @@
     <ClInclude Include="Carro.h" />
     <ClInclude Include="ET.h" />
     <ClInclude Include="Gestao.h" />
-    <ClInclude Include="ListLigada.h" />
     <ClInclude Include="Mecanico.h" />
     <ClInclude Include="Oficina.h" />
   </ItemGroup>

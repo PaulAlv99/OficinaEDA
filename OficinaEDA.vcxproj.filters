@@ -59,9 +59,6 @@
     <ClInclude Include="Oficina.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ListLigada.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Arvore.h">
       <Filter>Header Files</Filter>
     </ClInclude>

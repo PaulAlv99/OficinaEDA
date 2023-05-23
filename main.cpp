@@ -1,7 +1,6 @@
 #include "Ficheiros.h"
 #include "Carro.h"
 #include "Oficina.h"
-#include "ListLigada.h"
 #include "Gestao.h"
 #include <iostream>
 #include <string>

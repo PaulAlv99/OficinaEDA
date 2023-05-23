@@ -63,7 +63,7 @@ void Remove(Carro*& v, int& tamanho, int& ind)
 
 void adicionarcarro(listacarros& lista, Carro& carro) {
 	listacarros* atual = &lista;
-	listacarros* novo;
+	listacarros* novo = &listacarros();
 	if (atual->inicio = NULL) {
 		atual->carro = carro;
 		atual->inicio = atual;

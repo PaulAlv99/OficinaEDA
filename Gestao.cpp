@@ -438,10 +438,10 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 				<< " | " << "Capacidade: " << atualET->capacidade << " | " <<
 				"Marca: " << atualET->mecanico.marca << " | " << "Total Faturacao: " << atualET->faturacao << endl;
 			cout << endl;
-			Mecanico* novo = CriarMecanico(marcas);
+			Mecanico* novo = &CriarMecanico(marcas);
 			
 			//remover a ET antiga e criar uma nova ou algo semelhante
-			EstacaoTrabalho* temp = &CriarET(atualET->ID);
+			EstacaoTrabalho* temp = CriarET(atualET->ID);
 			atualET->ID = temp->ID;
 			atualET->capacidade = temp->capacidade;
 			atualET->Carrosreparados = temp->Carrosreparados;

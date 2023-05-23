@@ -74,7 +74,7 @@ using namespace std;
 //    return 0;
 //}
 
-Mecanico* CriarMecanico(LinhasFicheiro& marcas) {
+Mecanico CriarMecanico(LinhasFicheiro& marcas) {
     string marca;
     bool sair = false;
 
@@ -114,10 +114,10 @@ Mecanico* CriarMecanico(LinhasFicheiro& marcas) {
     }
 
     preco = static_cast<int>(precotemp);
-    Mecanico* novo = &Mecanico();
-    novo->marca = marca;
-    novo->nome = nome;
-    novo->preco_reparacao_por_dia = preco;
+    Mecanico novo = Mecanico();
+    novo.marca = marca;
+    novo.nome = nome;
+    novo.preco_reparacao_por_dia = preco;
     return novo;
 }
 

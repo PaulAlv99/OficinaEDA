@@ -49,17 +49,17 @@ void reparacao(EstacaoTrabalho& ET) {
 */
 
 
-EstacaoTrabalho CriarET(int ID) {
-    EstacaoTrabalho nova = EstacaoTrabalho();
-    nova.mecanico; // Atribuir um novo objeto Mecanico a nova.mecanico
-    nova.capacidade = 2 + (rand() % 3);
-    nova.faturacao = 0;
-    nova.ID = ID;
-    nova.Carrosreparados = nullptr;
-    nova.carros_a_ser_reparados = nullptr;
-    nova.num_carros_a_ser_reparados = 0;
-    nova.seguinte = NULL;
-    nova.inicio = NULL;
+EstacaoTrabalho *CriarET(int ID) {
+    EstacaoTrabalho* nova = &EstacaoTrabalho();
+    nova->mecanico; // Atribuir um novo objeto Mecanico a nova.mecanico
+    nova->capacidade = 2 + (rand() % 3);
+    nova->faturacao = 0;
+    nova->ID = ID;
+    nova->Carrosreparados = nullptr;
+    nova->carros_a_ser_reparados = nullptr;
+    nova->num_carros_a_ser_reparados = 0;
+    nova->seguinte = NULL;
+    nova->inicio = NULL;
     return nova;
 }
 //Tem dois pointers um para o todos os elementos node->inicio e outro para seguinte->NULL

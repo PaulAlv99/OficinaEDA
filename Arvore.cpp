@@ -1,6 +1,7 @@
 #include "Arvore.h"
+#include "Carro.h"
 
-Arvore* novoNodo(Carro carro) {
+Arvore* novoNodo(Carro &carro) {
     Arvore* novonodo = new Arvore();
     novonodo->carros_reparados = carro;
     novonodo->esquerda = NULL;
@@ -8,7 +9,7 @@ Arvore* novoNodo(Carro carro) {
     return novonodo;
 }
 
-Arvore* inserirNodo(Arvore* raiz, Carro carros_reparados) {
+Arvore* inserirNodo(Arvore* raiz, Carro &carros_reparados) {
     Arvore* aux = raiz;
     Arvore* prev = NULL;
     if (raiz == NULL)
