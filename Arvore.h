@@ -14,5 +14,6 @@ void imprimeArvore(Arvore* no, int nivel);
 Arvore* removerCopia(Arvore*& raiz, int num);
 Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant);
 int numeroNiveis(Arvore* raiz);
-void infixa(Arvore* raiz);
+Carro infixa(Arvore* raiz, Carro* carrosreparados);
+bool compararalf(string str1, string str2);
 Arvore* ultimoInfixa(Arvore* raiz);

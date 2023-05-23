@@ -8,7 +8,15 @@ Arvore* novoNodo(Carro &carro) {
     raiz->direita = NULL;
     return raiz;
 }
-
+bool compararalf(string str1,string str2) {
+    int i = str1.compare(str2);
+    if (i >= 0) {//se o modelo for igual ou se o modelo str1 é maior que str2
+        return true;
+    }
+    else{
+        return false; //se o modelo str1 é menor que str2
+    }
+}
 Arvore* inserirNodo(Arvore*& raiz, Carro &carros_reparados) {
     Arvore* aux = raiz;
     Arvore* prev = NULL;
@@ -16,18 +24,18 @@ Arvore* inserirNodo(Arvore*& raiz, Carro &carros_reparados) {
         aux = novoNodo(carros_reparados);
     else {
         while (raiz != NULL) {
-            prev = raiz;
-            if (raiz->carros_reparados.ID > carros_reparados.ID) {
+            prev = raiz;//i.g ACURA,TESLA
+            if (compararalf(raiz->carros_reparados.modelo,carros_reparados.modelo)) {
                 raiz->esquerda->carros_reparados = carros_reparados;
             }
             else {
                 raiz->direita->carros_reparados = carros_reparados;
             }
         }
-        if (prev->carros_reparados.ID < carros_reparados.ID)
-            prev->direita = novoNodo(carros_reparados);
-        else
+        if (compararalf(prev->carros_reparados.modelo,carros_reparados.modelo))
             prev->esquerda = novoNodo(carros_reparados);
+        else    
+            prev->direita = novoNodo(carros_reparados);
     }
     return aux;
 }
