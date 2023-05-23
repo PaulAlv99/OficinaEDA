@@ -62,56 +62,56 @@ EstacaoTrabalho CriarET(int ID) {
 }
 //Tem dois pointers um para o todos os elementos node->inicio e outro para seguinte->NULL
 void reparacao(Oficina& Of) {
-    int chance;
-    EstacaoTrabalho* atualET = &Of.ets;
-    listacarros* atualcarro = atualET->carros_a_ser_reparados;
-    while (atualET != NULL) {
-        while (atualET->num_carros_a_ser_reparados <= atualET->capacidade) {
-            if ((atualET->carros_a_ser_reparados->carro.dias_em_reparacao < atualET->carros_a_ser_reparados->carro.tempo_reparacao_max) && (atualET->carros_a_ser_reparados->carro.ID != 0))
-                chance = rand() % 100 + 1;
-            if ((chance >= 1 && chance <= 15) && (atualET->carros_a_ser_reparados->carro.dias_em_reparacao > 0)) {
-                int tamanho = atualET->num_carros_a_ser_reparados;
-                /* Adicionar a arvore de carros reparados
-                   listacarros* novono = new listacarros();
-                   novono->carro = atual->carro;
-                   novono->seguinte = ET.Carrosreparados;
-                   ET.Carrosreparados = novono;*/
+	int chance;
+	EstacaoTrabalho* atualET = &Of.ets;
+	listacarros* atualcarro = atualET->carros_a_ser_reparados;
+	while (atualET != NULL) {
+		while (atualET->carros_a_ser_reparados) {
+			if ((atualET->carros_a_ser_reparados->carro.dias_em_reparacao < atualET->carros_a_ser_reparados->carro.tempo_reparacao_max) && (atualET->carros_a_ser_reparados->carro.ID != 0))
+				chance = rand() % 100 + 1;
+			if ((chance >= 1 && chance <= 15) && (atualET->carros_a_ser_reparados->carro.dias_em_reparacao > 0)) {
+				int tamanho = atualET->num_carros_a_ser_reparados;
+				/* Adicionar a arvore de carros reparados
+				   listacarros* novono = new listacarros();
+				   novono->carro = atual->carro;
+				   novono->seguinte = ET.Carrosreparados;
+				   ET.Carrosreparados = novono;*/
 
-                Of.ets.num_carros_a_ser_reparados--;
-                atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
-                Of.ets.faturacao += (atualET->carros_a_ser_reparados->carro.dias_em_reparacao * Of.ets.mecanico.preco_reparacao_por_dia);
-                Of.ets.Carrosreparados->carros_reparados.custoreparacao = Of.ets.mecanico.preco_reparacao_por_dia * atualET->carros_a_ser_reparados->carro.dias_em_reparacao;
-                if (Of.ets.carros_a_ser_reparados == NULL) {
-                    Of.ets.Carrosreparados = novoNodo(atualET->carros_a_ser_reparados->carro);
-                }
-                else {
-                    Of.ets.Carrosreparados = inserirNodo(Of.ets.Carrosreparados, atualET->carros_a_ser_reparados->carro);
-                }
-                Of.ets.num_carros_reparados++;
-            }
-            else {
-                atualET->carros_a_ser_reparados->carro.dias_em_reparacao++;
-            }
-            else if ((atualET->carros_a_ser_reparados->carro.dias_em_reparacao >= atualET->carros_a_ser_reparados->carro.tempo_reparacao_max) && (atualET->carros_a_ser_reparados->carro.ID != 0)) {
-                /* Adicionar a arvore de carros reparados
-                   listacarros* novono = new listacarros();
-                   novono->carro = atual->carro;
-                   novono->seguinte = ET.Carrosreparados;
-                   ET.Carrosreparados = novono;*/
+				Of.ets.num_carros_a_ser_reparados--;
+				atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
+				Of.ets.faturacao += (atualET->carros_a_ser_reparados->carro.dias_em_reparacao * Of.ets.mecanico.preco_reparacao_por_dia);
+				Of.ets.Carrosreparados->carros_reparados.custoreparacao = Of.ets.mecanico.preco_reparacao_por_dia * atualET->carros_a_ser_reparados->carro.dias_em_reparacao;
+				if (Of.ets.Carrosreparados == NULL) {
+					Of.ets.Carrosreparados = novoNodo(atualET->carros_a_ser_reparados->carro);
+				}
+				else {
+					Of.ets.Carrosreparados = inserirNodo(Of.ets.Carrosreparados, atualET->carros_a_ser_reparados->carro);
+				}
+				Of.ets.num_carros_reparados++;
+				atualET->carros_a_ser_reparados->carro.dias_em_reparacao++;
+			}
+			else if ((atualET->carros_a_ser_reparados->carro.dias_em_reparacao >= atualET->carros_a_ser_reparados->carro.tempo_reparacao_max) && (atualET->carros_a_ser_reparados->carro.ID != 0)) {
+				/* Adicionar a arvore de carros reparados
+				   listacarros* novono = new listacarros();
+				   novono->carro = atual->carro;
+				   novono->seguinte = ET.Carrosreparados;
+				   ET.Carrosreparados = novono;*/
 
-                Of.ets.num_carros_a_ser_reparados--;
-                atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
-                Of.ets.faturacao += atualET->carros_a_ser_reparados->carro.dias_em_reparacao * Of.ets.mecanico.preco_reparacao_por_dia;
-                //ET.Carrosreparados->carro.custoreparacao = ET.mecanico.preco_reparacao_por_dia * atual->carro.dias_em_reparacao;   O paulo tem de ver
-                Of.ets.num_carros_reparados++;
-            }
-        }
-    }
-            atualET->Carrosreparados->carros_reparados->seguinte;
-            atualcarro++;
-            //delete anterior;
-            }
-    atualET++;
+				Of.ets.num_carros_a_ser_reparados--;
+				atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
+				Of.ets.faturacao += atualET->carros_a_ser_reparados->carro.dias_em_reparacao * Of.ets.mecanico.preco_reparacao_por_dia;
+				Of.ets.Carrosreparados->carros_reparados.custoreparacao = Of.ets.mecanico.preco_reparacao_por_dia * atualET->carros_a_ser_reparados->carro.dias_em_reparacao;
+				if (Of.ets.Carrosreparados == NULL) {
+					Of.ets.Carrosreparados = novoNodo(atualET->carros_a_ser_reparados->carro);
+				}
+				else {
+					Of.ets.Carrosreparados = inserirNodo(Of.ets.Carrosreparados, atualET->carros_a_ser_reparados->carro);
+				}
+				Of.ets.num_carros_reparados++;
+				atualET->carros_a_ser_reparados->carro.dias_em_reparacao++;
+			}
+			atualET->carros_a_ser_reparados++;
+		}
+		atualET++;
+	}
 }
-
-
