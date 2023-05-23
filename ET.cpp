@@ -78,14 +78,16 @@ void reparacao(Oficina& Of) {
 				   ET.Carrosreparados = novono;*/
 
 				Of.ets.num_carros_a_ser_reparados--;
-				atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
+				
 				Of.ets.faturacao += (atualET->carros_a_ser_reparados->carro.dias_em_reparacao * Of.ets.mecanico.preco_reparacao_por_dia);
 				Of.ets.Carrosreparados->carros_reparados.custoreparacao = Of.ets.mecanico.preco_reparacao_por_dia * atualET->carros_a_ser_reparados->carro.dias_em_reparacao;
 				if (Of.ets.Carrosreparados == NULL) {
 					Of.ets.Carrosreparados = novoNodo(atualET->carros_a_ser_reparados->carro);
+					atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
 				}
 				else {
 					Of.ets.Carrosreparados = inserirNodo(Of.ets.Carrosreparados, atualET->carros_a_ser_reparados->carro);
+					atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
 				}
 				Of.ets.num_carros_reparados++;
 				atualET->carros_a_ser_reparados->carro.dias_em_reparacao++;
@@ -103,9 +105,11 @@ void reparacao(Oficina& Of) {
 				Of.ets.Carrosreparados->carros_reparados.custoreparacao = Of.ets.mecanico.preco_reparacao_por_dia * atualET->carros_a_ser_reparados->carro.dias_em_reparacao;
 				if (Of.ets.Carrosreparados == NULL) {
 					Of.ets.Carrosreparados = novoNodo(atualET->carros_a_ser_reparados->carro);
+					atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
 				}
 				else {
 					Of.ets.Carrosreparados = inserirNodo(Of.ets.Carrosreparados, atualET->carros_a_ser_reparados->carro);
+					atualET->carros_a_ser_reparados->carro.ID = 0; //remove o carro da lista de carros a ser reparados
 				}
 				Of.ets.num_carros_reparados++;
 				atualET->carros_a_ser_reparados->carro.dias_em_reparacao++;
