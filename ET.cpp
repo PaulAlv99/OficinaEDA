@@ -58,6 +58,8 @@ EstacaoTrabalho CriarET(int ID) {
     nova.Carrosreparados = nullptr;
     nova.carros_a_ser_reparados = nullptr;
     nova.num_carros_a_ser_reparados = 0;
+    nova.seguinte = NULL;
+    nova.inicio = NULL;
     return nova;
 }
 

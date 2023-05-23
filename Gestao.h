@@ -11,7 +11,7 @@ void atualizar_tempo_reparacao(Oficina& Of);
 void adicionar_prioridade(Oficina& Of);
 void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas);
 void gravar_oficina(Oficina& Of);
-void carregar_oficina(Oficina& Of, string caminho);
+void carregar_oficina(Oficina& Of, const string& caminho);
 void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carros);
 void OrdenarCarrosPorDiasReparacao(Carro*& carros, int num_carros);
 void imprimir_oficinaportempo(Oficina& Of);
