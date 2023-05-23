@@ -1,4 +1,5 @@
 #include "ET.h"
+#include "Oficina.h"
 
 /*EstacaoTrabalho CriarET(int ID) {
 	EstacaoTrabalho nova = EstacaoTrabalho();
@@ -80,7 +81,7 @@ void reparacao(Oficina& Of) {
 				   ET.Carrosreparados = novono;*/
 
 				Of.ets.num_carros_a_ser_reparados--;
-				
+
 				Of.ets.faturacao += (atualET->carros_a_ser_reparados->carro.dias_em_reparacao * Of.ets.mecanico.preco_reparacao_por_dia);
 				Of.ets.Carrosreparados->carros_reparados.custoreparacao = Of.ets.mecanico.preco_reparacao_por_dia * atualET->carros_a_ser_reparados->carro.dias_em_reparacao;
 				if (Of.ets.Carrosreparados == NULL) {
