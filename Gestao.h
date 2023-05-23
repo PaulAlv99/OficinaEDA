@@ -16,3 +16,11 @@ void OrdenarCarrosAlfabeticamenteEPorDiasReparacao(Carro*& carros, int num_carro
 void OrdenarCarrosPorDiasReparacao(Carro*& carros, int num_carros);
 void imprimir_oficinaportempo(Oficina& Of);
 void imprimir_oficinaalfabeticamente(Oficina& Of);
+
+//void imprimir_oficina_alfabeticamente()
+//struct nodo {
+//	int   dados;
+//	nodo* esquerda;
+//	nodo* direita;
+//};
+//void imprimeArvore(nodo* no, int nivel);
