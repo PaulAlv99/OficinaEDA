@@ -156,14 +156,14 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
 		switch (opcao) {
 
-		//case 1:
-		//	reparacao_manual(Of);
-		//	system("CLS");
+			//case 1:
+			//	reparacao_manual(Of);
+			//	system("CLS");
 
-		//	MenuInfo(Of, marcas, modelos);    // e preciso anular esta parte e passar os cases para os seus numeros corretos
-		//	Menu(Of, marcas, modelos);
-		//	sair = true;
-		//	break;
+			//	MenuInfo(Of, marcas, modelos);    // e preciso anular esta parte e passar os cases para os seus numeros corretos
+			//	Menu(Of, marcas, modelos);
+			//	sair = true;
+			//	break;
 
 		case 1:
 			atualizar_tempo_reparacao(Of);
@@ -228,7 +228,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 				break;
 			}
 
-			carregar_oficina ( Of, caminho);
+			carregar_oficina(Of, caminho);
 			system("CLS");
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
@@ -241,42 +241,58 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 
 		case 7: // imprimir carros reparados 
 			while ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
-				cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Po" << endl;
-				cin >> ws;
-				getline(cin, escolha1temp);
-				while (!verificarnumero(escolha1temp)) {
-					cout << "Opcao invalida! Tente novamente" << endl;;
-					cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Por ID" << endl;
-					getline(cin, escolha1temp);
+				int x;
+				cout << "Insira o ID da ET que pretende carregar os carros reparados :" << endl;
+				cin >> x;
+				while (x > Of.ets.ID && x <= 0 ) {
+					cout << "Opcao invalida! Tente novamente" << endl;
+					cout << "Insira o ID da ET que pretende carregar os carros reparados :" << endl;
+
 				}
-				escolha1temporaria = stod(escolha1temp);
-				if ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
-					escolha1temporaria = 0;
+					cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
+					cin >> ws;
+					getline(cin, escolha1temp);
+					while (!verificarnumero(escolha1temp)) {
+						cout << "Opcao invalida! Tente novamente" << endl;
+						cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
+						getline(cin, escolha1temp);
+					}
+					escolha1temporaria = stod(escolha1temp);
+					if ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
+						escolha1temporaria = 0;
+					}
+					else {
+						escolha = escolha1temporaria;
+					}
+
+					escolha = (int)escolha1temporaria;
+					if (escolha == 1) {
+						system("CLS");
+						cout << "Lista ordenada alfabeticamente: " << endl;
+						imprimir_carrosreparados_alfabeticamente(Of);
+						cout << endl;
+					}
+					else if (escolha == 2) {
+						system("CLS");
+						cout << "Lista ordenada por tempo de reparacao: " << endl;
+						imprimir_oficinaportempo(Of);
+						cout << endl;
+					}
+					else {
+						cout << "Opcao invalida" << endl;
+					}
 				}
 				else {
-					escolha = escolha1temporaria;
+					cout << "Opcao invalida" << endl << "Escolha outro ID : "
+
 				}
 			}
-			escolha = (int)escolha1temporaria;
-			if (escolha == 1) {
-				system("CLS");
-				cout << "Lista ordenada alfabeticamente: " << endl;
-				imprimir_oficinaalfabeticamente(Of);
-				cout << endl;
-			}
-			else if (escolha == 2) {
-				system("CLS");
-				cout << "Lista ordenada por tempo de reparacao: " << endl;
-				imprimir_oficinaportempo(Of);
-				cout << endl;
-			}
-			else {
-				cout << "Opcao invalida" << endl;
-			}
+
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
 			sair = true;
 			break;
+		
 
 
 		/*case 7:
@@ -591,13 +607,13 @@ void carregar_oficina(Oficina& Of, string caminho){
 
 			//obtem ID
 			getline(ss, temp, '|');
-			nova.ets[i].ID = stoi(temp);
+			nova.ets.ID = stoi(temp);
 			//obtem capacidade
 			getline(ss, temp, '|');
-			nova.ets[i].capacidade = stoi(temp);
+			nova.ets.capacidade = stoi(temp);
 			//faturacao
 			getline(ss, temp, '|');
-			nova.ets[i].faturacao = stof(temp);
+			nova.ets.faturacao = stof(temp);
 			
 			//num carros a ser reparados
 			getline(ss, temp, '|');
@@ -735,7 +751,7 @@ void adicionar_ET(Oficina& Of , LinhasFicheiro& marcas, LinhasFicheiro& modelos)
 }
 
 
-void imprimir_oficinaalfabeticamente(Oficina& Of) {
+void imprimir_carrosreparados_alfabeticamente(Oficina& Of) {
 	int num_carros_total = 0;
 	for (int i = 0; i < Of.numero_ets; i++) {
 		num_carros_total += Of.ets.num_carros_a_ser_reparados + Of.ets.num_carros_reparados;
