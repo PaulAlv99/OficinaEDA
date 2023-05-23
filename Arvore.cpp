@@ -138,12 +138,12 @@ Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant) {
 Carro infixa(Arvore* raiz, Carro* carrosreparados) {
     int i = numeroVertices(raiz);
     if (raiz != NULL) {
-        infixa(raiz->esquerda);
+        infixa(raiz->esquerda,&raiz->carros_reparados);
         Carro* carrosreparados = new Carro[i];
         for(int t=0; t< i;i++){
             carrosreparados[t] = raiz->carros_reparados;
         }
-        infixa(raiz->direita);
+        infixa(raiz->direita,&raiz->carros_reparados);
     }
     return *carrosreparados;
 }

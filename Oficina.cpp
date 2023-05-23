@@ -22,7 +22,9 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	nova.ets.mecanico = CriarMecanico(marcas);
 	EstacaoTrabalho * atual = &nova.ets;
     for (int i = 1; i < nova.numero_ets - 1; i++) {
-		atual->seguinte = &CriarET(i + 1);
+		EstacaoTrabalho temp{};
+		temp= CriarET(i + 1);
+		atual->seguinte = &temp;
 		atual->seguinte->inicio = atual->inicio;
 		atual->seguinte->mecanico = CriarMecanico(marcas);
 		atual = atual->seguinte;
@@ -192,10 +194,10 @@ void ColocarCarrosET(Oficina& Of, int num) {
 
 void organizarprioritario(Oficina& Of) {
 	listacarros* atualespera = &Of.listaespera;
-	listacarros* novo = &listacarros();
-	listacarros* temp = & listacarros();
-	listacarros* final = &listacarros();
-	listacarros* finaltemp = &listacarros();
+	listacarros* novo = new listacarros();
+	listacarros* temp = new listacarros();
+	listacarros* final = new listacarros();
+	listacarros* finaltemp = new listacarros();
 	while (atualespera->carro.prioritario != true && atualespera->inicio != NULL) {
 		atualespera = atualespera->seguinte;
 	}
