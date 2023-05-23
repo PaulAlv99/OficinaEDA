@@ -122,12 +122,17 @@ Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant) {
     return raiz;
 }
 
-void infixa(Arvore* raiz) {
+Carro infixa(Arvore* raiz, Carro* carrosreparados) {
+    int i = numeroVertices(raiz);
     if (raiz != NULL) {
         infixa(raiz->esquerda);
-        cout << raiz->carros_reparados.ID << " ";
+        Carro* carrosreparados = new Carro[i];
+        for(int t=0; t< i;i++){
+            carrosreparados[t] = raiz->carros_reparados;
+        }
         infixa(raiz->direita);
     }
+    return *carrosreparados;
 }
 
 Arvore* removerCopia(Arvore*& raiz, int num) {
