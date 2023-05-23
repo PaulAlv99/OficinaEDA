@@ -1,5 +1,5 @@
 #include "Arvore.h"
-#include "Carro.h"
+
 
 Arvore* novoNodo(Carro &carro) {
     Arvore* novonodo = new Arvore();
@@ -9,7 +9,7 @@ Arvore* novoNodo(Carro &carro) {
     return novonodo;
 }
 
-Arvore* inserirNodo(Arvore* raiz, Carro &carros_reparados) {
+Arvore* inserirNodo(Arvore*& raiz, Carro &carros_reparados) {
     Arvore* aux = raiz;
     Arvore* prev = NULL;
     if (raiz == NULL)
@@ -58,27 +58,6 @@ void imprimeArvore(Arvore* raiz, int nivel) {
     std::cout << raiz->carros_reparados.marca << "-" << raiz->carros_reparados.modelo << std::endl;
 
     imprimeArvore(raiz->esquerda, nivel + 1);
-}
-
-Arvore* removerCopia(Arvore* raiz, int num) {
-    Arvore* no = raiz;
-    Arvore* ant = NULL;
-
-    while (no != NULL) {
-        if (num == no->carros_reparados.ID) {
-            return removerCopia2(raiz, no, ant);
-        }
-        else if (num < no->carros_reparados.ID) {
-            ant = no;
-            no = no->esquerda;
-        }
-        else {
-            ant = no;
-            no = no->direita;
-        }
-    }
-
-    return raiz;
 }
 
 Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant) {
@@ -149,4 +128,38 @@ void infixa(Arvore* raiz) {
         cout << raiz->carros_reparados.ID << " ";
         infixa(raiz->direita);
     }
+}
+
+Arvore* removerCopia(Arvore*& raiz, int num) {
+    Arvore* no = raiz;
+    Arvore* ant = NULL;
+
+    while (no != NULL) {
+        if (num == no->carros_reparados.ID) {
+            return removerCopia2(raiz, no, ant);
+        }
+        else if (num < no->carros_reparados.ID) {
+            ant = no;
+            no = no->esquerda;
+        }
+        else {
+            ant = no;
+            no = no->direita;
+        }
+    }
+
+    return raiz;
+}
+
+
+Arvore* ultimoInfixa(Arvore* raiz) {
+    Arvore* ultimo{};
+    if (raiz != NULL) {
+        ultimoInfixa(raiz->esquerda);
+        ultimo=ultimoInfixa(raiz->direita);
+       
+    }
+    ultimo->esquerda = NULL;
+    ultimo->direita = NULL;
+    return ultimo;
 }

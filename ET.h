@@ -17,6 +17,6 @@ struct EstacaoTrabalho {
 	EstacaoTrabalho* inicio;
 };
 
-EstacaoTrabalho* CriarET(int ID);
+EstacaoTrabalho CriarET(int ID);
 void reparacao(EstacaoTrabalho& ID1);
 

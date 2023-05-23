@@ -441,15 +441,15 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 			Mecanico* novo = &CriarMecanico(marcas);
 			
 			//remover a ET antiga e criar uma nova ou algo semelhante
-			EstacaoTrabalho* temp = CriarET(atualET->ID);
-			atualET->ID = temp->ID;
-			atualET->capacidade = temp->capacidade;
-			atualET->Carrosreparados = temp->Carrosreparados;
-			atualET->carros_a_ser_reparados = temp->carros_a_ser_reparados;
-			atualET->faturacao = temp->faturacao;
-			atualET->mecanico = temp->mecanico;
-			atualET->num_carros_a_ser_reparados = temp->num_carros_a_ser_reparados;
-			atualET->num_carros_reparados = temp->num_carros_reparados;
+			EstacaoTrabalho temp = CriarET(atualET->ID);
+			atualET->ID = temp.ID;
+			atualET->capacidade = temp.capacidade;
+			atualET->Carrosreparados = temp.Carrosreparados;
+			atualET->carros_a_ser_reparados = temp.carros_a_ser_reparados;
+			atualET->faturacao = temp.faturacao;
+			atualET->mecanico = temp.mecanico;
+			atualET->num_carros_a_ser_reparados = temp.num_carros_a_ser_reparados;
+			atualET->num_carros_reparados = temp.num_carros_reparados;
 			/*
 			Of.ets[i] = CriarET(Of.ets[i].ID);
 			Of.ets[i].mecanico = novo;*/

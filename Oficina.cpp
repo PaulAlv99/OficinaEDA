@@ -10,7 +10,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
     Oficina nova = Oficina();
     nova.ciclos = 0; //dias de trabalho
     nova.numero_ets = numero_de_et();
-	nova.ets = *CriarET(1);
+	nova.ets = CriarET(1);
 	nova.ets.inicio = &nova.ets;
 	nova.listaespera;
 	nova.carrostotais = 0;
@@ -22,7 +22,7 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	nova.ets.mecanico = CriarMecanico(marcas);
 	EstacaoTrabalho * atual = &nova.ets;
     for (int i = 1; i < nova.numero_ets - 1; i++) {
-		atual->seguinte = CriarET(i + 1);
+		atual->seguinte = &CriarET(i + 1);
 		atual->seguinte->inicio = atual->inicio;
 		atual->seguinte->mecanico = CriarMecanico(marcas);
 		atual = atual->seguinte;

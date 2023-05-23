@@ -50,17 +50,17 @@ void reparacao(EstacaoTrabalho& ET) {
 */
 
 
-EstacaoTrabalho *CriarET(int ID) {
-    EstacaoTrabalho* nova = &EstacaoTrabalho();
-    nova->mecanico; // Atribuir um novo objeto Mecanico a nova.mecanico
-    nova->capacidade = 2 + (rand() % 3);
-    nova->faturacao = 0;
-    nova->ID = ID;
-    nova->Carrosreparados = nullptr;
-    nova->carros_a_ser_reparados = nullptr;
-    nova->num_carros_a_ser_reparados = 0;
-    nova->seguinte = NULL;
-    nova->inicio = NULL;
+EstacaoTrabalho CriarET(int ID) {
+    EstacaoTrabalho nova = EstacaoTrabalho();
+    nova.mecanico; // Atribuir um novo objeto Mecanico a nova.mecanico
+    nova.capacidade = 2 + (rand() % 3);
+    nova.faturacao = 0;
+    nova.ID = ID;
+    nova.Carrosreparados = NULL;
+    nova.carros_a_ser_reparados = NULL;
+    nova.num_carros_a_ser_reparados = 0;
+    nova.seguinte = NULL;
+    nova.inicio = NULL;
     return nova;
 }
 //Tem dois pointers um para o todos os elementos node->inicio e outro para seguinte->NULL
@@ -68,8 +68,9 @@ void reparacao(Oficina& Of) {
 	int chance;
 	EstacaoTrabalho* atualET = &Of.ets;
 	listacarros* atualcarro = atualET->carros_a_ser_reparados;
+	Arvore* raiz = atualET->Carrosreparados;
 	while (atualET != NULL) {
-		while (atualET->carros_a_ser_reparados) {
+		while (ultimoInfixa(raiz) != NULL){
 			if ((atualET->carros_a_ser_reparados->carro.dias_em_reparacao < atualET->carros_a_ser_reparados->carro.tempo_reparacao_max) && (atualET->carros_a_ser_reparados->carro.ID != 0))
 				chance = rand() % 100 + 1;
 			if ((chance >= 1 && chance <= 15) && (atualET->carros_a_ser_reparados->carro.dias_em_reparacao > 0)) {
