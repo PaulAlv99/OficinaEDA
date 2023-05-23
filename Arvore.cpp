@@ -2,11 +2,11 @@
 
 
 Arvore* novoNodo(Carro &carro) {
-    Arvore* novonodo = new Arvore();
-    novonodo->carros_reparados = carro;
-    novonodo->esquerda = NULL;
-    novonodo->direita = NULL;
-    return novonodo;
+    Arvore* raiz = new Arvore();
+    raiz->carros_reparados = carro;
+    raiz->esquerda = NULL;
+    raiz->direita = NULL;
+    return raiz;
 }
 
 Arvore* inserirNodo(Arvore*& raiz, Carro &carros_reparados) {
@@ -17,7 +17,12 @@ Arvore* inserirNodo(Arvore*& raiz, Carro &carros_reparados) {
     else {
         while (raiz != NULL) {
             prev = raiz;
-            raiz = (raiz->carros_reparados.ID > carros_reparados.ID ? raiz->esquerda : raiz->direita);
+            if (raiz->carros_reparados.ID > carros_reparados.ID) {
+                raiz->esquerda->carros_reparados = carros_reparados;
+            }
+            else {
+                raiz->direita->carros_reparados = carros_reparados;
+            }
         }
         if (prev->carros_reparados.ID < carros_reparados.ID)
             prev->direita = novoNodo(carros_reparados);
