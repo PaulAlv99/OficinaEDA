@@ -48,24 +48,26 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 		if (Of.ciclos >= 1) {
 				cout << "Carros reparados: " << endl;
 			}
-			//O Paulo e que sabe como fez a arvore
-			/*Arvore* atualcarrosreparados = atualET->Carrosreparados;
-			while (atualcarrosreparados != NULL) {
-				if ((Of.ciclos >= 1) && (Of.ets[i].Carrosreparados[t].ID != 0)) {
-					cout << "ID: " << Of.ets[i].Carrosreparados[t].ID << " | " << "Carro: " << Of.ets[i].Carrosreparados[t].marca << "-"
-						<< Of.ets[i].Carrosreparados[t].modelo << " | " << "Prioritario: ";
-					if (Of.ets[i].Carrosreparados[t].prioritario == 1) {
+			Arvore* atualcarrosreparados = atualET->Carrosreparados;
+			Carro* carrosreparados{};
+			carrosreparados= &infixa(atualcarrosreparados,carrosreparados);
+			int i = numeroVertices(atualcarrosreparados);
+			while (i) {
+				if ((Of.ciclos >= 1) && (Of.ets.Carrosreparados->carros_reparados.ID != 0)) {
+					cout << "ID: " << Of.ets.Carrosreparados->carros_reparados.ID << " | " << "Carro: " << Of.ets.Carrosreparados->carros_reparados.marca << "-"
+						<< Of.ets.Carrosreparados->carros_reparados.modelo << " | " << "Prioritario: ";
+					if (Of.ets.Carrosreparados->carros_reparados.prioritario == 1) {
 						cout << "Sim";
 					}
 					else {
 						cout << "Nao";
 					}
-					cout << " | " << "Tempo de reparacao: " << Of.ets[i].Carrosreparados[t].dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
-					cout << Of.ets[i].Carrosreparados[t].tempo_reparacao_max << "| Custo de reparacao: " << Of.ets[i].Carrosreparados[t].custoreparacao << endl;
+					cout << " | " << "Tempo de reparacao: " << Of.ets.Carrosreparados->carros_reparados.dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
+					cout << Of.ets.Carrosreparados->carros_reparados.tempo_reparacao_max << "| Custo de reparacao: " << Of.ets.Carrosreparados->carros_reparados.custoreparacao << endl;
 				}
-
+				i--;
 			}
-			cout << endl;*/
+			cout << endl;
 
 
 			atualET = atualET->seguinte;
