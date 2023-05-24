@@ -157,7 +157,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		switch (opcao) {
 
 		case 1:
-			reparacao_manual(Of);
+			//reparacao_manual(Of);
 			system("CLS");
 
 			MenuInfo(Of, marcas, modelos);
@@ -228,7 +228,7 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 				break;
 			}
 
-			carregar_oficina(Of, caminho);
+			//carregar_oficina(Of, caminho);
 			system("CLS");
 			MenuInfo(Of, marcas, modelos);
 			Menu(Of, marcas, modelos);
@@ -259,13 +259,13 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			if (escolha == 1) {
 				system("CLS");
 				cout << "Lista ordenada alfabeticamente: " << endl;
-				imprimir_oficinaalfabeticamente(Of);
+				//imprimir_oficinaalfabeticamente(Of);
 				cout << endl;
 			}
 			else if (escolha == 2) {
 				system("CLS");
 				cout << "Lista ordenada por tempo de reparacao: " << endl;
-				imprimir_oficinaportempo(Of);
+				//imprimir_oficinaportempo(Of);
 				cout << endl;
 			}
 			else {
@@ -438,7 +438,7 @@ void remover_mecanico(Oficina& Of, LinhasFicheiro& marcas) {
 				<< " | " << "Capacidade: " << atualET->capacidade << " | " <<
 				"Marca: " << atualET->mecanico.marca << " | " << "Total Faturacao: " << atualET->faturacao << endl;
 			cout << endl;
-			Mecanico* novo = &CriarMecanico(marcas);
+			Mecanico novo = CriarMecanico(marcas);
 			
 			//remover a ET antiga e criar uma nova ou algo semelhante
 			EstacaoTrabalho temp = CriarET(atualET->ID);

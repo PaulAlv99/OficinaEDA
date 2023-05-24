@@ -82,29 +82,34 @@ void adicionarcarro(listacarros& lista, Carro& carro) {
 
 void removecarro(listacarros& lista, Carro& carro) {
 	listacarros* atual = &lista;
-	listacarros* temp;
-	listacarros* nova;
+	listacarros temp = listacarros();
+	listacarros nova = listacarros();
+	temp.carro = Carro();
+	temp.seguinte = NULL;
+	temp.inicio = &temp;
 	bool terminar = false;
 	if (atual->inicio->carro.ID != carro.ID && atual->inicio != NULL) {
-		temp->carro = atual->carro;
-		temp->inicio = temp;
-		temp->seguinte = NULL;
+		temp.carro = atual->carro;
+		
+		temp.seguinte = NULL;
+		temp.inicio = &temp;
 		terminar = false;
 		atual = atual->seguinte;
 	}
 	else if(atual->inicio != NULL && atual->inicio->carro.ID == carro.ID) {
-		temp = atual->seguinte;
-		temp->inicio = temp;
+		temp.carro = atual->seguinte->carro;
+		temp.seguinte = atual->seguinte->seguinte;
+		temp.inicio = &temp;
 		terminar = true;
 	}
 
 	if (atual->inicio != NULL && terminar == false) {
-		while (atual->seguinte != NULL) {
+		while (atual != NULL) {
 			if (atual->carro.ID != carro.ID) {
-				nova->carro = atual->carro;
-				nova->seguinte = NULL;
-				nova->inicio = temp->inicio;
-				temp->seguinte = nova;
+				nova.carro = atual->carro;
+				nova.seguinte = NULL;
+				nova.inicio = temp.inicio;
+				temp.seguinte = &nova;
 				atual = atual->seguinte;
 			}
 			else {
@@ -114,6 +119,6 @@ void removecarro(listacarros& lista, Carro& carro) {
 		}
 
 	}
-	atual = temp;
+	atual = &temp;
 	atual = atual->inicio;
 }

@@ -50,7 +50,7 @@ void reparacao(EstacaoTrabalho& ET) {
 */
 
 
-EstacaoTrabalho CriarET(int ID) {
+EstacaoTrabalho  CriarET(int ID) {
     EstacaoTrabalho nova = EstacaoTrabalho();
     nova.mecanico; // Atribuir um novo objeto Mecanico a nova.mecanico
     nova.capacidade = 2 + (rand() % 3);

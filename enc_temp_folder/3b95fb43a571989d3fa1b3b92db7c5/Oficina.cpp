@@ -28,9 +28,8 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		atual->seguinte->mecanico = CriarMecanico(marcas);
 		atual = atual->seguinte;
     }
+	atual->seguinte = NULL;
 	atual->seguinte->inicio = atual->inicio;
-	atual->seguinte->seguinte = NULL;
-	
 
     /*Criar 10 carros random*/
     CriarCarrosNaFila(nova,marcas,modelos,10);

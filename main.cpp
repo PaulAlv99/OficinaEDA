@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     if (argc == 2) {
 
         string caminho = argv[1];
-        carregar_oficina(METAL, caminho);
+        //carregar_oficina(METAL, caminho);
      
     }
     else {
@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 
         METAL = criarOficina(marcas, modelos);
 
-        colocarprioritario(METAL);
+        organizarprioritario(METAL);
     }
 
     MenuInfo(METAL, marcas, modelos);
