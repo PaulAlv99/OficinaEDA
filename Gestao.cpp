@@ -39,7 +39,9 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 					}
 					atualcarrosaserreparados = atualcarrosaserreparados->seguinte;
 				}
-				atualcarrosaserreparados = atualcarrosaserreparados->inicio;
+				if (atualcarrosaserreparados->inicio != NULL) {
+					atualcarrosaserreparados = atualcarrosaserreparados->inicio;
+				}
 		}
 			cout << endl;
 
@@ -49,8 +51,8 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 				cout << "Carros reparados: " << endl;
 			}
 			Arvore* atualcarrosreparados = atualET->Carrosreparados;
-			Carro* carrosreparados{};
-			carrosreparados= &infixa(atualcarrosreparados,carrosreparados);
+			Carro carrosreparados;
+			carrosreparados= infixa(atualcarrosreparados,&carrosreparados);
 			int i = numeroVertices(atualcarrosreparados);
 			while (i) {
 				if ((Of.ciclos >= 1) && (Of.ets.Carrosreparados->carros_reparados.ID != 0)) {

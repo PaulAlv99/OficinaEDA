@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
         /*limpar os couts*/
         system("CLS");
 
-        METAL = criarOficina(marcas, modelos);
+        criarOficina(marcas, modelos, METAL);
 
         organizarprioritario(METAL);
     }

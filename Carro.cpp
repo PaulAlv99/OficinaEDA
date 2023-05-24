@@ -88,7 +88,7 @@ void removecarro(listacarros& lista, Carro& carro) {
 	temp.seguinte = NULL;
 	temp.inicio = &temp;
 	bool terminar = false;
-	if (atual->inicio->carro.ID != carro.ID && atual->inicio != NULL) {
+	if (atual->inicio != NULL && atual->inicio->carro.ID != carro.ID) {
 		temp.carro = atual->carro;
 		
 		temp.seguinte = NULL;

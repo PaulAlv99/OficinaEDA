@@ -1,43 +1,69 @@
 #include "Oficina.h"
 
 
+
 int numero_de_et() {
     int et_numero = 3 + (rand() % 5); // numero de ET por oficina random
     return et_numero;
 }
 
-Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
-    Oficina nova = Oficina();
-    nova.ciclos = 0; //dias de trabalho
-    nova.numero_ets = numero_de_et();
-	nova.ets = CriarET(1);
-	nova.ets.inicio = &nova.ets;
-	nova.listaespera;
-	nova.carrostotais = 0;
-    nova.fila_espera_tamanho = 0;
+Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos, Oficina &of) {
+	Oficina novaof = of;
+	novaof.ciclos = 0; //dias de trabalho
+	novaof.numero_ets = numero_de_et();
+	EstacaoTrabalho temp = CriarET(1);
+
+	temp.seguinte = NULL;
+	temp.inicio = &temp;
+
+	novaof.listaespera;
+	novaof.carrostotais = 0;
+	novaof.fila_espera_tamanho = 0;
 
 
-    /* Criar os mecanicos conforme o numero de ets gerado*/
-	
-	nova.ets.mecanico = CriarMecanico(marcas);
-	EstacaoTrabalho * atual = &nova.ets;
-    for (int i = 1; i < nova.numero_ets - 1; i++) {
+	novaof.ets = temp;
+
+
+
+
+	temp.mecanico = CriarMecanico(marcas);
+
+
+	novaof.ets.capacidade = temp.capacidade;
+	novaof.ets.Carrosreparados = temp.Carrosreparados;
+	novaof.ets.carros_a_ser_reparados = temp.carros_a_ser_reparados;
+	novaof.ets.faturacao = temp.faturacao;
+	novaof.ets.ID = temp.ID;
+	novaof.ets.inicio = temp.inicio;
+	novaof.ets.mecanico = temp.mecanico;
+	novaof.ets.num_carros_a_ser_reparados = temp.num_carros_a_ser_reparados;
+	novaof.ets.num_carros_reparados = temp.num_carros_a_ser_reparados;
+	novaof.ets.num_carros_reparados = temp.num_carros_reparados;
+	novaof.ets.seguinte = temp.seguinte;
+	EstacaoTrabalho* atual = &novaof.ets;
+	int j = 0;
+	for (int i = 1; i < novaof.numero_ets - 2; i++) {
+		j = i;
 		EstacaoTrabalho seguinte = CriarET(i + 1);
 		atual->seguinte = &seguinte;
 		atual->seguinte->inicio = atual->inicio;
 		atual->seguinte->mecanico = CriarMecanico(marcas);
 		atual = atual->seguinte;
-    }
+	}
+	EstacaoTrabalho proxima = CriarET(j + 1);
+	atual->seguinte = &proxima;
 	atual->seguinte->inicio = atual->inicio;
-	atual->seguinte->seguinte = NULL;
-	
+	atual->seguinte->mecanico = CriarMecanico(marcas);
+	atual = atual->inicio;
 
-    /*Criar 10 carros random*/
-    CriarCarrosNaFila(nova,marcas,modelos,10);
+
+	/*Criar 10 carros random*/
+	CriarCarrosNaFila(novaof, marcas, modelos, 10);
 
 	atual = atual->inicio;
-    //Criar ET; criar os mecanicos; encher a fila ; criar os carros (lista das marcas e dos modelos);
-    return nova;
+	//Criar ET; criar os mecanicos; encher a fila ; criar os carros (lista das marcas e dos modelos);
+	return novaof;
+
 }
 
 
@@ -48,16 +74,20 @@ Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 bool MarcaPresente(Oficina &Of, string marca) {
 	bool temp = false;
 	EstacaoTrabalho * atual = &Of.ets;
-	while(atual != NULL) {
+	atual = atual->inicio;
+	while(atual -> seguinte != NULL) {
 		temp = (marca == atual->mecanico.marca);
 		if (temp) {
 			break;
 		}
 		atual = atual->seguinte;
 	}
-
-	return temp;
+	if (marca == atual->mecanico.marca && temp == false) {
+		temp = true;
+	}
 	atual = atual->inicio;
+	return temp;
+
 }
 
 
@@ -65,7 +95,7 @@ void CriarCarrosNaFila(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& mode
 	for (int i = 0; i < num; i) {
 		Carro novo = CriarCarro(marcas, modelos);
 		novo.ID = Of.carrostotais + 1;
-		if (MarcaPresente(Of, novo.marca)) {
+		if (MarcaPresente(Of, novo.marca) == true) {
 				adicionarcarro(Of.listaespera, novo);
 				Of.carrostotais = Of.carrostotais + 1;
 				i++;

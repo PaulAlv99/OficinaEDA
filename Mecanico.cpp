@@ -79,12 +79,11 @@ Mecanico CriarMecanico(LinhasFicheiro& marcas) {
     bool sair = false;
 
     while (!sair) {
-        cout << "Insira uma marca válida do mecânico: " << endl;
-        cin >> marca;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); //é usado para descartar os caracteres restantes no buffer de entrada até encontrar o caractere de nova linha
+        cout << "Insira uma marca valida do mecanico: " << endl;
+        getline(cin, marca);
 
         for (int i = 0; i < marcas.tamanho; i++) {
-            if (marca == marcas.linhas[i]) {
+            if (removerespacos(maiuscula(marca)) == removerespacos(maiuscula(marcas.linhas[i]))) {
                 sair = true;
                 break;
             }
@@ -100,14 +99,13 @@ Mecanico CriarMecanico(LinhasFicheiro& marcas) {
     int preco = 0;
 
     while ((precotemp > 100) || (precotemp <= 0)) {
-        cout << "Introduza um preço por dia do mecânico válido (inteiro entre 0 e 100): " << endl;
+        cout << "Introduza um preco por dia do mecanico valido (inteiro entre 0 e 100): " << endl;
         cin >> entrada;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         while (!verificarnumero(entrada)) {
-            cout << "Entrada inválida!" << endl << "Introduza o preço por dia do mecânico (inteiro entre 0 e 100): " << endl;
+            cout << "Entrada invalida!" << endl << "Introduza o preco por dia do mecanico (inteiro entre 0 e 100): " << endl;
             cin >> entrada;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         
         precotemp = stod(entrada);  // converte uma string em um valor double

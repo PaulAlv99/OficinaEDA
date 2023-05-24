@@ -2,16 +2,16 @@
 #include "ET.h"
 
 struct Oficina {
-	EstacaoTrabalho ets;
-	int numero_ets;
-	listacarros listaespera;
-	int fila_espera_tamanho;
-	int carrostotais;
-	int ciclos;
+	EstacaoTrabalho ets = EstacaoTrabalho();
+	int numero_ets = 0;
+	listacarros listaespera = listacarros();
+	int fila_espera_tamanho = 0;
+	int carrostotais = 0;
+	int ciclos = 0;
 
 };
 
-Oficina criarOficina(LinhasFicheiro &marcas, LinhasFicheiro &modelos);
+Oficina criarOficina(LinhasFicheiro& marcas, LinhasFicheiro& modelos, Oficina& of);
 
 void seguinte(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos);
 
