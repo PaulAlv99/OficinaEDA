@@ -238,94 +238,61 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 				int x;
 				std::cout << "Insira o ID da ET que pretende carregar os carros reparados :" << endl;
 				cin >> x;
-				while (x > Of.ets.ID && x <= 0 ) {
+				while (x > Of.ets.ID && x <= 0) {
 					cout << "Opcao invalida! Tente novamente" << endl;
 					cout << "Insira o ID da ET que pretende carregar os carros reparados :" << endl;
 
 				}
-					cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
-					cin >> ws;
-					getline(cin, escolha1temp);
-					while (!verificarnumero(escolha1temp)) {
-						cout << "Opcao invalida! Tente novamente" << endl;
-						cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
-						getline(cin, escolha1temp);
-					}
-					escolha1temporaria = stod(escolha1temp);
-					if ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
-						escolha1temporaria = 0;
-					}
-					else {
-						escolha = escolha1temporaria;
-					}
+				cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
+				while (x > Of.ets.ID && x <= 0) {
+					std::cout << "Opcao invalida! Tente novamente" << endl;
+					std::cout << "Insira o ID da ET que pretende carregar os carros reparados :" << endl;
 
-					escolha = (int)escolha1temporaria;
-					if (escolha == 1) {
-						system("CLS");
-						cout << "Lista ordenada alfabeticamente: " << endl;
-						imprimir_carrosreparados_alfabeticamente(Of);
-						cout << endl;
-					}
-					else if (escolha == 2) {
-						system("CLS");
-						cout << "Lista ordenada por tempo de reparacao: " << endl;
-						imprimir_oficinaportempo(Of);
-						cout << endl;
-					}
-					else {
-						cout << "Opcao invalida" << endl;
-					}
+				}
+				std::cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
+				cin >> ws;
+				std::getline(cin, escolha1temp);
+				while (!verificarnumero(escolha1temp)) {
+					std::cout << "Opcao invalida! Tente novamente" << endl;
+					std::cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
+					std::getline(cin, escolha1temp);
+				}
+				escolha1temporaria = stod(escolha1temp);
+				if ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
+					escolha1temporaria = 0;
 				}
 				else {
+					escolha = escolha1temporaria;
+				}
+
+				escolha = (int)escolha1temporaria;
+				if (escolha == 1) {
+					system("CLS");
+					std::cout << "Lista ordenada alfabeticamente: " << endl;
+					imprimir_carrosreparados_alfabeticamente(Of);
+					std::cout << endl;
+				}
+				else if (escolha == 2) {
+					system("CLS");
+					std::cout << "Lista ordenada por tempo de reparacao: " << endl;
+					imprimir_oficinaportempo(Of);
+					std::cout << endl;
+				}
+				else {
+					std::cout << "Opcao invalida" << endl;
+				}
+			}
+				else {
 					cout << "Opcao invalida" << endl << "Escolha outro ID : "
+
+				}
+
 
 				MenuInfo(Of, marcas, modelos);
 				Menu(Of, marcas, modelos);
 				sair = true;
 				break;
-			}
 
-
-			/*case 7:
-
-
-				while ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
-					cout << "Escolha como quer imprimir a Oficina" << endl << "(1) Alfabeticamente" << endl << "(2) Por dias em reparacao" << endl;
-					cin >> ws;
-					getline(cin, escolha1temp);
-					while (!verificarnumero(escolha1temp)) {
-						cout << "Opcao invalida! Tente novamente" << endl;;
-						cout << "Escolha como quer imprimir a Oficina" << endl << "(1) Alfabeticamente" << endl << "(2) Por dias em reparacao" << endl;
-						getline(cin, escolha1temp);
-					}
-					escolha1temporaria = stod(escolha1temp);
-					if ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
-						escolha1temporaria = 0;
-					}
-					else {
-						escolha = escolha1temporaria;
-					}
-				}
-				escolha = (int)escolha1temporaria;
-				if (escolha == 1) {
-					system("CLS");
-					cout << "Lista ordenada alfabeticamente: " << endl;
-					imprimir_oficinaalfabeticamente(Of);
-					cout << endl;
-				}
-				else if (escolha == 2) {
-					system("CLS");
-					cout << "Lista ordenada por tempo de reparacao: " << endl;
-					imprimir_oficinaportempo(Of);
-					cout << endl;
-				}
-				else {
-					cout << "Opcao invalida" << endl;
-				}
-				MenuInfo(Of, marcas, modelos);
-				Menu(Of, marcas, modelos);
-				sair = true;
-				break;*/
 
 		case 8:
 			Menu(Of, marcas, modelos);
