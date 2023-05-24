@@ -82,8 +82,8 @@ void adicionarcarro(listacarros& lista, Carro& carro) {
 
 void removecarro(listacarros& lista, Carro& carro) {
 	listacarros* atual = &lista;
-	listacarros* temp;
-	listacarros* nova;
+	listacarros* temp{};
+	listacarros* nova{};
 	bool terminar = false;
 	if (atual->inicio->carro.ID != carro.ID && atual->inicio != NULL) {
 		temp->carro = atual->carro;

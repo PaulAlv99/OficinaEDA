@@ -1,52 +1,46 @@
-#include <iostream>
-#include "gestao.h"
-#include "Mecanico.h"
-#include <fstream>
-#include <sstream>
-#include <string>
-#include "Arvore.h"
+#include "Gestao.h"
 
-using namespace std;
-
+//esta porra está a dar problema ambiguo e estava no cpp do Gestao um monte de merdas
+//se quiserem adicionar includes,adicionem no header sff
 void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
-	cout << "Dia: " << Of.ciclos << endl;
+	std::cout << "Dia: " << Of.ciclos << endl;
 	EstacaoTrabalho* atualET = &Of.ets;
 	
 	
 	listacarros* atualespera = &Of.listaespera;
 	while (atualET != NULL) {
-			cout << "ET: " << atualET->ID << " | " << "Mecanico: " << atualET->mecanico.nome
+			std::cout << "ET: " << atualET->ID << " | " << "Mecanico: " << atualET->mecanico.nome
 				<< " | " << "Capacidade: " << atualET->capacidade << " | " << "Carros: " << atualET->num_carros_a_ser_reparados << " | " <<
 				"Marca: " << atualET->mecanico.marca << " | " << "Total Faturacao: " << atualET->faturacao << endl;
 			if (Of.ciclos >= 1) {
-				cout << "Carros a ser reparados: " << endl;
+				std::cout << "Carros a ser reparados: " << endl;
 			}
 			int r = atualET->capacidade;
 			if(atualET->num_carros_a_ser_reparados>0){
 				listacarros* atualcarrosaserreparados = atualET->carros_a_ser_reparados;
 				while (atualcarrosaserreparados != NULL) {
 					if ((Of.ciclos >= 1) && (atualcarrosaserreparados->carro.ID != 0)) {
-						cout << "ID: " << atualcarrosaserreparados->carro.ID << " | " << "Carro: " << atualcarrosaserreparados->carro.marca << "-"
+						std::cout << "ID: " << atualcarrosaserreparados->carro.ID << " | " << "Carro: " << atualcarrosaserreparados->carro.marca << "-"
 							<< atualcarrosaserreparados->carro.modelo << " | " << "Prioritario: ";
 						if (atualcarrosaserreparados->carro.prioritario == 1) {
-							cout << "Sim";
+							std::cout << "Sim";
 						}
 						else {
-							cout << "Nao";
+							std::cout << "Nao";
 						}
-						cout << " | " << "Tempo de reparacao: " << atualcarrosaserreparados->carro.dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
-						cout << atualcarrosaserreparados->carro.tempo_reparacao_max << endl;
+						std::cout << " | " << "Tempo de reparacao: " << atualcarrosaserreparados->carro.dias_em_reparacao << " | " << "Tempo de reparacao maximo: ";
+						std::cout << atualcarrosaserreparados->carro.tempo_reparacao_max << endl;
 					}
 					atualcarrosaserreparados = atualcarrosaserreparados->seguinte;
 				}
 				atualcarrosaserreparados = atualcarrosaserreparados->inicio;
 		}
-			cout << endl;
+			std::cout << endl;
 
 
 
 		if (Of.ciclos >= 1) {
-				cout << "Carros reparados: " << endl;
+			std::cout << "Carros reparados: " << endl;
 			}
 			//O Paulo e que sabe como fez a arvore
 			/*Arvore* atualcarrosreparados = atualET->Carrosreparados;
@@ -70,18 +64,18 @@ void MenuInfo(Oficina& Of,LinhasFicheiro& marcas,LinhasFicheiro& modelos){
 
 			atualET = atualET->seguinte;
 	}
-	cout << "--------------------------------------------------------------------------------------" << endl;
-	cout << "Lista de Espera: " << endl;
+	std::cout << "--------------------------------------------------------------------------------------" << endl;
+	std::cout << "Lista de Espera: " << endl;
 	while (atualespera != NULL) {
-		cout << "ID: " << atualespera->carro.ID << " | " << "Modelo: " << atualespera->carro.modelo << " | " << "Marca: " << atualespera->carro.marca << " | "
+		std::cout << "ID: " << atualespera->carro.ID << " | " << "Modelo: " << atualespera->carro.modelo << " | " << "Marca: " << atualespera->carro.marca << " | "
 			<< "Prioritario: ";
 		if (atualespera->carro.prioritario == 1) {
-			cout << "Sim";
+			std::cout << "Sim";
 		}
 		else {
-			cout << "Nao";
+			std::cout << "Nao";
 		}
-		cout<< " | " << "Tempo de reparacao maximo: " << atualespera->carro.tempo_reparacao_max << endl;
+		std::cout<< " | " << "Tempo de reparacao maximo: " << atualespera->carro.tempo_reparacao_max << endl;
 		atualespera = atualespera->seguinte;
 	}
 	atualespera = atualespera->inicio;
@@ -92,17 +86,17 @@ void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	string escolha;
 	bool sair = false;
 	do {
-		cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
+		std::cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
 
-		cout << "Seleccione a sua opcao : " << endl;
-		getline(cin, escolha);
+		std::cout << "Seleccione a sua opcao : " << endl;
+		std::getline(cin, escolha);
 		while (escolha.length() != 1) {
-			cout << "Escolha invalida! Digite apenas uma das letras destacadas abaixo." << endl;
-			cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
+			std::cout << "Escolha invalida! Digite apenas uma das letras destacadas abaixo." << endl;
+			std::cout << "Dia (s)eguinte *********** (g)estao" << endl << "(T)erminar programa" << endl;
 
-			cout << "Seleccione a sua opcao : " << endl;
-			getline(cin, escolha);
-			cout << endl;
+			std::cout << "Seleccione a sua opcao : " << endl;
+			std::getline(cin, escolha);
+			std::cout << endl;
 		}
 
 		switch (escolha[0]) {
@@ -124,7 +118,7 @@ void Menu(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			break;
 
 		default:
-			cout << "Opcao invalida" << endl;
+			std::cout << "Opcao invalida" << endl;
 			break;
 
 		}
@@ -142,16 +136,16 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 	string caminho = "oficina.txt";
 	bool sair = false;
 	do {
-		cout << " ***** Bem Vindo Gestor *****" << endl;
-		cout << "(1).Atualizar tempo de reparacao" << endl;
-		cout << "(2).Adicionar Prioridade" << endl;
-		cout << "(3).Remover Mecanico" << endl;
-		cout << "(4).Gravar Oficina" << endl;
-		cout << "(5).Carregar Oficina" << endl;
-		cout << "(6).Adicionar ET" << endl;
-		cout << "(7).Imprimir carros reparados" << endl;
-		cout << "(8).Sair da gestao" << endl;
-		cout << "Seleccione a sua opcao : ";
+		std::cout << " ***** Bem Vindo Gestor *****" << endl;
+		std::cout << "(1).Atualizar tempo de reparacao" << endl;
+		std::cout << "(2).Adicionar Prioridade" << endl;
+		std::cout << "(3).Remover Mecanico" << endl;
+		std::cout << "(4).Gravar Oficina" << endl;
+		std::cout << "(5).Carregar Oficina" << endl;
+		std::cout << "(6).Adicionar ET" << endl;
+		std::cout << "(7).Imprimir carros reparados" << endl;
+		std::cout << "(8).Sair da gestao" << endl;
+		std::cout << "Seleccione a sua opcao : ";
 		cin >> opcao;
 
 		switch (opcao) {
@@ -199,13 +193,13 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		case 5:
 
 			while ((escolha2temporaria > 2) || (escolha2temporaria <= 0)) {
-				cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
+				std::cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
 				cin >> ws;
-				getline(cin, escolha2temp);
+				std::getline(cin, escolha2temp);
 				while (!verificarnumero(escolha2temp)) {
-					cout << "Opcao invalida! Tente novamente" << endl;;
-					cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
-					getline(cin, escolha2temp);
+					std::cout << "Opcao invalida! Tente novamente" << endl;;
+					std::cout << "Digite: " << endl << "(1) Escolher o caminho manualmente" << endl << "(2) Usar o caminho padrao (Oficina.txt)" << endl;
+					std::getline(cin, escolha2temp);
 				}
 				escolha2temporaria = stod(escolha2temp);
 				if ((escolha2temporaria > 2) || (escolha2temporaria <= 0)) {
@@ -218,13 +212,13 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 			switch (escolha2) {
 
 			case 1:
-				cout << "Digite o caminho (inclua .txt ao fim do nome do arquivo): " << endl;
+				std::cout << "Digite o caminho (inclua .txt ao fim do nome do arquivo): " << endl;
 				cin >> caminho;
 				break;
 			case 2:
 				break;
 			default:
-				cout << "Opcao invalida" << endl << "Imprimindo usando o caminho padrao..." << endl;
+				std::cout << "Opcao invalida" << endl << "Imprimindo usando o caminho padrao..." << endl;
 				break;
 			}
 
@@ -242,45 +236,48 @@ void gestao(Oficina& Of, LinhasFicheiro& marcas, LinhasFicheiro& modelos) {
 		case 7: // imprimir carros reparados 
 			while ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
 				int x;
-				cout << "Insira o ID da ET que pretende carregar os carros reparados :" << endl;
+				std::cout << "Insira o ID da ET que pretende carregar os carros reparados :" << endl;
 				cin >> x;
-				while (x > Of.ets.ID && x <= 0) {
+				while (x > Of.ets.ID && x <= 0 ) {
 					cout << "Opcao invalida! Tente novamente" << endl;
 					cout << "Insira o ID da ET que pretende carregar os carros reparados :" << endl;
 
 				}
-				cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
-				cin >> ws;
-				getline(cin, escolha1temp);
-				while (!verificarnumero(escolha1temp)) {
-					cout << "Opcao invalida! Tente novamente" << endl;
 					cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
+					cin >> ws;
 					getline(cin, escolha1temp);
-				}
-				escolha1temporaria = stod(escolha1temp);
-				if ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
-					escolha1temporaria = 0;
-				}
-				else {
-					escolha = escolha1temporaria;
-				}
+					while (!verificarnumero(escolha1temp)) {
+						cout << "Opcao invalida! Tente novamente" << endl;
+						cout << "Escolha como quer imprimir os carros reparados " << endl << "(1) Alfabeticamente" << endl << "(2) Pela arvore" << endl;
+						getline(cin, escolha1temp);
+					}
+					escolha1temporaria = stod(escolha1temp);
+					if ((escolha1temporaria > 2) || (escolha1temporaria <= 0)) {
+						escolha1temporaria = 0;
+					}
+					else {
+						escolha = escolha1temporaria;
+					}
 
-				escolha = (int)escolha1temporaria;
-				if (escolha == 1) {
-					system("CLS");
-					cout << "Lista ordenada alfabeticamente: " << endl;
-					imprimir_carrosreparados_alfabeticamente(Of);
-					cout << endl;
-				}
-				else if (escolha == 2) {
-					system("CLS");
-					cout << "Lista ordenada por tempo de reparacao: " << endl;
-					imprimir_oficinaportempo(Of);
-					cout << endl;
+					escolha = (int)escolha1temporaria;
+					if (escolha == 1) {
+						system("CLS");
+						cout << "Lista ordenada alfabeticamente: " << endl;
+						imprimir_carrosreparados_alfabeticamente(Of);
+						cout << endl;
+					}
+					else if (escolha == 2) {
+						system("CLS");
+						cout << "Lista ordenada por tempo de reparacao: " << endl;
+						imprimir_oficinaportempo(Of);
+						cout << endl;
+					}
+					else {
+						cout << "Opcao invalida" << endl;
+					}
 				}
 				else {
-					cout << "Opcao invalida" << endl;
-				}
+					cout << "Opcao invalida" << endl << "Escolha outro ID : "
 
 				MenuInfo(Of, marcas, modelos);
 				Menu(Of, marcas, modelos);
