@@ -1,28 +1,41 @@
 #include "Arvore.h"
 
 
-Arvore* novoNodo(Carro &carro) {
-    Arvore* novonodo = new Arvore();
-    novonodo->carros_reparados = carro;
-    novonodo->esquerda = NULL;
-    novonodo->direita = NULL;
-    return novonodo;
+Arvore* novoNodo(Carro& carro) {
+    Arvore* raiz = new Arvore();
+    raiz->carros_reparados = carro;
+    raiz->esquerda = NULL;
+    raiz->direita = NULL;
+    return raiz;
 }
-
-Arvore* inserirNodo(Arvore*& raiz, Carro &carros_reparados) {
+bool compararalf(string str1, string str2) {
+    int i = str1.compare(str2);
+    if (i >= 0) {//se o modelo for igual ou se o modelo str1 é maior que str2
+        return true;
+    }
+    else {
+        return false; //se o modelo str1 é menor que str2
+    }
+}
+Arvore* inserirNodo(Arvore*& raiz, Carro& carros_reparados) {
     Arvore* aux = raiz;
     Arvore* prev = NULL;
     if (raiz == NULL)
         aux = novoNodo(carros_reparados);
     else {
         while (raiz != NULL) {
-            prev = raiz;
-            raiz = (raiz->carros_reparados.ID > carros_reparados.ID ? raiz->esquerda : raiz->direita);
+            prev = raiz;//i.g ACURA,TESLA
+            if (compararalf(raiz->carros_reparados.modelo, carros_reparados.modelo)) {
+                raiz->esquerda->carros_reparados = carros_reparados;
+            }
+            else {
+                raiz->direita->carros_reparados = carros_reparados;
+            }
         }
-        if (prev->carros_reparados.ID < carros_reparados.ID)
-            prev->direita = novoNodo(carros_reparados);
-        else
+        if (compararalf(prev->carros_reparados.modelo, carros_reparados.modelo))
             prev->esquerda = novoNodo(carros_reparados);
+        else
+            prev->direita = novoNodo(carros_reparados);
     }
     return aux;
 }
@@ -122,12 +135,17 @@ Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant) {
     return raiz;
 }
 
-void infixa(Arvore* raiz) {
+Carro infixa(Arvore* raiz, Carro* carrosreparados) {
+    int i = numeroVertices(raiz);
     if (raiz != NULL) {
-        infixa(raiz->esquerda);
-        cout << raiz->carros_reparados.ID << " ";
-        infixa(raiz->direita);
+        infixa(raiz->esquerda, &raiz->carros_reparados);
+        Carro* carrosreparados = new Carro[i];
+        for (int t = 0; t < i; i++) {
+            carrosreparados[t] = raiz->carros_reparados;
+        }
+        infixa(raiz->direita, &raiz->carros_reparados);
     }
+    return *carrosreparados;
 }
 
 Arvore* removerCopia(Arvore*& raiz, int num) {
@@ -156,8 +174,8 @@ Arvore* ultimoInfixa(Arvore* raiz) {
     Arvore* ultimo{};
     if (raiz != NULL) {
         ultimoInfixa(raiz->esquerda);
-        ultimo=ultimoInfixa(raiz->direita);
-       
+        ultimo = ultimoInfixa(raiz->direita);
+
     }
     ultimo->esquerda = NULL;
     ultimo->direita = NULL;
