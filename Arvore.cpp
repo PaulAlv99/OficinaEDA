@@ -135,17 +135,59 @@ Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant) {
     return raiz;
 }
 
-Carro infixa(Arvore* raiz, Carro* carrosreparados) {
-    int i = numeroVertices(raiz);
-    if (raiz != NULL) {
-        infixa(raiz->esquerda, &raiz->carros_reparados);
-        Carro* carrosreparados = new Carro[i];
-        for (int t = 0; t < i; i++) {
-            carrosreparados[t] = raiz->carros_reparados;
-        }
-        infixa(raiz->direita, &raiz->carros_reparados);
-    }
-    return *carrosreparados;
+//void infixa(Arvore* raiz)
+//{
+//    Arvore* atual;
+//    Arvore* pre;
+//    int i = numeroVertices(raiz);
+//    listacarros* listadecarrosreparados = new listacarros[i];
+//    if (raiz == NULL)
+//        return;
+//
+//    atual = raiz;
+//    while (atual != NULL) {
+//
+//        if (atual->esquerda == NULL) {
+//            listadecarrosreparados->seguinte->carro = atual->carros_reparados;
+//            atual = atual->direita;
+//        }
+//        else {
+//
+//            // Find the inorder predecessor of current
+//            pre = atual->esquerda;
+//            while (pre->direita != NULL
+//                && pre->direita != atual)
+//                pre = pre->direita;
+//
+//            // Make current as the right child of its
+//            // inorder predecessor
+//            if (pre->direita == NULL) {
+//                pre->direita = atual;
+//                atual = atual->esquerda;
+//            }
+//
+//            // Revert the changes made in the 'if' part to
+//            // restore the original tree i.e., fix the right
+//            // child of predecessor
+//            else {
+//                pre->direita = NULL;
+//                listadecarrosreparados->carro = atual->carros_reparados;
+//                atual = atual->direita;
+//            }
+//        }
+//    }
+//}
+
+void BSTparaArray(Arvore* raiz, Carro A[])
+{
+    /*Passar a raiz e a lista de carros, depois fazer um for com a funcao se quiseres imprimir  */
+    static int pos = 0;
+    if (raiz == NULL) return;
+
+    BSTparaArray(raiz->esquerda, A);
+    A[pos++] = raiz->carros_reparados;
+    BSTparaArray(raiz->direita, A);
+
 }
 
 Arvore* removerCopia(Arvore*& raiz, int num) {

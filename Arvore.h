@@ -1,5 +1,6 @@
 #pragma once
 #include "Carro.h"
+#include "Oficina.h"
 
 struct Arvore {
     Carro carros_reparados;
@@ -14,6 +15,7 @@ void imprimeArvore(Arvore* no, int nivel);
 Arvore* removerCopia(Arvore*& raiz, int num);
 Arvore* removerCopia2(Arvore* raiz, Arvore* no, Arvore* ant);
 int numeroNiveis(Arvore* raiz);
-Carro infixa(Arvore* raiz, Carro* carrosreparados);
+void infixa(Arvore* raiz);
 bool compararalf(string str1, string str2);
 Arvore* ultimoInfixa(Arvore* raiz);
+void BSTparaArray(Arvore* raiz, Carro A[]);
