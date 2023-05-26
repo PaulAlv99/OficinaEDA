@@ -607,6 +607,92 @@ void carregar_oficina(Oficina& Of, const string& caminho) {
 			// Obtém faturacao
 			getline(ss, temp, '|');
 			temporaria->faturacao = stof(temp);
+			temporaria->num_carros_reparados = stoi(temp);
+			temporaria->seguinte = nullptr;
+
+			atualET->seguinte = temporaria;
+			atualET = atualET->seguinte;
+		}
+
+		// Obtém carros a ser reparados
+		atualET = nova.ets;
+		while (atualET != nullptr) {
+			int capacidade = atualET->capacidade;
+			atualET->carros_a_ser_reparados = nullptr;
+			Carro* currentCarro = nullptr;
+			for (int i = 0; i < capacidade; i++) {
+				getline(ficheiro, linha);
+				stringstream ss(linha);
+
+				// Obtém dias em reparacao
+				getline(ss, temp, '|');
+				int dias = stoi(temp);
+
+				// Obtém id do carro em reparacao
+				getline(ss, temp, '|');
+				int id = stoi(temp);
+
+				// Obtém marca
+				getline(ss, temp, '|');
+				string marca = temp;
+
+				// Obtém modelo
+				getline(ss, temp, '|');
+				string modelo = temp;
+
+				// Obtém prioridade
+				getline(ss, temp, '|');
+				int prioritario = stoi(temp);
+
+				// Obtém tempo de reparacao maximo
+				getline(ss, temp, '|');
+				int tempo_reparacao_max = stoi(temp);
+
+				Carro* carro = new Carro(id, dias, marca, modelo, prioritario, tempo_reparacao_max);
+
+				if (atualET->carros_a_ser_reparados == nullptr) {
+					atualET->carros_a_ser_reparados = carro;
+					currentCarro = carro;
+				}
+				else {
+					currentCarro->next = carro;
+					currentCarro = carro;
+				}
+			}
+
+			atualET = atualET->seguinte;
+		}
+
+		// Carrega mecânicos
+		for (int i = 0; i < nova.numero_ets; i++) {
+			getline(ficheiro, linha);
+			stringstream ss(linha);
+
+			// Cria mecanico
+			nova.ets[i].mecanico = Mecanico();
+
+			// Obtém marca
+			getline(ss, temp, '|');
+			nova.ets[i].mecanico.marca = temp;
+
+			// Obtém nome do mecanico
+			getline(ss, temp, '|');
+			nova.ets[i].mecanico.nome = temp;
+
+			// Obtém preço de reparacao por dia
+			getline(ss, temp, '|');
+			nova.ets[i].mecanico.preco_reparacao_por_dia = stoi(temp);
+		}
+
+		// Carrega fila de espera
+		getline(ficheiro, linha);
+		stringstream ss2(linha);
+
+		// Obtém tamanho da fila de espera
+		getline(ss2, temp, '|');
+		nova.fila_espera_tamanho = stoi(temp);
+		nova.fila_espera = nullptr;
+
 
 
 
