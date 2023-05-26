@@ -540,6 +540,75 @@ void gravar_oficina(Oficina& Of) {
 }
 
 
+void carregar_oficina(Oficina& Of, const string& caminho) {
+	ifstream ficheiro(caminho);
+
+	if (ficheiro.is_open()) {
+		Oficina nova;
+		string linha;
+
+		getline(ficheiro, linha);
+		stringstream ss(linha);
+		string temp;
+
+		// Obtém ciclos
+		getline(ss, temp, '|');
+		nova.ciclos = stoi(temp);
+
+		// Obtém carrostotais
+		getline(ss, temp, '|');
+		nova.carrostotais = stoi(temp);
+
+		// Obtém numero_ets
+		getline(ss, temp, '|');
+		nova.numero_ets = stoi(temp);
+
+		// Cria as ets
+		nova.ets = new EstacaoTrabalho();
+		EstacaoTrabalho* atualET = nova.ets;
+
+		getline(ficheiro, linha);
+		stringstream ss(linha);
+
+		// Obtém ID
+		getline(ss, temp, '|');
+		atualET->ID = stoi(temp);
+
+		// Obtém capacidade
+		getline(ss, temp, '|');
+		atualET->capacidade = stoi(temp);
+
+		// Obtém faturacao
+		getline(ss, temp, '|');
+		atualET->faturacao = stof(temp);
+
+		// Obtém num carros a ser reparados
+		getline(ss, temp, '|');
+		atualET->num_carros_a_ser_reparados = stoi(temp);
+
+		// Obtém carros reparados
+		getline(ss, temp, '|');
+		atualET->num_carros_reparados = stoi(temp);
+		atualET->seguinte = nullptr;
+
+		for (int i = 1; i < nova.numero_ets; i++) {
+			EstacaoTrabalho* temporaria = new EstacaoTrabalho();
+			getline(ficheiro, linha);
+			stringstream ss(linha);
+
+			// Obtém ID
+			getline(ss, temp, '|');
+			temporaria->ID = stoi(temp);
+
+			// Obtém capacidade
+			getline(ss, temp, '|');
+			temporaria->capacidade = stoi(temp);
+
+			// Obtém faturacao
+			getline(ss, temp, '|');
+			temporaria->faturacao = stof(temp);
+
+
 
 
 //void carregar_oficina(Oficina& Of, const string& caminho) {
