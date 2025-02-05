@@ -10,3 +10,6 @@ O objetivo deste projeto **foi** criar uma simulação de uma oficina de carros.
 It's advised to use Visual Studio and use the default compiler.
 
 É aconselhado usar o Visual Studio e usar o compilador do próprio.
+
+#### Made by | Envolvidos no projeto
+  Paulo Alves, Renato Pêssego, Leonardo Ferreira, Francisco Afonseca
